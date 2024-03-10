@@ -46,6 +46,21 @@
   ];
 
   programs.ripgrep.enable = true;
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+    options = [ "--cmd cd" ];
+  };
+
+  programs.git = {
+      enable = true;
+      userEmail = "jamman98@gmail.com";
+      userName = "Jamis Hartley";
+
+      extraConfig = {
+	init.defaultBranch = "main";
+      };
+  };
 
   programs.nixvim = {
     enable = true;
