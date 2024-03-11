@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "breadcat";
-  home.homeDirectory = "/home/breadcat";
+  home.username = "breadman";
+  home.homeDirectory = "/home/breadman";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -31,6 +31,8 @@
     slack
     mongodb-compass
     dolphin
+
+    vimPlugins.neovim-ayu
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -65,7 +67,9 @@
 
   programs.nixvim = {
     enable = true;
+
     colorschemes.ayu.enable = true;
+    extraPlugins = [ pkgs.vimPlugins.neovim-ayu ];
 
     globals.mapleader = " ";
 
@@ -74,6 +78,8 @@
       relativenumber = true;
 
       shiftwidth = 4;
+
+      scrolloff = 8;
     };
 
     plugins = {
@@ -85,7 +91,7 @@
       #fidget.enable = true;
 
       treesitter = {
-	enable = false;
+	enable = true;
       };
 
       lsp = {
@@ -173,13 +179,13 @@
   };
 
   programs.waybar = {
-    enable = true;
+    enable = false;
   };
 
-  services.dunst.enable = true;
+  services.dunst.enable = false;
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     settings = {
       source = "~/.config/hypr/base.conf";
       #exec-once = "waybar & hyprpaper & firefox";
