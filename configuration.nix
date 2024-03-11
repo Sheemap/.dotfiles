@@ -18,9 +18,10 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
+  programs.nix-ld.enable = true;
   programs.hyprland.enable = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "breadbox"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -59,7 +60,7 @@
   services.pipewire.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.breadgirl = {
+  users.users.breadcat = {
     isNormalUser = true;
     description = "Jamis";
     extraGroups = [ "networkmanager" "wheel" ];

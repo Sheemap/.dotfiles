@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "breadgirl";
-  home.homeDirectory = "/home/breadgirl";
+  home.username = "breadcat";
+  home.homeDirectory = "/home/breadcat";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,6 +23,7 @@
     font-awesome
     kitty
     wofi
+    copyq
 
     ripgrep
 
@@ -216,7 +217,7 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/breadgirl/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/breadcat/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     # EDITOR = "emacs";

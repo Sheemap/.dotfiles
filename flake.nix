@@ -12,25 +12,38 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #nix-ld = {
+    #  url = "github:Mic92/nix-ld";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs:
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nixvim,
+    #nix-ld,
+    ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
     
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = {
+	breadbox = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
             ./configuration.nix
+	    #nix-ld.nixosModules.nix-ld
             #inputs.home-manager.nixosModules.nixos
           ];
 	};
+      };
 
       homeConfigurations = {
-        breadgirl = home-manager.lib.homeManagerConfiguration {
+        breadcat = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
           modules = [ 
             ./home.nix
