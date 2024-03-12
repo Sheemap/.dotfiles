@@ -108,6 +108,23 @@
 	enable = true;
       };
 
+      cmp = {
+	enable = true;
+	settings = {
+	    sources = [
+		{ name = "nvim_lsp"; }
+		{ name = "path"; }
+		{ name = "buffer"; }
+	    ];
+	    mappings = {
+	      "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+	      "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+	      "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+	      "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+	    };
+	};
+      };
+
       lsp = {
 	enable = true;
 	servers = {
@@ -249,6 +266,9 @@
       ll = "ls -l";
       tf = "terraform";
     };
+    shellInit = ''
+      set -x PATH $HOME/.local/bin $PATH
+    '';
   };
 
   # Let Home Manager install and manage itself.
