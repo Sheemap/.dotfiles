@@ -15,22 +15,28 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  # This is needed on non-NixOS systems
+  # Else we get locale warnings each time you start a new shell
+  # https://github.com/nix-community/home-manager/issues/432
+  programs.man.enable = false;
+  home.extraOutputsToInstall = [ "man" ];
+
   nixpkgs.config.allowUnfreePredicate = _: true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     font-awesome
-    kitty
-    wofi
-    copyq
+    #kitty
+    #wofi
+    #copyq
 
     ripgrep
 
-    firefox
-    slack
-    mongodb-compass
-    dolphin
+    #firefox
+    #slack
+    #mongodb-compass
+    #dolphin
 
     vimPlugins.neovim-ayu
 
