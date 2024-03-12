@@ -27,16 +27,15 @@
   # environment.
   home.packages = with pkgs; [
     font-awesome
-    #kitty
-    #wofi
-    #copyq
+    wofi
+    copyq
 
     ripgrep
 
-    #firefox
-    #slack
-    #mongodb-compass
-    #dolphin
+    firefox
+    slack
+    mongodb-compass
+    dolphin
 
     vimPlugins.neovim-ayu
 
@@ -69,6 +68,15 @@
       extraConfig = {
 	init.defaultBranch = "main";
       };
+  };
+  
+  programs.kitty = {
+      enable = true;
+      theme = "Dark Pride";
+      shellIntegration.enableFishIntegration = true;
+      extraConfig = ''
+        confirm_os_window_close 0
+      '';
   };
 
   programs.nixvim = {
