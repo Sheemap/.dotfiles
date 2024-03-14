@@ -22,6 +22,10 @@
   home.extraOutputsToInstall = [ "man" ];
 
   nixpkgs.config.allowUnfreePredicate = _: true;
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -36,8 +40,6 @@
     slack
     mongodb-compass
     dolphin
-
-    vimPlugins.neovim-ayu
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -69,6 +71,11 @@
 	init.defaultBranch = "main";
       };
   };
+
+  programs.yazi = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   
   programs.kitty = {
       enable = true;
@@ -83,7 +90,7 @@
     enable = true;
 
     colorschemes.ayu.enable = true;
-    extraPlugins = [ pkgs.vimPlugins.neovim-ayu ];
+    colorschemes.catppuccin.enable = true;
 
     globals.mapleader = " ";
 
@@ -102,7 +109,8 @@
       undotree.enable = true;
       todo-comments.enable = true;
       friendly-snippets.enable = true;
-      #fidget.enable = true;
+      fidget.enable = true;
+      multicursors.enable = true;
 
       treesitter = {
 	enable = true;
@@ -112,18 +120,53 @@
 	enable = true;
 	settings = {
 	    sources = [
-		{ name = "nvim_lsp"; }
-		{ name = "path"; }
 		{ name = "buffer"; }
+		{ name = "conventionalcommits"; }
+		{ name = "git"; }
+		{ name = "path"; }
+		{ name = "nvim_lsp"; }
+		{ name = "nvim_lsp_document_symbol"; }
+		{ name = "nvim_lsp_signature_help"; }
+		{ name = "treesitter"; }
 	    ];
 	    mappings = {
-	      "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-	      "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-	      "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-	      "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+	      "<C-u>" = "cmp.mapping.scroll_docs(-4)";
+	      "<C-d>" = "cmp.mapping.scroll_docs(4)";
+	      "<C-Space>" = "cmp.mapping.complete()";
+	      "<CR>" = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
+	      "<Tab>" = ''
+		cmp.mapping(function(fallback)
+		  if cmp.visible() then
+		    cmp.select_next_item()
+		  elseif luasnip.expand_or_jumpable() then
+		    luasnip.expand_or_jump()
+		  else
+		    fallback()
+		  end
+		end, { 'i', 's' }),
+	      '';
+	      "<S-Tab>" = ''
+		cmp.mapping(function(fallback)
+		  if cmp.visible() then
+		    cmp.select_prev_item()
+		  elseif luasnip.jumpable(-1) then
+		    luasnip.jump(-1)
+		  else
+		    fallback()
+		  end
+		end, { 'i', 's' }),
+	      '';
 	    };
 	};
       };
+      cmp-buffer.enable = true;
+      cmp-conventionalcommits.enable = true;
+      cmp-git.enable = true;
+      cmp-path.enable = true;
+      cmp-nvim-lsp.enable = true;
+      cmp-nvim-lsp-document-symbol.enable = true;
+      cmp-nvim-lsp-signature-help.enable = true;
+      cmp-treesitter.enable = true;
 
       lsp = {
 	enable = true;
@@ -206,6 +249,80 @@
 	action = "<cmd>Ex<CR>";
 	key = "<leader>pv";
       }
+      {
+	action = "<cmd>''<CR>";
+	key = "<C-O>";
+      }
+      {
+	key = "<C-u>";
+	action = "cmp.mapping.scroll_docs(-4)";
+	lua = true;
+	mode = [ "i" "s" ];
+      }
+      {
+	key = "<C-d>";
+	action = "cmp.mapping.scroll_docs(4)";
+	lua = true;
+	mode = [ "i" "s" ];
+      }
+      {
+	key = "<Up>";
+	action = "cmp.mapping.scroll_docs(-4)";
+	lua = true;
+	mode = [ "i" "s" ];
+      }
+      {
+	key = "<Down>";
+	action = "cmp.mapping.scroll_docs(4)";
+	lua = true;
+	mode = [ "i" "s" ];
+      }
+      {
+	key = "<C-Space>";
+	action = "cmp.mapping.complete()";
+	lua = true;
+	mode = [ "i" "s" ];
+
+      }
+
+      {
+	key = "<CR>";
+	action = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
+	lua = true;
+	mode = [ "i" "s" ];
+      } 
+#      {
+#	key = "<Tab>";
+#	action = ''
+#	    cmp.mapping(function(fallback)
+#	      if cmp.visible() then
+#		cmp.select_next_item()
+#	      elseif luasnip.expand_or_jumpable() then
+#		luasnip.expand_or_jump()
+#	      else
+#		fallback()
+#	      end
+#	    end
+#	  '';
+#	  lua = true;
+#	  mode = [ "i" "s" ];
+#      }
+#      {
+#	key = "<S-Tab>";
+#	action = ''
+#	    cmp.mapping(function(fallback)
+#	      if cmp.visible() then
+#		cmp.select_prev_item()
+#	      elseif luasnip.jumpable(-1) then
+#		luasnip.jump(-1)
+#	      else
+#		fallback()
+#	      end
+#	    end
+#	  '';
+#	  lua = true;
+#	  mode = [ "i" "s" ];
+      #}
     ];
   };
 
