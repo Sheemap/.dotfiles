@@ -133,11 +133,11 @@
 	      "<C-u>" = "cmp.mapping.scroll_docs(-4)";
 	      "<C-d>" = "cmp.mapping.scroll_docs(4)";
 	      "<C-Space>" = "cmp.mapping.complete()";
-	      "<CR>" = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
-	      "<Tab>" = ''
+	      #"<CR>" = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
+	      "<CR>" = ''
 		cmp.mapping(function(fallback)
 		  if cmp.visible() then
-		    cmp.select_next_item()
+		    cmp.mapping.confir({ behavior = cmp.ConfirmBehavior.Replace, select = true })
 		  elseif luasnip.expand_or_jumpable() then
 		    luasnip.expand_or_jump()
 		  else
@@ -145,7 +145,7 @@
 		  end
 		end, { 'i', 's' }),
 	      '';
-	      "<S-Tab>" = ''
+	      "<Downnnn>" = ''
 		cmp.mapping(function(fallback)
 		  if cmp.visible() then
 		    cmp.select_prev_item()
@@ -234,6 +234,10 @@
 
     keymaps = [
       {
+	action = "<cmd>noh<CR>";
+	key = "<C-/>";
+      }
+      {
 	action = "<cmd>Git<CR>";
 	key = "<leader>gs";
       }
@@ -254,27 +258,33 @@
 	key = "<C-O>";
       }
       {
-	key = "<C-u>";
-	action = "cmp.mapping.scroll_docs(-4)";
+	key = "<Up>";
+	action = "(cmp.visible() and cmp.mapping.scroll_docs(-4) or '')";
 	lua = true;
 	mode = [ "i" "s" ];
       }
       {
-	key = "<C-d>";
-	action = "cmp.mapping.scroll_docs(4)";
+	key = "<Downnn>";
+	action = "(cmp.visible() and cmp.mapping.scroll_docs(4) or '')";
+	lua = true;
+	mode = [ "i" "s" ];
+      }
+      {
+	key = "<Downnn>";
+	action = "(cmp.visible() and cmp.select_next_item() or '')";
 	lua = true;
 	mode = [ "i" "s" ];
       }
       {
 	key = "<Up>";
-	action = "cmp.mapping.scroll_docs(-4)";
-	lua = true;
+	#action = "(cmp.visible() and print('hoi') or print('hoh'))";
+	action = "<Cmd>lua require('cmp').scroll_docs(4)<CR>";
 	mode = [ "i" "s" ];
       }
       {
 	key = "<Down>";
-	action = "cmp.mapping.scroll_docs(4)";
-	lua = true;
+	#action = "(cmp.visible() and print('hoi') or print('hoh'))";
+	action = "<Cmd>lua require('cmp').select_next_item()<CR>";
 	mode = [ "i" "s" ];
       }
       {
@@ -285,12 +295,13 @@
 
       }
 
-      {
-	key = "<CR>";
-	action = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
-	lua = true;
-	mode = [ "i" "s" ];
-      } 
+      #{
+#	key = "<CR>";
+#
+#	action = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
+#	lua = true;
+#	mode = [ "i" "s" ];
+#      } 
 #      {
 #	key = "<Tab>";
 #	action = ''
