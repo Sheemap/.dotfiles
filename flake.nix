@@ -43,15 +43,20 @@
       };
 
       homeConfigurations = {
-        breadcat = home-manager.lib.homeManagerConfiguration {
+        dinodave = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
           modules = [ 
-            ./home.nix
+	    ./hosts/dino-dave.nix
 	    nixvim.homeManagerModules.nixvim
           ];
 	};
-};
-      
-
-    };
+        work-arch = home-manager.lib.homeManagerConfiguration {
+	  inherit pkgs;
+          modules = [ 
+            ./hosts/work-arch.nix
+	    nixvim.homeManagerModules.nixvim
+          ];
+	};
+      };
+    };  
 }
