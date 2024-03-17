@@ -17,6 +17,21 @@
       scrolloff = 8;
     };
 
+    extraConfigVim = ''
+	let g:clipboard = {
+	    \	'name': 'copyq',
+	    \	'copy': {
+	    \		'+': ['copyq', 'tab', '&clipboard', 'copy', '-'],
+	    \		'*': ['copyq', 'tab', '&clipboard', 'copy', '-'],
+	    \	},
+	    \	'paste': {
+	    \		'+': ['copyq', 'tab', '&clipboard', 'read'],
+	    \		'*': ['copyq', 'tab', '&clipboard', 'read'],
+	    \	},
+	    \	'cache_enabled': 1
+	    \ }
+    '';
+
     plugins = {
       fugitive.enable = true;
       lualine.enable = true;
@@ -43,44 +58,8 @@
 		{ name = "nvim_lsp_signature_help"; }
 		{ name = "treesitter"; }
 	    ];
-	    mappings = {
-	      "<C-u>" = "cmp.mapping.scroll_docs(-4)";
-	      "<C-d>" = "cmp.mapping.scroll_docs(4)";
-	      "<C-Space>" = "cmp.mapping.complete()";
-	      #"<CR>" = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
-	      "<CR>" = ''
-		cmp.mapping(function(fallback)
-		  if cmp.visible() then
-		    cmp.mapping.confir({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-		  elseif luasnip.expand_or_jumpable() then
-		    luasnip.expand_or_jump()
-		  else
-		    fallback()
-		  end
-		end, { 'i', 's' }),
-	      '';
-	      "<Downnnn>" = ''
-		cmp.mapping(function(fallback)
-		  if cmp.visible() then
-		    cmp.select_prev_item()
-		  elseif luasnip.jumpable(-1) then
-		    luasnip.jump(-1)
-		  else
-		    fallback()
-		  end
-		end, { 'i', 's' }),
-	      '';
-	    };
 	};
       };
-      cmp-buffer.enable = true;
-      cmp-conventionalcommits.enable = true;
-      cmp-git.enable = true;
-      cmp-path.enable = true;
-      cmp-nvim-lsp.enable = true;
-      cmp-nvim-lsp-document-symbol.enable = true;
-      cmp-nvim-lsp-signature-help.enable = true;
-      cmp-treesitter.enable = true;
 
       lsp = {
 	enable = true;
@@ -149,7 +128,8 @@
     keymaps = [
       {
 	action = "<cmd>noh<CR>";
-	key = "<C-/>";
+	key = "<Esc>";
+	mode = [ "n" ];
       }
       {
 	action = "<cmd>Git<CR>";
@@ -173,24 +153,6 @@
       }
       {
 	key = "<Up>";
-	action = "(cmp.visible() and cmp.mapping.scroll_docs(-4) or '')";
-	lua = true;
-	mode = [ "i" "s" ];
-      }
-      {
-	key = "<Downnn>";
-	action = "(cmp.visible() and cmp.mapping.scroll_docs(4) or '')";
-	lua = true;
-	mode = [ "i" "s" ];
-      }
-      {
-	key = "<Downnn>";
-	action = "(cmp.visible() and cmp.select_next_item() or '')";
-	lua = true;
-	mode = [ "i" "s" ];
-      }
-      {
-	key = "<Up>";
 	#action = "(cmp.visible() and print('hoi') or print('hoh'))";
 	action = "<Cmd>lua require('cmp').scroll_docs(4)<CR>";
 	mode = [ "i" "s" ];
@@ -208,46 +170,17 @@
 	mode = [ "i" "s" ];
 
       }
-
-      #{
-#	key = "<CR>";
-#
-#	action = "cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true }";
-#	lua = true;
-#	mode = [ "i" "s" ];
-#      } 
-#      {
-#	key = "<Tab>";
-#	action = ''
-#	    cmp.mapping(function(fallback)
-#	      if cmp.visible() then
-#		cmp.select_next_item()
-#	      elseif luasnip.expand_or_jumpable() then
-#		luasnip.expand_or_jump()
-#	      else
-#		fallback()
-#	      end
-#	    end
-#	  '';
-#	  lua = true;
-#	  mode = [ "i" "s" ];
-#      }
-#      {
-#	key = "<S-Tab>";
-#	action = ''
-#	    cmp.mapping(function(fallback)
-#	      if cmp.visible() then
-#		cmp.select_prev_item()
-#	      elseif luasnip.jumpable(-1) then
-#		luasnip.jump(-1)
-#	      else
-#		fallback()
-#	      end
-#	    end
-#	  '';
-#	  lua = true;
-#	  mode = [ "i" "s" ];
-      #}
+      {
+	key = "<CR>";
+	action = "cmp.mapping.complete()";
+	lua = true;
+	mode = [ "v" ];
+      }
+      {
+	# Clipboard
+	key = "<leader>y";
+	action = "\"*y";
+      }
     ];
   };
 }
