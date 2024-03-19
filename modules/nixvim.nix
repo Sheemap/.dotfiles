@@ -40,16 +40,49 @@
       friendly-snippets.enable = true;
       fidget.enable = true;
       multicursors.enable = true;
+      luasnip.enable = true;
+      commentary.enable = true;
+
+      # Figure these out eventually c:
+      #conform-nvim.enable = true;
+      #committia.enable = true;
 
       treesitter = {
 	enable = true;
       };
 
+      copilot-lua = {
+	enable = true;
+	panel = {
+	    keymap = {
+		open = "<C-CR>";
+	    };
+	};
+	suggestion = {
+	    autoTrigger = true;
+	    keymap = {
+		accept = "<C-j>";
+	    };
+	};
+      };
+
       cmp = {
 	enable = true;
 	settings = {
+	    mapping = {
+		"<C-Space>" = "cmp.mapping.complete()";
+		"<C-d>" = "cmp.mapping.scroll_docs(-4)";
+		"<C-e>" = "cmp.mapping.close()";
+		"<C-f>" = "cmp.mapping.scroll_docs(4)";
+		"<CR>" = "cmp.mapping.confirm({ select = true })";
+		"<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+		"<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+		"<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+		"<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+	    };
 	    sources = [
-		{ name = "buffer"; }
+		#{ name = "copilot"; }
+		#{ name = "buffer"; }
 		{ name = "conventionalcommits"; }
 		{ name = "git"; }
 		{ name = "path"; }
@@ -57,6 +90,7 @@
 		{ name = "nvim_lsp_document_symbol"; }
 		{ name = "nvim_lsp_signature_help"; }
 		{ name = "treesitter"; }
+		{ name = "luasnip"; }
 	    ];
 	};
       };
@@ -127,59 +161,42 @@
 
     keymaps = [
       {
-	action = "<cmd>noh<CR>";
 	key = "<Esc>";
+	action = "<cmd>noh<CR>";
 	mode = [ "n" ];
       }
       {
-	action = "<cmd>Git<CR>";
 	key = "<leader>gs";
+	action = "<cmd>Git<CR>";
       }
       {
-	action = "<cmd>Git push<CR>";
 	key = "<leader>gp";
+	action = "<cmd>Git push<CR>";
       }
       {
-	action = "<cmd>UndotreeToggle<CR>";
 	key = "<leader>u";
+	action = "<cmd>UndotreeToggle<CR>";
       }
       {
-	action = "<cmd>Ex<CR>";
 	key = "<leader>pv";
+	action = "<cmd>Ex<CR>";
       }
       {
-	action = "<cmd>''<CR>";
 	key = "<C-O>";
+	action = "<cmd>''<CR>";
       }
       {
-	key = "<Up>";
-	#action = "(cmp.visible() and print('hoi') or print('hoh'))";
-	action = "<Cmd>lua require('cmp').scroll_docs(4)<CR>";
-	mode = [ "i" "s" ];
-      }
-      {
-	key = "<Down>";
-	#action = "(cmp.visible() and print('hoi') or print('hoh'))";
-	action = "<Cmd>lua require('cmp').select_next_item()<CR>";
-	mode = [ "i" "s" ];
-      }
-      {
-	key = "<C-Space>";
-	action = "cmp.mapping.complete()";
-	lua = true;
-	mode = [ "i" "s" ];
-
-      }
-      {
-	key = "<CR>";
-	action = "cmp.mapping.complete()";
-	lua = true;
-	mode = [ "v" ];
+	key = "<leader>f";
+	action = "<cmd>lua vim.lsp.buf.format()<CR>";
       }
       {
 	# Clipboard
 	key = "<leader>y";
 	action = "\"*y";
+      }
+      {
+	key = "<C-/>";
+	action = "<cmd>Commentary<CR>";
       }
     ];
   };
