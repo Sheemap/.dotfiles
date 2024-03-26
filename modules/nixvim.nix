@@ -181,11 +181,15 @@
       }
       {
 	key = "<leader>gs";
-	action = "<cmd>Git<CR>";
+	action = "<cmd>Neogit<CR>";
       }
       {
 	key = "<leader>gp";
-	action = "<cmd>Git push<CR>";
+	action = "<cmd>Neogit pull<CR>";
+      }
+      {
+	key = "<leader>gP";
+	action = "<cmd>Neogit push<CR>";
       }
       {
 	key = "<leader>u";
@@ -194,6 +198,7 @@
       {
 	key = "<leader>pv";
 	#action = "<cmd>Oil<CR>";
+
 	# Default, non-oil, forgot the file manager name T~T
 	action = "<cmd>Ex<CR>";
       }
