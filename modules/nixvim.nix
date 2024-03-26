@@ -33,7 +33,8 @@
     '';
 
     plugins = {
-      fugitive.enable = true;
+      fugitive.enable = false;
+      neogit.enable = true;
       lualine.enable = true;
       undotree.enable = true;
       todo-comments.enable = true;
@@ -42,23 +43,36 @@
       multicursors.enable = true;
       luasnip.enable = true;
       commentary.enable = true;
+      auto-save.enable = true;
 
       # Figure these out eventually c:
       #conform-nvim.enable = true;
       #committia.enable = true;
 
+      oil = {
+	enable = false;
+	keymaps = {
+	    # How to disable the preview action?
+	    # It's overriding my <C-p> telescope binding
+	    # "actions.preview" = false;
+	};
+      };
+
       treesitter = {
 	enable = true;
       };
 
+      copilot-vim.enable = false;
       copilot-lua = {
-	enable = true;
+	enable = false;
 	panel = {
+	    enabled = false;
 	    keymap = {
 		open = "<C-CR>";
 	    };
 	};
 	suggestion = {
+	    enabled = false;
 	    autoTrigger = true;
 	    keymap = {
 		accept = "<C-j>";
@@ -82,7 +96,7 @@
 	    };
 	    sources = [
 		#{ name = "copilot"; }
-		#{ name = "buffer"; }
+		{ name = "buffer"; }
 		{ name = "conventionalcommits"; }
 		{ name = "git"; }
 		{ name = "path"; }
@@ -179,6 +193,8 @@
       }
       {
 	key = "<leader>pv";
+	#action = "<cmd>Oil<CR>";
+	# Default, non-oil, forgot the file manager name T~T
 	action = "<cmd>Ex<CR>";
       }
       {
