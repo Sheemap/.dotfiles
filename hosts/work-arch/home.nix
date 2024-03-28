@@ -2,7 +2,7 @@
 {
     imports =
     [ # Include the results of the hardware scan.
-      ../modules/shared-home.nix
+      ../../modules/shared-home.nix
     ];
     home.username = "breadman";
     home.homeDirectory = "/home/breadman";

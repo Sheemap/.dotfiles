@@ -35,7 +35,15 @@
 	breadbox = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs;};
           modules = [ 
-            ./configuration.nix
+            ./hosts/breadbox/configuration.nix
+	    #nix-ld.nixosModules.nix-ld
+            #inputs.home-manager.nixosModules.nixos
+          ];
+	};
+	dino-dave = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+          modules = [ 
+            ./hosts/dino-dave/configuration.nix
 	    #nix-ld.nixosModules.nix-ld
             #inputs.home-manager.nixosModules.nixos
           ];
@@ -43,17 +51,24 @@
       };
 
       homeConfigurations = {
+        breadcat = home-manager.lib.homeManagerConfiguration {
+	  inherit pkgs;
+          modules = [ 
+	    ./hosts/breadbox/home.nix
+	    nixvim.homeManagerModules.nixvim
+          ];
+	};
         dinodave = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
           modules = [ 
-	    ./hosts/dino-dave.nix
+	    ./hosts/dino-dave/home.nix
 	    nixvim.homeManagerModules.nixvim
           ];
 	};
         work-arch = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
           modules = [ 
-            ./hosts/work-arch.nix
+            ./hosts/work-arch/home.nix
 	    nixvim.homeManagerModules.nixvim
           ];
 	};
