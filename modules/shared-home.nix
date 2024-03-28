@@ -27,11 +27,12 @@
   home.packages = with pkgs; [
     font-awesome
     wofi
-    copyq
+    wl-clipboard
 
     ripgrep
 
     firefox
+    keepassxc
     slack
     mongodb-compass
     dolphin

@@ -19,14 +19,14 @@
 
     extraConfigVim = ''
 	let g:clipboard = {
-	    \	'name': 'copyq',
+	    \	'name': 'wl-clipboard',
 	    \	'copy': {
-	    \		'+': ['copyq', 'tab', '&clipboard', 'copy', '-'],
-	    \		'*': ['copyq', 'tab', '&clipboard', 'copy', '-'],
+	    \		'+': ['wl-copy'],
+	    \		'*': ['wl-copy'],
 	    \	},
 	    \	'paste': {
-	    \		'+': ['copyq', 'tab', '&clipboard', 'read'],
-	    \		'*': ['copyq', 'tab', '&clipboard', 'read'],
+	    \		'+': ['wl-copy'],
+	    \		'*': ['wl-copy'],
 	    \	},
 	    \	'cache_enabled': 1
 	    \ }
