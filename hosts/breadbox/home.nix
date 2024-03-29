@@ -7,4 +7,10 @@
     ];
     home.username = "breadcat";
     home.homeDirectory = "/home/breadcat";
+
+    home.packages = with pkgs; [
+	webcord
+	wofi
+	wl-clipboard
+    ];
 }

@@ -14,13 +14,12 @@
     modules-right = ["idle_inhibitor" "temperature" "cpu" "memory" "network" "pulseaudio" "backlight" "keyboard-state" "battery" "battery#bat2" "tray" "clock"];
     # Modules configuration
     "hyprland/workspaces" = {
-        "disable-scroll" = false;
         "all-outputs" = false;
         "warp-on-scroll" = false;
         "format" = "{name}: {icon}";
         "format-icons" = {
             "1" = "";
-            "2" = "";
+            "2" = "";
             "3" = "";
             "4" = "";
             "5" = "";

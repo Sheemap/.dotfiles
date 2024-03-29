@@ -26,16 +26,12 @@
   # environment.
   home.packages = with pkgs; [
     font-awesome
-    wofi
-    wl-clipboard
+    spotify
 
     ripgrep
 
     firefox
     keepassxc
-    slack
-    mongodb-compass
-    dolphin
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
