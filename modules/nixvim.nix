@@ -1,5 +1,12 @@
 { config, pkgs, nixvim, ... }:
 {
+  
+  home.packages = with pkgs; [
+    isort
+    black
+    nodePackages.prettier
+  ];
+
   programs.nixvim = {
     enable = true;
 
@@ -31,9 +38,13 @@
       commentary.enable = true;
       auto-save.enable = true;
 
-      # Figure these out eventually c:
-      #conform-nvim.enable = true;
-      #committia.enable = true;
+      conform-nvim = {
+          enable = true;
+	  formattersByFt = {
+	    python = [ "isort" "black" ];
+	    javascript = [ "prettier" ];
+	  };
+      };
 
       oil = {
 	enable = false;
@@ -226,6 +237,11 @@
 	# Clipboard
 	key = "<leader>y";
 	action = "\"*y";
+      }
+      {
+	key = "<leader>f";
+	action = "require('conform').format";
+	lua = true;
       }
       {
 	key = "<C-/>";
