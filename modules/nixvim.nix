@@ -17,23 +17,9 @@
       scrolloff = 8;
     };
 
-    extraConfigVim = ''
-	let g:clipboard = {
-	    \	'name': 'wl-clipboard',
-	    \	'copy': {
-	    \		'+': ['wl-copy'],
-	    \		'*': ['wl-copy'],
-	    \	},
-	    \	'paste': {
-	    \		'+': ['wl-copy'],
-	    \		'*': ['wl-copy'],
-	    \	},
-	    \	'cache_enabled': 1
-	    \ }
-    '';
 
     plugins = {
-      fugitive.enable = false;
+      fugitive.enable = true;
       neogit.enable = true;
       lualine.enable = true;
       undotree.enable = true;
@@ -58,15 +44,31 @@
 	};
       };
 
-      treesitter = {
-	enable = true;
-      };
+	treesitter.enable = true;
+	treesitter-context.enable = true;
+	treesitter-refactor = {
+	    enable = true;
+	    highlightCurrentScope.enable = false;
+	    highlightDefinitions.enable = true;
+	    navigation = {
+		enable = false;
+		keymaps = {
+		    gotoDefinition = "gd";
+		};
+	    };
+	    smartRename = {
+		enable = false;
+		keymaps = {
+		    smartRename = "<leader>r";
+		};
+	    };
+	};
 
       copilot-vim.enable = false;
       copilot-lua = {
-	enable = false;
+	enable = true;
 	panel = {
-	    enabled = false;
+	    enabled = true;
 	    keymap = {
 		open = "<C-CR>";
 	    };
@@ -96,9 +98,9 @@
 	    };
 	    sources = [
 		#{ name = "copilot"; }
-		{ name = "buffer"; }
-		{ name = "conventionalcommits"; }
-		{ name = "git"; }
+		#{ name = "buffer"; }
+		#{ name = "conventionalcommits"; }
+		#{ name = "git"; }
 		{ name = "path"; }
 		{ name = "nvim_lsp"; }
 		{ name = "nvim_lsp_document_symbol"; }
@@ -111,7 +113,9 @@
 
       lsp = {
 	enable = true;
+	postConfig = "vim.lsp.set_log_level('debug')";
 	servers = {
+
 	    bashls.enable = true;
 	    cssls.enable = true;
 	    dockerls.enable = true;
@@ -121,7 +125,7 @@
 	    html.enable = true;
 	    jsonls.enable = true;
 	    lua-ls.enable = true;
-	    nixd.enable = true;
+	    nixd.enable = true; # Disabled for now, was raising errors
 	    pyright.enable = true;
 
 	    rust-analyzer = {
@@ -134,7 +138,7 @@
 	    tailwindcss.enable = true;
 	    terraformls.enable = true;
 	    tsserver.enable = true;
-	    typos-lsp.enable = true;
+	    typos-lsp.enable = true; # Disabled for now, was raising errors
 	    vuels.enable = true;
 	    yamlls.enable = true;
 
@@ -181,15 +185,23 @@
       }
       {
 	key = "<leader>gs";
-	action = "<cmd>Neogit<CR>";
+	action = "<cmd>Git<CR>";
       }
       {
 	key = "<leader>gp";
-	action = "<cmd>Neogit pull<CR>";
+	action = "<cmd>Git pull<CR>";
       }
       {
 	key = "<leader>gP";
-	action = "<cmd>Neogit push<CR>";
+	action = "<cmd>Git push<CR>";
+      }
+      {
+	key = "<leader>gf";
+	action = "<cmd>Git fetch<CR>";
+      }
+      {
+	key = "<leader>gr";
+	action = "<cmd>Git rebase origin/main<CR>";
       }
       {
 	key = "<leader>u";

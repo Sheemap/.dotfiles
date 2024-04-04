@@ -13,4 +13,21 @@
 	wofi
 	wl-clipboard
     ];
+
+    programs.nixvim = {
+	extraConfigVim = ''
+	    let g:clipboard = {
+		\	'name': 'wl-clipboard',
+		\	'copy': {
+		\		'+': ['wl-copy'],
+		\		'*': ['wl-copy'],
+		\	},
+		\	'paste': {
+		\		'+': ['wl-copy'],
+		\		'*': ['wl-copy'],
+		\	},
+		\	'cache_enabled': 1
+		\ }
+	'';
+    };
 }
