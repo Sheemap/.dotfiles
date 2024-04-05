@@ -61,8 +61,17 @@
 
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
     layout = "us";
     xkbVariant = "";
+    videoDrivers = ["nvidia"];
+
+    windowManager.xmonad.enable = false;
+    windowManager.i3.enable = true;
+
+    displayManager.defaultSession = "none+i3";
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = "breadcat";
   };
   security.rtkit.enable = true;
   services.pipewire = {
@@ -125,8 +134,6 @@
     driSupport32Bit = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
 
