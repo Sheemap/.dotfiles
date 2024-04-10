@@ -22,6 +22,7 @@
   programs.hyprland.enable = true;
 
   programs.steam.enable = true;
+  programs.gamemode.enable = true;
   programs.gamescope = {
     enable = true;
     capSysNice = true;
@@ -72,6 +73,9 @@
     displayManager.defaultSession = "none+i3";
     displayManager.autoLogin.enable = true;
     displayManager.autoLogin.user = "breadcat";
+
+    libinput.enable = true;
+    libinput.mouse.accelProfile = "flat";
   };
   security.rtkit.enable = true;
   services.pipewire = {
@@ -98,6 +102,7 @@
     fish
     wget
     git
+    nvtopPackages.nvidia
 
 
     xdg-desktop-portal-hyprland
@@ -157,7 +162,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
 	# accessible via `nvidia-settings`.

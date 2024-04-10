@@ -10,25 +10,38 @@
     home.homeDirectory = "/home/breadcat";
 
     home.packages = with pkgs; [
-	webcord
-	wofi
-	wl-clipboard
+	arandr
+	discord
+	lutris
+	wineWowPackages.stable
+	winetricks
+	xivlauncher
     ];
 
     programs.nixvim = {
-	extraConfigVim = ''
-	    let g:clipboard = {
-		\	'name': 'wl-clipboard',
-		\	'copy': {
-		\		'+': ['wl-copy'],
-		\		'*': ['wl-copy'],
-		\	},
-		\	'paste': {
-		\		'+': ['wl-copy'],
-		\		'*': ['wl-copy'],
-		\	},
-		\	'cache_enabled': 1
-		\ }
-	'';
+	#extraConfigVim = ''
+	    #let g:clipboard = {
+		#\	'name': 'wl-clipboard',
+		#\	'copy': {
+		#\		'+': ['wl-copy'],
+		#\		'*': ['wl-copy'],
+		#\	},
+		#\	'paste': {
+		#\		'+': ['wl-copy'],
+		#\		'*': ['wl-copy'],
+		#\	},
+		#\	'cache_enabled': 1
+		#\ }
+	#'';
+	plugins.obsidian = {
+	    enable = true;
+	    settings.workspaces = [
+		{
+		  name = "General Notes";
+		  path = "~/Documents/General Notes";
+		}
+	    ];
+	};
     };
+
 }

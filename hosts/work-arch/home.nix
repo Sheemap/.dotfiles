@@ -17,7 +17,7 @@
 	mongodb-compass
     ];
 
-    obsidian = {
+    programs.nixvim.plugins.obsidian = {
 	enable = true;
 	settings.workspaces = [
 	    {
