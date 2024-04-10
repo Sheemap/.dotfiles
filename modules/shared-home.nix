@@ -31,6 +31,7 @@
     ripgrep
 
     firefox
+    obsidian
     keepassxc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -47,6 +48,7 @@
     # '')
   ];
 
+  programs.bat.enable = true;
   programs.ripgrep.enable = true;
   programs.zoxide = {
     enable = true;
@@ -117,8 +119,9 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ll = "ls -l";
-      tf = "terraform";
+      ll  = "ls -l";
+      tf  = "terraform";
+      cat = "bat";
     };
     shellInit = ''
       set -x PATH $HOME/.local/bin $PATH

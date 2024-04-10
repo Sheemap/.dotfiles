@@ -15,7 +15,7 @@
 
     globals.mapleader = " ";
 
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
 
@@ -48,7 +48,7 @@
 
       oil = {
 	enable = false;
-	keymaps = {
+	settings.keymaps = {
 	    # How to disable the preview action?
 	    # It's overriding my <C-p> telescope binding
 	    # "actions.preview" = false;

@@ -16,4 +16,15 @@
 	slack
 	mongodb-compass
     ];
+
+    obsidian = {
+	enable = true;
+	settings.workspaces = [
+	    {
+	      name = "General Notes";
+	      path = "~/Documents/General Notes";
+	    }
+	];
+    };
+
 }
