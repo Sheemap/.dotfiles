@@ -113,6 +113,11 @@
     vimPlugins.nvim-web-devicons
   ];
 
+  fonts.fontDir.enable = true;
+  fonts.packages = [
+    (pkgs.callPackage ../../packages/hemi-head.nix {})
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
