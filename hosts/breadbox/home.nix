@@ -16,6 +16,7 @@
 	wineWowPackages.stable
 	winetricks
 	xivlauncher
+	pkgsi686Linux.gperftools
     ];
 
     programs.nixvim = {
