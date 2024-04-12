@@ -17,6 +17,7 @@
   environment.shells = with pkgs; [ fish zsh bash ];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
+  programs.thunar.enable = true;
 
   programs.nix-ld.enable = true;
   programs.hyprland.enable = true;
