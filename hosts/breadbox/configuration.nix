@@ -14,11 +14,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+
   environment.shells = with pkgs; [ fish zsh bash ];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   programs.thunar.enable = true;
-
+  
+  programs.neovim.defaultEditor = true;
   programs.nix-ld.enable = true;
   programs.hyprland.enable = true;
 
@@ -87,6 +89,7 @@
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
   };
+  services.geoclue2.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.breadcat = {
@@ -104,7 +107,6 @@
     wget
     git
     nvtopPackages.nvidia
-
 
     xdg-desktop-portal-hyprland
     pavucontrol
