@@ -1,4 +1,25 @@
 { config, pkgs, nixvim, ... }:
+let
+    rofiThemes = pkgs.stdenvNoCC.mkDerivation {
+	pname = "rofi-themes-collection";
+	version = "f87e083";
+
+	src = pkgs.fetchgit {
+	  url = "https://github.com/newmanls/rofi-themes-collection.git";
+	  sparseCheckout = ["themes"];
+	  rev = "f87e08300cb1c984994efcaf7d8ae26f705226fd";
+	  hash = "sha256-/NPfy1rZL2p+6Nl7ukBZwTD+4F+UcVoQLDV2dHLElnY=";
+	};
+
+	installPhase = ''
+	    runHook preInstall
+
+	    install -Dm644 -t $out/ themes/*.rasi
+
+	    runHook postInstall
+	'';
+    };
+in
 
 {
   # This value determines the Home Manager release that your configuration is
@@ -14,6 +35,7 @@
     ./nixvim.nix
 
   ];
+  
 
   nixpkgs = {
     config.packageOverrides = pkgs: rec {
@@ -96,6 +118,11 @@
     # '')
   ];
 
+  programs.rofi = {
+    enable = true;
+    theme = "${rofiThemes}/squared-everforest.rasi";
+  };
+
   programs.bat.enable = true;
   programs.ripgrep.enable = true;
   programs.zoxide = {
@@ -128,6 +155,20 @@
         confirm_os_window_close 0
       '';
   };
+
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      ll  = "ls -l";
+      tf  = "terraform";
+      cat = "bat";
+    };
+    shellInit = ''
+      set -x PATH $HOME/.local/bin $PATH
+    '';
+  };
+
+  services.flameshot.enable = true;
 
 
 
@@ -165,17 +206,6 @@
     # EDITOR = "emacs";
   };
 
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      ll  = "ls -l";
-      tf  = "terraform";
-      cat = "bat";
-    };
-    shellInit = ''
-      set -x PATH $HOME/.local/bin $PATH
-    '';
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
