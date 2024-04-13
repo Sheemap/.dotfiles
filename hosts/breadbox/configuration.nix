@@ -66,8 +66,8 @@
   # Configure keymap in X11
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
     videoDrivers = ["nvidia"];
 
     windowManager.xmonad.enable = false;
