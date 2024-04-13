@@ -1,8 +1,21 @@
 { config, pkgs, ... }:
+let
+  i3catppuccin = pkgs.fetchgit {
+    url = "https://github.com/catppuccin/i3";
+    rev = "cd6b5017850084d5b40ef9f4eeac5a6d95779939";
+    hash = "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=";
+  };
+in 
 {
     services.dunst.enable = true;
 
     home.file.".config/i3/config".source = ../configs/i3.conf;
+    home.file.".config/i3/colors".source = ../configs/i3-colors.conf;
+    home.file.".config/i3/catppuccin".source = "${i3catppuccin}/themes/catppuccin-mocha";
+
+    home.packages = with pkgs; [
+	catppuccin
+    ];
 
     # Needs work
     # Also want to adjust the bar theme
@@ -11,7 +24,7 @@
 	bars = {
 	    default = {
 		theme = "ctp-mocha";
-		icons = "awesome6";
+		icons = "awesome5";
 		blocks = [
 		    {
 			alert = 10.0;

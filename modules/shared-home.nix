@@ -39,9 +39,13 @@ in
 
   nixpkgs = {
     config.packageOverrides = pkgs: rec {
+      catppuccin = pkgs.catppuccin.overrideAttrs {
+	variant = "mocha";
+	accent = "rosewater";
+      };
+
       electron_28 = pkgs.electron_28.overrideAttrs
         (oldAttrs: rec {
-
           buildCommand =
             let
               electron-unwrapped = pkgs.electron_28.passthru.unwrapped.overrideAttrs (oldAttrs: rec {
@@ -123,7 +127,26 @@ in
     theme = "${rofiThemes}/squared-everforest.rasi";
   };
 
-  programs.bat.enable = true;
+  programs.bat = { 
+    enable = true;
+    themes = {
+
+catppuccin-mocha = {
+    src = "${pkgs.catppuccin}/bat/Catppuccin Mocha.tmTheme";
+  };
+catppuccin-frappe = {
+    src = "${pkgs.catppuccin}/themes/bat/catppuccin-frappe";
+  };
+catppuccin-macchiatto = {
+    src = "${pkgs.catppuccin}/bat/Catppuccin Macchiato.tmTheme";
+  };
+catppuccin-latte = {
+    src = "${pkgs.catppuccin}/bat/latte";
+  };
+
+    };
+    config.theme = "catppuccin-macchiatto";
+  };
   programs.ripgrep.enable = true;
   programs.zoxide = {
     enable = true;
@@ -151,6 +174,8 @@ in
       enable = true;
       theme = "Dark Pride";
       shellIntegration.enableFishIntegration = true;
+      font.name = "DejaVu Sans";
+      font.size = 18;
       extraConfig = ''
         confirm_os_window_close 0
       '';
