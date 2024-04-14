@@ -54,8 +54,8 @@ in
 		      }
 		      {
 			block = "time";
-			format = " $timestamp.datetime(f:'%a %d/%m %R') ";
-			interval = 5;
+			format = " $timestamp.datetime(f:'%a %D %T') ";
+			interval = 1;
 		      }
 
 		];
