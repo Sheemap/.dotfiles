@@ -28,12 +28,15 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      localPkgs = {
+	  pyfa = pkgs.callPackage ./packages/pyfa.nix {};
+      };
     in
     {
     
       nixosConfigurations = {
 	breadbox = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = {inherit inputs localPkgs;};
           modules = [ 
             ./hosts/breadbox/configuration.nix
 	    #nix-ld.nixosModules.nix-ld
@@ -41,7 +44,7 @@
           ];
 	};
 	dino-dave = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs;};
+          specialArgs = {inherit inputs localPkgs;};
           modules = [ 
             ./hosts/dino-dave/configuration.nix
 	    #nix-ld.nixosModules.nix-ld
@@ -53,6 +56,7 @@
       homeConfigurations = {
         breadcat = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
+          extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
 	    ./hosts/breadbox/home.nix
 	    nixvim.homeManagerModules.nixvim
@@ -60,6 +64,7 @@
 	};
         dinodave = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
+          extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
 	    ./hosts/dino-dave/home.nix
 	    nixvim.homeManagerModules.nixvim
@@ -67,6 +72,7 @@
 	};
         work-arch = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
+          extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
             ./hosts/work-arch/home.nix
 	    nixvim.homeManagerModules.nixvim

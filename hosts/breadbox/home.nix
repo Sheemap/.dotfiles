@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, ... }:
+{ config, pkgs, localPkgs, nixvim, ... }:
 {
     imports =
     [ # Include the results of the hardware scan.
@@ -18,6 +18,8 @@
 	winetricks
 	xivlauncher
 	pkgsi686Linux.gperftools
+
+	localPkgs.pyfa
     ];
 
     programs.nixvim = {
