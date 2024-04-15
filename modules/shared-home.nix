@@ -175,7 +175,6 @@ catppuccin-latte = {
       theme = "Dark Pride";
       shellIntegration.enableFishIntegration = true;
       font.name = "DejaVu Sans";
-      font.size = 18;
       extraConfig = ''
         confirm_os_window_close 0
       '';

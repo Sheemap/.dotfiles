@@ -22,6 +22,8 @@
 	localPkgs.pyfa
     ];
 
+    
+    programs.kitty.font.size = 18;
     programs.nixvim = {
 	#extraConfigVim = ''
 	    #let g:clipboard = {

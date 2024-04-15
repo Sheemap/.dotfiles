@@ -17,6 +17,7 @@
 	mongodb-compass
     ];
 
+    programs.kitty.font.size = 12;
     programs.nixvim.plugins.obsidian = {
 	enable = true;
 	settings.workspaces = [
