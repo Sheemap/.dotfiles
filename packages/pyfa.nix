@@ -31,7 +31,7 @@ appimageTools.wrapType2 {
 	homepage = "https://github.com/pyfa-org/Pyfa";
 	license = licenses.gpl3;
 	maintainers = with maintainers; [ ];
-	platforms = platforms.linux;
+	platforms = [ "x86_64-linux" ];
 	mainProgram = "pyfa";
       };
 }
