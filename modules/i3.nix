@@ -13,6 +13,7 @@ in
     home.file.".config/i3/colors".source = ../configs/i3-colors.conf;
     home.file.".config/i3/catppuccin".source = "${i3catppuccin}/themes/catppuccin-mocha";
     home.file.".config/i3/scripts/powermenu".source = ../scripts/powermenu;
+    home.file.".config/rofi/powermenu.rasi".source = ../scripts/powermenu.rasi;
     home.file.".wallpapers/pastel-1.jpg".source = ../wallpapers/pastel-1.jpg;
 
     home.packages = with pkgs; [
