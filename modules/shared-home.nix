@@ -126,8 +126,14 @@ catppuccin-latte = {
     };
     shellInit = ''
       set -x PATH $HOME/.local/bin $PATH
+      direnv hook fish | source
     '';
   };
+
+  programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
 
   services.flameshot.enable = true;
 
