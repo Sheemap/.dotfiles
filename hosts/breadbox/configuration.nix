@@ -11,15 +11,19 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = false;
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.efiSupport = true;
-
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader = {
+      systemd-boot.enable = false;
+      grub = {
+	  enable = true;
+	  efiSupport = true;
+	  device = "nodev";
+	  useOSProber = true;
+	  efiInstallAsRemovable = true;
+	  gfxmodeEfi = "3440x1440";
+	  fontSize = 36;
+      }; 
+      efi.canTouchEfiVariables = false;
+  };
 
   # Better windows dual boot compatibility
   time.hardwareClockInLocalTime = true;
