@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
-  i3catppuccin = pkgs.fetchgit {
-    url = "https://github.com/catppuccin/i3";
+  i3catppuccin = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "i3";
     rev = "cd6b5017850084d5b40ef9f4eeac5a6d95779939";
     hash = "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=";
   };
@@ -18,7 +19,6 @@ in
     home.file.".wallpapers/pastel-1.jpg".source = ../wallpapers/pastel-1.jpg;
 
     home.packages = with pkgs; [
-	catppuccin
 	feh
     ];
 
