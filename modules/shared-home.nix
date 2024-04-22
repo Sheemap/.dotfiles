@@ -1,4 +1,12 @@
 { config, pkgs, nixvim, ... }:
+let
+  catppuccin-bat = pkgs.fetchFromGitHub {
+   owner = "catppuccin"; 
+   repo = "bat";
+   rev = "b8134f01b0ac176f1cf2a7043a5abf5a1a29457b";
+   hash = "sha256-gzf0/Ltw8mGMsEFBTUuN33MSFtUP4xhdxfoZFntaycQ=";
+  };
+in 
 {
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -16,12 +24,12 @@
   
 
   nixpkgs = {
-    config.packageOverrides = pkgs: rec {
-      catppuccin = pkgs.catppuccin.overrideAttrs {
-	variant = "mocha";
-	accent = "rosewater";
-      };
-    };
+    #config.packageOverrides = pkgs: rec {
+    #  catppuccin = pkgs.catppuccin.overrideAttrs {
+#	variant = "mocha";
+#	accent = "rosewater";
+#      };
+#    };
   };
 
 
@@ -70,23 +78,27 @@
 
   programs.bat = { 
     enable = true;
+
     themes = {
-
-catppuccin-mocha = {
-    src = "${pkgs.catppuccin}/bat/Catppuccin Mocha.tmTheme";
-  };
-catppuccin-frappe = {
-    src = "${pkgs.catppuccin}/themes/bat/catppuccin-frappe";
-  };
-catppuccin-macchiatto = {
-    src = "${pkgs.catppuccin}/bat/Catppuccin Macchiato.tmTheme";
-  };
-catppuccin-latte = {
-    src = "${pkgs.catppuccin}/bat/latte";
-  };
-
+	catppuccin-mocha = {
+	    src = catppuccin-bat;
+	    file = "themes/Catppuccin Mocha.tmTheme";
+	};
+	catppuccin-macchiato = {
+	    src = catppuccin-bat;
+	    file = "themes/Catppuccin Macchiato.tmTheme";
+	};
+	catppuccin-frappe = {
+	    src = catppuccin-bat;
+	    file = "themes/Catppuccin Frappe.tmTheme";
+	};
+	catppuccin-latte = {
+	    src = catppuccin-bat;
+	    file = "themes/Catppuccin Latte.tmTheme";
+	};
     };
-    config.theme = "catppuccin-macchiatto";
+    
+    config.theme = "catppuccin-mocha";
   };
   programs.ripgrep.enable = true;
   programs.zoxide = {
