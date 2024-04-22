@@ -70,7 +70,7 @@
 	    nixvim.homeManagerModules.nixvim
           ];
 	};
-        work-arch = home-manager.lib.homeManagerConfiguration {
+        breadman = home-manager.lib.homeManagerConfiguration {
 	  inherit pkgs;
           extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
