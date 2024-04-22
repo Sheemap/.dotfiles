@@ -104,6 +104,10 @@
     #jack.enable = true;
   };
   services.geoclue2.enable = true;
+  services.udev.packages = with pkgs; [
+      vial
+      via
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.breadcat = {
