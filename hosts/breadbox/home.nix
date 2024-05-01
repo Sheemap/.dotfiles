@@ -39,6 +39,7 @@ in
 	winetricks
 	xivlauncher
 	pkgsi686Linux.gperftools
+	element-desktop
 
 	localPkgs.pyfa
     ];
