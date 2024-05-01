@@ -9,6 +9,7 @@
 
   programs.nixvim = {
     enable = true;
+    defaultEditor = true;
 
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = true;
@@ -33,7 +34,7 @@
       todo-comments.enable = true;
       friendly-snippets.enable = true;
       fidget.enable = true;
-      multicursors.enable = true;
+      multicursors.enable = false;
       luasnip.enable = true;
       commentary.enable = true;
       auto-save.enable = true;
@@ -248,5 +249,9 @@
 	action = "<cmd>Commentary<CR>";
       }
     ];
+
+    extraConfigVim = ''
+	set undofile
+    '';
   };
 }
