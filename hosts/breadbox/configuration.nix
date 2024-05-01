@@ -86,14 +86,15 @@
 
     windowManager.xmonad.enable = false;
     windowManager.i3.enable = true;
-
-    displayManager.defaultSession = "none+i3";
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "breadcat";
-
-    libinput.enable = true;
-    libinput.mouse.accelProfile = "flat";
   };
+
+  services.displayManager.defaultSession = "none+i3";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "breadcat";
+
+  services.libinput.enable = true;
+  services.libinput.mouse.accelProfile = "flat";
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
