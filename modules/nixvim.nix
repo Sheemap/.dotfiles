@@ -39,23 +39,6 @@
       commentary.enable = true;
       auto-save.enable = true;
 
-      conform-nvim = {
-          enable = true;
-	  formattersByFt = {
-	    python = [ "isort" "black" ];
-	    javascript = [ "prettier" ];
-	  };
-      };
-
-      oil = {
-	enable = false;
-	settings.keymaps = {
-	    # How to disable the preview action?
-	    # It's overriding my <C-p> telescope binding
-	    # "actions.preview" = false;
-	};
-      };
-
 	treesitter.enable = true;
 	treesitter-context.enable = true;
 	treesitter-refactor = {
@@ -125,7 +108,7 @@
 
       lsp = {
 	enable = true;
-	postConfig = "vim.lsp.set_log_level('debug')";
+	#postConfig = "vim.lsp.set_log_level('debug')";
 	servers = {
 
 	    bashls.enable = true;
@@ -137,7 +120,7 @@
 	    html.enable = true;
 	    jsonls.enable = true;
 	    lua-ls.enable = true;
-	    nixd.enable = true; # Disabled for now, was raising errors
+	    nixd.enable = true;
 	    pyright.enable = true;
 
 	    rust-analyzer = {
@@ -150,7 +133,7 @@
 	    tailwindcss.enable = true;
 	    terraformls.enable = true;
 	    tsserver.enable = true;
-	    typos-lsp.enable = true; # Disabled for now, was raising errors
+	    typos-lsp.enable = true;
 	    vuels.enable = true;
 	    yamlls.enable = true;
 
@@ -162,6 +145,8 @@
 		"<leader>e" = "setloclist";
 		"[d" = "goto_prev";
 		"]d" = "goto_next";
+		"<leader>d" = "goto_prev";
+		"<leader>f" = "goto_next";
 	    };
 
 	    lspBuf = {
@@ -169,10 +154,10 @@
 		"gd" = "definition";
 		"gi" = "implementation";
 		"gr" = "references";
-		"K" = "hover";
-		"<C-k>" = "signature_help";
 		"<leader>r" = "rename";
 		"<leader>f" = "format";
+		"<leader>k" = "hover";
+		"<leader>j" = "signature_help";
 	    };
 	};
       };
@@ -181,8 +166,9 @@
 	enable = true;
 
 	keymaps = {
-	    "<leader>pf" = "find_files";
 	    "<C-p>" = "git_files";
+	    "<leader>f" = "git_files";
+	    "<leader>pf" = "find_files";
 	    "<leader>ps" = "live_grep";
 	};
       };
@@ -221,14 +207,7 @@
       }
       {
 	key = "<leader>pv";
-	#action = "<cmd>Oil<CR>";
-
-	# Default, non-oil, forgot the file manager name T~T
 	action = "<cmd>Ex<CR>";
-      }
-      {
-	key = "<C-O>";
-	action = "<cmd>''<CR>";
       }
       {
 	key = "<leader>f";
@@ -238,11 +217,6 @@
 	# Clipboard
 	key = "<leader>y";
 	action = "\"*y";
-      }
-      {
-	key = "<leader>f";
-	action = "require('conform').format";
-	lua = true;
       }
       {
 	key = "<C-/>";
