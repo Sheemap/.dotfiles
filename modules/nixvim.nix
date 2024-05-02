@@ -222,6 +222,34 @@
 	key = "<C-/>";
 	action = "<cmd>Commentary<CR>";
       }
+      {
+	key = "<C-s>";
+	action = "<cmd>wincmd s<CR>";
+      }
+      {
+	key = "<C-v>";
+	action = "<cmd>wincmd v<CR>";
+      }
+      {
+	key = "<C-h>";
+	action = "<cmd>wincmd h<CR>";
+      }
+      {
+	key = "<C-j>";
+	action = "<cmd>wincmd j<CR>";
+      }
+      {
+	key = "<C-k>";
+	action = "<cmd>wincmd k<CR>";
+      }
+      {
+	key = "<C-l>";
+	action = "<cmd>wincmd l<CR>";
+      }
+      {
+	key = "<C-q>";
+	action = "<cmd>wq<CR>";
+      }
     ];
 
     extraConfigVim = ''
