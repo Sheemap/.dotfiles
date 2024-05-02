@@ -248,7 +248,7 @@
       }
       {
 	key = "<C-q>";
-	action = "<cmd>wq<CR>";
+	action = "<cmd>q<CR>";
       }
     ];
 
