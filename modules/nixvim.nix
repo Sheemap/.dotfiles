@@ -61,7 +61,7 @@
 
       copilot-vim.enable = false;
       copilot-lua = {
-	enable = true;
+	enable = false;
 	panel = {
 	    enabled = true;
 	    keymap = {
