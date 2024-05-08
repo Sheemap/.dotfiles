@@ -35,11 +35,14 @@ in
 	arandr
 	discord
 	lutris
-	wineWowPackages.stable
+	#wineWowPackages.stable
+	wineWowPackages.full
 	winetricks
 	xivlauncher
 	pkgsi686Linux.gperftools
 	element-desktop
+	obs-studio
+	vlc
 
 	localPkgs.pyfa
     ];
