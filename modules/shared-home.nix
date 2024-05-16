@@ -56,6 +56,7 @@ in
     obsidian
     keepassxc
     unzip
+    insomnia
 
     nix-output-monitor
     vial
