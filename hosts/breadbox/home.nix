@@ -45,6 +45,12 @@ in
 	vlc
 
 	localPkgs.pyfa
+
+	(buildFHSUserEnv (appimageTools.defaultFhsEnvArgs // {
+	  name = "fhs";
+	  profile = ''export FHS=1'';
+	  runScript = "fish";
+	}))
     ];
 
     
