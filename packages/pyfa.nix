@@ -1,11 +1,11 @@
 { fetchurl, appimageTools, lib }:
 let
   pname = "pyfa";
-  version = "2.58.2";
+  version = "2.58.3";
 
   src = fetchurl {
     url = "https://github.com/pyfa-org/Pyfa/releases/download/v${version}/${pname}-v${version}-linux.AppImage";
-    hash = "sha256-CSCKfNHuTfSfTibZFNbvyD3IUTJPm8pGqITD7peSrA8=";
+    hash = "sha256-opzZSiVWfJv//KONocL9byZKqX/hWkPU+ssdceUDXh0=";
   };
 in 
 appimageTools.wrapType2 {
