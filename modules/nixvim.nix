@@ -202,6 +202,10 @@
 	action = "<cmd>Git rebase origin/main<CR>";
       }
       {
+	key = "<leader>gb";
+	action = "<cmd>Git blame<CR>";
+      }
+      {
 	key = "<leader>u";
 	action = "<cmd>UndotreeToggle<CR>";
       }

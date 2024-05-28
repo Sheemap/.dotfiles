@@ -52,7 +52,9 @@ in
 
     ripgrep
 
-    firefox
+    # Theres some weirdness with opengl on non nix distros
+    # Just using their respective package manager to get firefox
+    # firefox
     obsidian
     keepassxc
     unzip

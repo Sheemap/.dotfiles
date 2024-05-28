@@ -32,6 +32,7 @@ in
     home.homeDirectory = "/home/breadcat";
 
     home.packages = with pkgs; [
+	firefox
 	arandr
 	discord
 	lutris
