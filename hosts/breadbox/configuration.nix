@@ -26,6 +26,11 @@
       efi.canTouchEfiVariables = false;
   };
 
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 10d";
+  };
+
   # Better windows dual boot compatibility
   time.hardwareClockInLocalTime = true;
 

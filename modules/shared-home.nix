@@ -40,7 +40,7 @@ in
     gc = {
 	automatic = true;
 	frequency = "weekly";
-	options = "--delete-older-than 30d";
+	options = "--delete-older-than 10d";
     };
   };
 
@@ -64,6 +64,8 @@ in
     vial
     via
     warpd
+    fzf
+    dust
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
