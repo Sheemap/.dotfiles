@@ -23,11 +23,11 @@
       fsType = "vfat";
     };
 
-  fileSystems."/mnt/windrive" =
-    { device = "/dev/nvme1n1p4";
-      fsType = "ntfs-3g";
-      options = [ "rw" ];
-    };
+ # fileSystems."/mnt/windrive" =
+ #   { device = "/dev/nvme1n1p4";
+ #     fsType = "ntfs-3g";
+ #     options = [ "rw" ];
+ #   };
 
   swapDevices = [ ];
 
