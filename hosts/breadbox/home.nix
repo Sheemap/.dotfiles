@@ -44,6 +44,7 @@ in
 	element-desktop
 	obs-studio
 	vlc
+	mangohud
 
 	localPkgs.pyfa
 
