@@ -102,14 +102,19 @@
   services.libinput.mouse.accelProfile = "flat";
 
   security.rtkit.enable = true;
+
+  sound.enable = true;
   services.pipewire = {
-    enable = true;
+    enable = false;
+    systemWide = false;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
   };
+  hardware.pulseaudio.enable = true;
+
   services.geoclue2.enable = true;
   services.udev.packages = with pkgs; [
       vial

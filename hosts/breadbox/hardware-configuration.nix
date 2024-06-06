@@ -23,11 +23,11 @@
       fsType = "vfat";
     };
 
- # fileSystems."/mnt/windrive" =
- #   { device = "/dev/nvme1n1p4";
- #     fsType = "ntfs-3g";
- #     options = [ "rw" ];
- #   };
+   #fileSystems."/mnt/windrive" =
+   # { device = "/dev/nvme1n1p4";
+   #   fsType = "ntfs-3g";
+   #   options = [ "rw" ];
+   # };
 
   swapDevices = [ ];
 
@@ -40,5 +40,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  services.cpupower-gui.enable = true;
+  #services.cpupower-gui.enable = true;
 }

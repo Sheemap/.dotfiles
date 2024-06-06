@@ -25,7 +25,7 @@ in
     [ # Include the results of the hardware scan.
       ../../modules/shared-home.nix
       ../../modules/i3.nix
-      ../../modules/hyprland.nix
+      #../../modules/hyprland.nix
       #../../modules/xmonad.nix
     ];
     home.username = "breadcat";
