@@ -25,7 +25,7 @@ in
     [ # Include the results of the hardware scan.
       ../../modules/shared-home.nix
       ../../modules/i3.nix
-      #../../modules/hyprland.nix
+      ../../modules/hyprland-home.nix
       #../../modules/xmonad.nix
     ];
     home.username = "breadcat";
@@ -60,7 +60,7 @@ in
 	enable = true;
 	theme = "${rofiThemes}/squared-everforest.rasi";
     };
-    programs.kitty.font.size = 18;
+    programs.kitty.font.size = 13;
     programs.nixvim = {
 	#extraConfigVim = ''
 	    #let g:clipboard = {

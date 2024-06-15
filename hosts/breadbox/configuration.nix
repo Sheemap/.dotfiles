@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/hyprland-nix.nix
       #../../modules/hyprland-autologin.nix
     ];
 
@@ -42,7 +43,6 @@
   
   programs.neovim.defaultEditor = true;
   programs.nix-ld.enable = true;
-  programs.hyprland.enable = true;
 
   programs.steam.enable = true;
   programs.gamemode.enable = true;
@@ -138,7 +138,6 @@
     git
     nvtopPackages.nvidia
 
-    xdg-desktop-portal-hyprland
     pavucontrol
 
     #Fonts
