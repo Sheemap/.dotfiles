@@ -157,6 +157,7 @@ in
     };
     shellInit = ''
       set -x PATH $HOME/.local/bin $PATH
+      set -x NIXPKGS_ALLOW_UNFREE 1
       direnv hook fish | source
     '';
   };
