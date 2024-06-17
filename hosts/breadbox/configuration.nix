@@ -40,6 +40,7 @@
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   programs.thunar.enable = true;
+  programs.coolercontrol.enable = true;
   
   programs.neovim.defaultEditor = true;
   programs.nix-ld.enable = true;
