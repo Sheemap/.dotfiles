@@ -47,6 +47,7 @@ in
 	mangohud
 
 	localPkgs.pyfa
+	localPkgs.pants
 
 	(buildFHSUserEnv (appimageTools.defaultFhsEnvArgs // {
 	  name = "fhs";

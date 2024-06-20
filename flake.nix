@@ -30,6 +30,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       localPkgs = {
 	  pyfa = pkgs.callPackage ./packages/pyfa.nix {};
+	  pants = pkgs.callPackage ./packages/pants.nix {};
       };
     in
     {
