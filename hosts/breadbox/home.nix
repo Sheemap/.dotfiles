@@ -39,7 +39,6 @@ in
 	#wineWowPackages.stable
 	wineWowPackages.full
 	winetricks
-	xivlauncher
 	pkgsi686Linux.gperftools
 	element-desktop
 	obs-studio
