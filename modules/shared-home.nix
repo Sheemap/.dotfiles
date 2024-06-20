@@ -51,17 +51,16 @@ in
   home.packages = with pkgs; [
     font-awesome
     spotify
-
     ripgrep
 
     # Theres some weirdness with opengl on non nix distros
     # Just using their respective package manager to get firefox
     # firefox
+    
     obsidian
     keepassxc
     unzip
     insomnia
-
     nix-output-monitor
     vial
     via
@@ -69,12 +68,13 @@ in
     fzf
     dust
     htop
+    autotiling
+    nerdfonts
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "FantasqueSansMono" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
