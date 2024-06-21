@@ -23,6 +23,10 @@
       shiftwidth = 4;
 
       scrolloff = 8;
+
+      foldenable = false;
+      foldmethod = "expr";
+      foldexpr = "nvim_treesitter#foldexpr()";
     };
 
 
