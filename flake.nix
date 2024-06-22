@@ -12,6 +12,9 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim-dev = {
+      url = "github:sheemap/nixvim";
+    };
     #nix-ld = {
     #  url = "github:Mic92/nix-ld";
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +25,7 @@
     self,
     nixpkgs,
     home-manager,
-    nixvim,
+    nixvim-dev,
     #nix-ld,
     ... }@inputs:
     let
@@ -60,7 +63,7 @@
           extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
 	    ./hosts/breadbox/home.nix
-	    nixvim.homeManagerModules.nixvim
+	    nixvim-dev.homeManagerModules.nixvim
           ];
 	};
         dinodave = home-manager.lib.homeManagerConfiguration {
@@ -68,7 +71,7 @@
           extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
 	    ./hosts/dino-dave/home.nix
-	    nixvim.homeManagerModules.nixvim
+	    nixvim-dev.homeManagerModules.nixvim
           ];
 	};
         breadman = home-manager.lib.homeManagerConfiguration {
@@ -76,7 +79,7 @@
           extraSpecialArgs = {inherit localPkgs;};
           modules = [ 
             ./hosts/work-arch/home.nix
-	    nixvim.homeManagerModules.nixvim
+	    nixvim-dev.homeManagerModules.nixvim
           ];
 	};
       };

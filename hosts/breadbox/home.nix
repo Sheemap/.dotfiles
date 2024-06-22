@@ -1,4 +1,4 @@
-{ config, pkgs, localPkgs, nixvim, ... }:
+{ pkgs, localPkgs, ... }:
 let
     rofiThemes = pkgs.stdenvNoCC.mkDerivation {
 	pname = "rofi-themes-collection";

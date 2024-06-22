@@ -1,4 +1,4 @@
-{ config, pkgs, nixvim, ... }:
+{ pkgs, ... }:
 {
   
   home.packages = with pkgs; [
@@ -12,7 +12,15 @@
     defaultEditor = true;
 
     colorschemes.ayu.enable = true;
-    colorschemes.catppuccin.enable = true;
+    colorschemes.catppuccin.enable = false;
+    colorschemes.rose-pine.enable = false;
+
+    colorschemes.everforest = {
+	enable = true;
+	settings = {
+	    background = "hard";
+	};
+    };
 
     globals.mapleader = " ";
 
@@ -42,6 +50,7 @@
       luasnip.enable = true;
       commentary.enable = true;
       auto-save.enable = true;
+      tmux-navigator.enable = true;
 
 	treesitter.enable = true;
 	treesitter-context.enable = true;
