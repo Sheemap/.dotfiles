@@ -166,6 +166,7 @@ in
 
   programs.tmux = {
     enable = true;
+    keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [
 	sensible
 	rose-pine
@@ -177,6 +178,12 @@ in
       # See: https://github.com/christoomey/vim-tmux-navigator
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
 	| grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+
+      # -n is shorthand for -Troot
+      # mirror vim keybindings
+      bind-key -n 'C-q' if-shell "$is_vim" 'send-keys C-q' 'kill-pane'
+      bind-key -n 'C-v' if-shell "$is_vim" 'send-keys C-v' 'split-window -h'
+      bind-key -n 'C-s' if-shell "$is_vim" 'send-keys C-s' 'split-window'
 
       bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
       bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
@@ -195,6 +202,7 @@ in
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
       bind-key -T copy-mode-vi 'C-\' select-pane -l
+
     '';
 
   };
