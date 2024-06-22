@@ -19,6 +19,7 @@
 	enable = true;
 	settings = {
 	    background = "hard";
+	    dim_inactive_windows = 1;
 	};
     };
 

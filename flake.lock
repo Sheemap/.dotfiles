@@ -456,11 +456,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1719087025,
-        "narHash": "sha256-J2uMuaPmAxo+VwMfWnCZkxQXAJQ+imOiXmIRfboEucA=",
+        "lastModified": 1719099701,
+        "narHash": "sha256-set6XuPzhETp0iWLDAh5EAzcp0VMorORQZDm7iJJAR8=",
         "owner": "sheemap",
         "repo": "nixvim",
-        "rev": "dbaf08310305e5eb667af9ab7e484c2c8c498493",
+        "rev": "b2629d92b50306d3195b8b046678a84b67f74857",
         "type": "github"
       },
       "original": {

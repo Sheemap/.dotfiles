@@ -15,6 +15,9 @@
     nixvim-dev = {
       url = "github:sheemap/nixvim";
     };
+    #nixvim-local = {
+    #  url = "git+file:///home/breadcat/Code/nixvim";
+    #};
     #nix-ld = {
     #  url = "github:Mic92/nix-ld";
     #  inputs.nixpkgs.follows = "nixpkgs";
