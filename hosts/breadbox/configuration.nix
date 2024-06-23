@@ -116,7 +116,6 @@
   };
   hardware.pulseaudio.enable = true;
 
-  services.geoclue2.enable = true;
   services.udev.packages = with pkgs; [
       vial
       via

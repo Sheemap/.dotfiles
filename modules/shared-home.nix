@@ -213,6 +213,11 @@ in
     };
 
   services.flameshot.enable = true;
+  services.redshift = {
+    enable = true;
+    latitude = 40.7596;
+    longitude = -111.8876;
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
