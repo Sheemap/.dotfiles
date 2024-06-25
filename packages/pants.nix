@@ -15,7 +15,10 @@ let
       hash = "sha256-9PjgobndxVqDTYGtw1HESrtzwzH2qE9zFwR26xtwZrM=";
     };
 
-    phases = ["installPhase" "patchPhase"];
+    phases = [
+      "installPhase"
+      "patchPhase"
+    ];
     installPhase = ''
       mkdir -p $out/bin
       cp $src $out/bin/pants
@@ -23,12 +26,10 @@ let
     '';
   };
 in
-pkgs.buildFHSUserEnv  {
+pkgs.buildFHSUserEnv {
   name = "pants";
 
-  targetPackages = with pkgs; [
-    python3
-  ];
+  targetPackages = with pkgs; [ python3 ];
 
   runScript = "${scie-pants}/bin/pants";
   profile = ''
@@ -40,7 +41,7 @@ pkgs.buildFHSUserEnv  {
     description = "Protects your Pants from the elements";
     homepage = "https://github.com/pantsbuild/scie-pants";
     license = licenses.asl20;
-    maintainers = [];
+    maintainers = [ ];
     platforms = [ "x86_64-linux" ];
     mainProgram = "pants";
   };

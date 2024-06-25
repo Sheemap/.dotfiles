@@ -5,16 +5,20 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  environment.shells = with pkgs; [ fish zsh bash ];
+  environment.shells = with pkgs; [
+    fish
+    zsh
+    bash
+  ];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
 
@@ -31,9 +35,11 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
-
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -64,8 +70,11 @@
   users.users.breadcat = {
     isNormalUser = true;
     description = "Jamis";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:

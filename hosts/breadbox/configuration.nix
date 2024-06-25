@@ -5,26 +5,26 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/hyprland-nix.nix
-      #../../modules/hyprland-autologin.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/hyprland-nix.nix
+    #../../modules/hyprland-autologin.nix
+  ];
 
   # Bootloader.
   boot.loader = {
-      systemd-boot.enable = false;
-      grub = {
-	  enable = true;
-	  efiSupport = true;
-	  device = "nodev";
-	  useOSProber = true;
-	  efiInstallAsRemovable = true;
-	  gfxmodeEfi = "3440x1440";
-	  fontSize = 36;
-      }; 
-      efi.canTouchEfiVariables = false;
+    systemd-boot.enable = false;
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+      efiInstallAsRemovable = true;
+      gfxmodeEfi = "3440x1440";
+      fontSize = 36;
+    };
+    efi.canTouchEfiVariables = false;
   };
 
   nix.gc = {
@@ -35,13 +35,16 @@
   # Better windows dual boot compatibility
   time.hardwareClockInLocalTime = true;
 
-
-  environment.shells = with pkgs; [ fish zsh bash ];
+  environment.shells = with pkgs; [
+    fish
+    zsh
+    bash
+  ];
   users.defaultUserShell = pkgs.fish;
   programs.fish.enable = true;
   programs.thunar.enable = true;
   programs.coolercontrol.enable = true;
-  
+
   programs.neovim.defaultEditor = true;
   programs.nix-ld.enable = true;
 
@@ -62,9 +65,11 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
-
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -89,7 +94,7 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "";
-    videoDrivers = ["amdgpu"];
+    videoDrivers = [ "amdgpu" ];
 
     windowManager.xmonad.enable = false;
     windowManager.i3.enable = true;
@@ -117,16 +122,19 @@
   hardware.pulseaudio.enable = true;
 
   services.udev.packages = with pkgs; [
-      vial
-      via
+    vial
+    via
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.breadcat = {
     isNormalUser = true;
     description = "Jamis";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -146,9 +154,7 @@
   ];
 
   fonts.fontDir.enable = true;
-  fonts.packages = [
-    (pkgs.callPackage ../../packages/hemi-head.nix {})
-  ];
+  fonts.packages = [ (pkgs.callPackage ../../packages/hemi-head.nix { }) ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -175,38 +181,37 @@
     enable32Bit = true;
   };
 
-
-#  hardware.nvidia = {
-#
-#    # Modesetting is required.
-#    modesetting.enable = true;
-#
-#    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-#    # Enable this if you have graphical corruption issues or application crashes after waking
-#    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-#    # of just the bare essentials.
-#    powerManagement.enable = false;
-#
-#    # Fine-grained power management. Turns off GPU when not in use.
-#    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-#    powerManagement.finegrained = false;
-#
-#    # Use the NVidia open source kernel module (not to be confused with the
-#    # independent third-party "nouveau" open source driver).
-#    # Support is limited to the Turing and later architectures. Full list of 
-#    # supported GPUs is at: 
-#    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-#    # Only available from driver 515.43.04+
-#    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-#    open = true;
-#
-#    # Enable the Nvidia settings menu,
-#	# accessible via `nvidia-settings`.
-#    nvidiaSettings = true;
-#
-#    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-#    #package = config.boot.kernelPackages.nvidiaPackages.stable;
-#  };
+  #  hardware.nvidia = {
+  #
+  #    # Modesetting is required.
+  #    modesetting.enable = true;
+  #
+  #    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+  #    # Enable this if you have graphical corruption issues or application crashes after waking
+  #    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+  #    # of just the bare essentials.
+  #    powerManagement.enable = false;
+  #
+  #    # Fine-grained power management. Turns off GPU when not in use.
+  #    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+  #    powerManagement.finegrained = false;
+  #
+  #    # Use the NVidia open source kernel module (not to be confused with the
+  #    # independent third-party "nouveau" open source driver).
+  #    # Support is limited to the Turing and later architectures. Full list of 
+  #    # supported GPUs is at: 
+  #    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+  #    # Only available from driver 515.43.04+
+  #    # Currently alpha-quality/buggy, so false is currently the recommended setting.
+  #    open = true;
+  #
+  #    # Enable the Nvidia settings menu,
+  #	# accessible via `nvidia-settings`.
+  #    nvidiaSettings = true;
+  #
+  #    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+  #    #package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

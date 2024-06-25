@@ -6,16 +6,15 @@ let
     rev = "6c37e0f65b9af45ebe680e3e0f5131f452747c6f";
     hash = "sha256-zQGiF/8WZ15ZlQVVgxuQq4qatinxMx2Y6Xl5Zcuhp7Y=";
   };
-in 
+in
 {
 
   programs.waybar = {
     enable = true;
-    style = ./waybar-configs/sephid86-styles.css; 
+    style = ./waybar-configs/sephid86-styles.css;
     settings = {
-	mainBar = import ./waybar-configs/sephid86.nix {};
+      mainBar = import ./waybar-configs/sephid86.nix { };
     };
-
 
   };
 

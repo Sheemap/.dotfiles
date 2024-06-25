@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  
+
   home.packages = with pkgs; [
     isort
     black
@@ -14,13 +14,14 @@
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = false;
     colorschemes.rose-pine.enable = false;
+    colorschemes.dracula.enable = true;
 
     colorschemes.everforest = {
-	enable = true;
-	settings = {
-	    background = "hard";
-	    dim_inactive_windows = 1;
-	};
+      enable = false;
+      settings = {
+        background = "hard";
+        dim_inactive_windows = 1;
+      };
     };
 
     globals.mapleader = " ";
@@ -38,7 +39,6 @@
       foldexpr = "nvim_treesitter#foldexpr()";
     };
 
-
     plugins = {
       fugitive.enable = true;
       neogit.enable = true;
@@ -53,225 +53,224 @@
       auto-save.enable = true;
       tmux-navigator.enable = true;
 
-	treesitter.enable = true;
-	treesitter-context.enable = true;
-	treesitter-refactor = {
-	    enable = true;
-	    highlightCurrentScope.enable = false;
-	    highlightDefinitions.enable = true;
-	    navigation = {
-		enable = false;
-		keymaps = {
-		    gotoDefinition = "gd";
-		};
-	    };
-	    smartRename = {
-		enable = false;
-		keymaps = {
-		    smartRename = "<leader>r";
-		};
-	    };
-	};
+      treesitter.enable = true;
+      treesitter-context.enable = true;
+      treesitter-refactor = {
+        enable = true;
+        highlightCurrentScope.enable = false;
+        highlightDefinitions.enable = true;
+        navigation = {
+          enable = false;
+          keymaps = {
+            gotoDefinition = "gd";
+          };
+        };
+        smartRename = {
+          enable = false;
+          keymaps = {
+            smartRename = "<leader>r";
+          };
+        };
+      };
 
       copilot-vim.enable = false;
       copilot-lua = {
-	enable = false;
-	panel = {
-	    enabled = true;
-	    keymap = {
-		open = "<C-CR>";
-	    };
-	};
-	suggestion = {
-	    enabled = false;
-	    autoTrigger = true;
-	    keymap = {
-		accept = "<C-j>";
-	    };
-	};
+        enable = false;
+        panel = {
+          enabled = true;
+          keymap = {
+            open = "<C-CR>";
+          };
+        };
+        suggestion = {
+          enabled = false;
+          autoTrigger = true;
+          keymap = {
+            accept = "<C-j>";
+          };
+        };
       };
 
       cmp = {
-	enable = true;
-	settings = {
-	    mapping = {
-		"<C-Space>" = "cmp.mapping.complete()";
-		"<C-d>" = "cmp.mapping.scroll_docs(-4)";
-		"<C-e>" = "cmp.mapping.close()";
-		"<C-f>" = "cmp.mapping.scroll_docs(4)";
-		"<CR>" = "cmp.mapping.confirm({ select = true })";
-		"<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-		"<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-		"<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-		"<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-	    };
-	    sources = [
-		#{ name = "copilot"; }
-		#{ name = "buffer"; }
-		#{ name = "conventionalcommits"; }
-		#{ name = "git"; }
-		{ name = "path"; }
-		{ name = "nvim_lsp"; }
-		{ name = "nvim_lsp_document_symbol"; }
-		{ name = "nvim_lsp_signature_help"; }
-		{ name = "treesitter"; }
-		{ name = "luasnip"; }
-	    ];
-	};
+        enable = true;
+        settings = {
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>" = "cmp.mapping.close()";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          };
+          sources = [
+            #{ name = "copilot"; }
+            #{ name = "buffer"; }
+            #{ name = "conventionalcommits"; }
+            #{ name = "git"; }
+            { name = "path"; }
+            { name = "nvim_lsp"; }
+            { name = "nvim_lsp_document_symbol"; }
+            { name = "nvim_lsp_signature_help"; }
+            { name = "treesitter"; }
+            { name = "luasnip"; }
+          ];
+        };
       };
 
       lsp = {
-	enable = true;
-	#postConfig = "vim.lsp.set_log_level('debug')";
-	servers = {
+        enable = true;
+        #postConfig = "vim.lsp.set_log_level('debug')";
+        servers = {
 
-	    bashls.enable = true;
-	    cssls.enable = true;
-	    dockerls.enable = true;
-	    eslint.enable = true;
-	    gopls.enable = true;
-	    graphql.enable = true;
-	    html.enable = true;
-	    jsonls.enable = true;
-	    lua-ls.enable = true;
-	    nixd.enable = true;
-	    pyright.enable = true;
+          bashls.enable = true;
+          cssls.enable = true;
+          dockerls.enable = true;
+          eslint.enable = true;
+          gopls.enable = true;
+          graphql.enable = true;
+          html.enable = true;
+          jsonls.enable = true;
+          lua-ls.enable = true;
+          nixd.enable = true;
+          pyright.enable = true;
 
-	    rust-analyzer = {
-		enable = true;
-		installCargo = true;
-		installRustc = true;
-	    };
+          rust-analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+          };
 
-	    svelte.enable = true;
-	    tailwindcss.enable = true;
-	    terraformls.enable = true;
-	    tsserver.enable = true;
-	    typos-lsp.enable = true;
-	    vuels.enable = true;
-	    yamlls.enable = true;
+          svelte.enable = true;
+          tailwindcss.enable = true;
+          terraformls.enable = true;
+          tsserver.enable = true;
+          typos-lsp.enable = true;
+          vuels.enable = true;
+          yamlls.enable = true;
 
-	};
+        };
 
-	keymaps  = {
-	    diagnostic = {
-		"<leader>q" = "open_float";
-		"<leader>e" = "setloclist";
-		"[d" = "goto_prev";
-		"]d" = "goto_next";
-		"<leader>d" = "goto_prev";
-		"<leader>f" = "goto_next";
-	    };
+        keymaps = {
+          diagnostic = {
+            "<leader>q" = "open_float";
+            "<leader>e" = "setloclist";
+            "[d" = "goto_prev";
+            "]d" = "goto_next";
+            "<leader>d" = "goto_prev";
+            "<leader>f" = "goto_next";
+          };
 
-	    lspBuf = {
-		"gD" = "declaration";
-		"gd" = "definition";
-		"gi" = "implementation";
-		"gr" = "references";
-		"<leader>r" = "rename";
-		"<leader>f" = "format";
-		"<leader>k" = "hover";
-		"<leader>j" = "signature_help";
-	    };
-	};
+          lspBuf = {
+            "gD" = "declaration";
+            "gd" = "definition";
+            "gi" = "implementation";
+            "gr" = "references";
+            "<leader>r" = "rename";
+            "<leader>f" = "format";
+            "<leader>k" = "hover";
+            "<leader>j" = "signature_help";
+          };
+        };
       };
 
       telescope = {
-	enable = true;
+        enable = true;
 
-	keymaps = {
-	    "<C-p>" = "git_files";
-	    "<leader>f" = "git_files";
-	    "<leader>pf" = "find_files";
-	    "<leader>ps" = "live_grep";
-	};
+        keymaps = {
+          "<C-p>" = "git_files";
+          "<leader>f" = "git_files";
+          "<leader>pf" = "find_files";
+          "<leader>ps" = "live_grep";
+        };
       };
     };
 
-
     keymaps = [
       {
-	key = "<Esc>";
-	action = "<cmd>noh<CR>";
-	mode = [ "n" ];
+        key = "<Esc>";
+        action = "<cmd>noh<CR>";
+        mode = [ "n" ];
       }
       {
-	key = "<leader>gs";
-	action = "<cmd>Git<CR>";
+        key = "<leader>gs";
+        action = "<cmd>Git<CR>";
       }
       {
-	key = "<leader>gp";
-	action = "<cmd>Git pull<CR>";
+        key = "<leader>gp";
+        action = "<cmd>Git pull<CR>";
       }
       {
-	key = "<leader>gP";
-	action = "<cmd>Git push<CR>";
+        key = "<leader>gP";
+        action = "<cmd>Git push<CR>";
       }
       {
-	key = "<leader>gf";
-	action = "<cmd>Git fetch<CR>";
+        key = "<leader>gf";
+        action = "<cmd>Git fetch<CR>";
       }
       {
-	key = "<leader>gr";
-	action = "<cmd>Git rebase origin/main<CR>";
+        key = "<leader>gr";
+        action = "<cmd>Git rebase origin/main<CR>";
       }
       {
-	key = "<leader>gb";
-	action = "<cmd>Git blame<CR>";
+        key = "<leader>gb";
+        action = "<cmd>Git blame<CR>";
       }
       {
-	key = "<leader>u";
-	action = "<cmd>UndotreeToggle<CR>";
+        key = "<leader>u";
+        action = "<cmd>UndotreeToggle<CR>";
       }
       {
-	key = "<leader>pv";
-	action = "<cmd>Ex<CR>";
+        key = "<leader>pv";
+        action = "<cmd>Ex<CR>";
       }
       {
-	key = "<leader>f";
-	action = "<cmd>lua vim.lsp.buf.format()<CR>";
+        key = "<leader>f";
+        action = "<cmd>lua vim.lsp.buf.format()<CR>";
       }
       {
-	# Clipboard
-	key = "<leader>y";
-	action = "\"*y";
+        # Clipboard
+        key = "<leader>y";
+        action = "\"*y";
       }
       {
-	key = "<C-/>";
-	action = "<cmd>Commentary<CR>";
+        key = "<C-/>";
+        action = "<cmd>Commentary<CR>";
       }
       {
-	key = "<C-s>";
-	action = "<cmd>wincmd s<CR>";
+        key = "<C-s>";
+        action = "<cmd>wincmd s<CR>";
       }
       {
-	key = "<C-v>";
-	action = "<cmd>wincmd v<CR>";
+        key = "<C-v>";
+        action = "<cmd>wincmd v<CR>";
       }
       {
-	key = "<C-h>";
-	action = "<cmd>wincmd h<CR>";
+        key = "<C-h>";
+        action = "<cmd>wincmd h<CR>";
       }
       {
-	key = "<C-j>";
-	action = "<cmd>wincmd j<CR>";
+        key = "<C-j>";
+        action = "<cmd>wincmd j<CR>";
       }
       {
-	key = "<C-k>";
-	action = "<cmd>wincmd k<CR>";
+        key = "<C-k>";
+        action = "<cmd>wincmd k<CR>";
       }
       {
-	key = "<C-l>";
-	action = "<cmd>wincmd l<CR>";
+        key = "<C-l>";
+        action = "<cmd>wincmd l<CR>";
       }
       {
-	key = "<C-q>";
-	action = "<cmd>q<CR>";
+        key = "<C-q>";
+        action = "<cmd>q<CR>";
       }
     ];
 
     extraConfigVim = ''
-	set undofile
+      set undofile
     '';
   };
 }
