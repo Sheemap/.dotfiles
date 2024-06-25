@@ -12,11 +12,11 @@ let
     };
 
     installPhase = ''
-          runHook preInstall
+      runHook preInstall
 
-          install -Dm644 -t $out/ themes/*.rasi
+      install -Dm644 -t $out/ themes/*.rasi
 
-          runHook postInstall
+      runHook postInstall
     '';
   };
 in

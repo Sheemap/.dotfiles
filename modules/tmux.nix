@@ -1,31 +1,32 @@
 { pkgs, ... }:
 let
   devEnvScript = pkgs.writeShellScriptBin "dev" ''
-    session="dev"
+        session="dev"
 
-    if tmux attach -t $session; then
-	echo "Attached to dev"
-    else
-	tmux new-session -d -s $session
+        if tmux attach -t $session; then
+    	echo "Attached to dev"
+        else
+    	tmux new-session -d -s $session
 
-	tmux new-window -t $session:1 -n 'Fish'
-	tmux new-window -t $session:2 -n 'Neovim'
+    	tmux new-window -t $session:1 -n 'Fish'
+    	tmux new-window -t $session:2 -n 'Neovim'
 
-	tmux send-keys -t $session:2 'nv' C-m
+    	tmux send-keys -t $session:2 'nv' C-m
 
-        tmux kill-pane -t $session:0:0
+            tmux kill-pane -t $session:0:0
 
-        tmux attach -t $session
-    fi
+            tmux attach -t $session
+        fi
   '';
-  
-in 
+
+in
 {
   home.packages = [ devEnvScript ];
 
   programs.tmux = {
     enable = true;
     keyMode = "vi";
+    shell = "${pkgs.fish}/bin/fish";
     plugins = with pkgs.tmuxPlugins; [
       sensible
       vim-tmux-navigator
@@ -78,12 +79,11 @@ in
       bind-key -T copy-mode-vi 'C-l' select-pane -R
       bind-key -T copy-mode-vi 'C-\' select-pane -l
 
-      bind-key -n 'C-y' resize-pane -L 20
-      bind-key -n 'C-u' resize-pane -D 20
-      bind-key -n 'C-i' resize-pane -U 20
-      bind-key -n 'C-o' resize-pane -R 20
+      bind-key -T prefix 'C-y' resize-pane -L 10
+      bind-key -T prefix 'C-u' resize-pane -D 10
+      bind-key -T prefix 'C-i' resize-pane -U 10
+      bind-key -T prefix 'C-o' resize-pane -R 10
     '';
 
   };
 }
-
