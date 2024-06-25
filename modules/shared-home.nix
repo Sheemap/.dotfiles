@@ -19,14 +19,14 @@ in
 
   imports = [
     ./nixvim.nix
-
+    ./tmux.nix
   ];
 
   nixpkgs = {
     #config.packageOverrides = pkgs: rec {
     #  catppuccin = pkgs.catppuccin.overrideAttrs {
-    #	variant = "mocha";
-    #	accent = "rosewater";
+    #  variant = "mocha";
+    #  accent = "rosewater";
     #      };
     #    };
   };
@@ -174,43 +174,54 @@ in
       {
         plugin = dracula;
         extraConfig = ''
-          		set -g @dracula-show-battery false
-          		set -g @dracula-show-powerline true
-          		set -g @dracula-refresh-rate 10
+          set-option -g status-position top
+
+          set -g @dracula-show-battery false
+          set -g @dracula-show-powerline true
+          set -g @dracula-refresh-rate 10
+
+          # available plugins: battery, cpu-usage, git, gpu-usage, ram-usage, tmux-ram-usage, network, network-bandwidth, network-ping, ssh-session, attached-clients, network-vpn, weather, time, mpc, spotify-tui, playerctl, kubernetes-context, synchronize-panes
+          set -g @dracula-plugins "network ssh-session weather time"
         '';
       }
     ];
     extraConfig = ''
-            # Smart pane switching with awareness of vim splits.
+      set -g mouse on
 
-            # See: https://github.com/christoomey/vim-tmux-navigator
-            is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-      	| grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
 
-            # -n is shorthand for -Troot
-            # mirror vim keybindings
-            bind-key -n 'C-q' if-shell "$is_vim" 'send-keys C-q' 'kill-pane'
-            bind-key -n 'C-v' if-shell "$is_vim" 'send-keys C-v' 'split-window -h'
-            bind-key -n 'C-s' if-shell "$is_vim" 'send-keys C-s' 'split-window'
+      # Smart pane switching with awareness of vim splits.
 
-            bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-            bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-            bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-            bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+      # See: https://github.com/christoomey/vim-tmux-navigator
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+       | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
 
-            # Forwarding <C-\\> needs different syntax, depending on tmux version
-            tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-            if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-      	"bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-            if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-      	"bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+      # -n is shorthand for -Troot
+      bind-key -n 'C-q' if-shell "$is_vim" 'send-keys C-q' 'kill-pane'
+      bind-key -n 'C-v' if-shell "$is_vim" 'send-keys C-v' 'split-window -h'
+      bind-key -n 'C-s' if-shell "$is_vim" 'send-keys C-s' 'split-window'
 
-            bind-key -T copy-mode-vi 'C-h' select-pane -L
-            bind-key -T copy-mode-vi 'C-j' select-pane -D
-            bind-key -T copy-mode-vi 'C-k' select-pane -U
-            bind-key -T copy-mode-vi 'C-l' select-pane -R
-            bind-key -T copy-mode-vi 'C-\' select-pane -l
+      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
 
+      # Forwarding <C-\\> needs different syntax, depending on tmux version
+      tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+      if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+       "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+      if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+       "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+      bind-key -T copy-mode-vi 'C-h' select-pane -L
+      bind-key -T copy-mode-vi 'C-j' select-pane -D
+      bind-key -T copy-mode-vi 'C-k' select-pane -U
+      bind-key -T copy-mode-vi 'C-l' select-pane -R
+      bind-key -T copy-mode-vi 'C-\' select-pane -l
+
+      bind-key -n 'C-y' resize-pane -L 20
+      bind-key -n 'C-u' resize-pane -D 20
+      bind-key -n 'C-i' resize-pane -U 20
+      bind-key -n 'C-o' resize-pane -R 20
     '';
 
   };

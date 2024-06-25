@@ -1,5 +1,4 @@
-_:
-{
+_: {
   # Started from sephid86's config herre
   # https://github.com/sephid86/archas/tree/master/skel/.config/waybar 
 

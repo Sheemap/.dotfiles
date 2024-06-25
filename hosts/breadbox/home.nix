@@ -44,6 +44,7 @@ in
     obs-studio
     vlc
     mangohud
+    vesktop
 
     localPkgs.pyfa
     localPkgs.pants
