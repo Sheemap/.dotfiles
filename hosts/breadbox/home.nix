@@ -1,25 +1,4 @@
 { pkgs, localPkgs, ... }:
-let
-  rofiThemes = pkgs.stdenvNoCC.mkDerivation {
-    pname = "rofi-themes-collection";
-    version = "f87e083";
-
-    src = pkgs.fetchgit {
-      url = "https://github.com/newmanls/rofi-themes-collection.git";
-      sparseCheckout = [ "themes" ];
-      rev = "f87e08300cb1c984994efcaf7d8ae26f705226fd";
-      hash = "sha256-/NPfy1rZL2p+6Nl7ukBZwTD+4F+UcVoQLDV2dHLElnY=";
-    };
-
-    installPhase = ''
-      runHook preInstall
-
-      install -Dm644 -t $out/ themes/*.rasi
-
-      runHook postInstall
-    '';
-  };
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -59,10 +38,6 @@ in
     ))
   ];
 
-  programs.rofi = {
-    enable = true;
-    theme = "${rofiThemes}/squared-everforest.rasi";
-  };
   programs.kitty.font.size = 13;
   programs.nixvim = {
     #extraConfigVim = ''

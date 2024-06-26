@@ -1,27 +1,38 @@
 { config, pkgs, ... }:
 let
-  i3catppuccin = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "i3";
-    rev = "cd6b5017850084d5b40ef9f4eeac5a6d95779939";
-    hash = "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=";
+  newman-rofiThemes = pkgs.fetchFromGitHub {
+    owner = "newmanls";
+    repo = "rofi-themes-collection";
+    rev = "f87e08300cb1c984994efcaf7d8ae26f705226fd";
+    hash = "sha256-A6zIAQvjfe/XB5GZefs4TWgD+eGICQP2Abz/sQynJPo=";
+  };
+  dracula-rofi = pkgs.fetchFromGitHub {
+    owner = "dracula";
+    repo = "rofi";
+    rev = "459eee340059684bf429a5eb51f8e1cc4998eb74";
+    hash = "sha256-Zx/+FLd5ocHg6+YkqOt67nWfeHR3+iitVm1uKnNXrzc=";
   };
 in
 {
   services.dunst.enable = true;
 
   home.file.".config/i3/config".source = ../configs/i3.conf;
-  home.file.".config/i3/colors".source = ../configs/i3-colors.conf;
-  home.file.".config/i3/catppuccin".source = "${i3catppuccin}/themes/catppuccin-mocha";
+  home.file.".config/i3/colors".source = ../configs/i3-ctpmocha-colors.conf;
+  #home.file.".config/i3/colors".source = ../configs/i3-dracula-colors.conf;
   home.file.".config/i3/scripts/powermenu".source = ../scripts/powermenu;
   home.file.".config/rofi/powermenu.rasi".source = ../scripts/powermenu.rasi;
   home.file.".config/rofi/arc_dark_transparent_colors.rasi".source = ../scripts/arc_dark_transparent_colors.rasi;
   home.file.".wallpapers/pastel-1.jpg".source = ../wallpapers/pastel-1.jpg;
 
+  programs.rofi = {
+    enable = true;
+    #theme = "${newman-rofiThemes}/themes/squared-everforest.rasi";
+    theme = "${dracula-rofi}/theme/config1.rasi";
+    #theme = "${dracula-rofi}/theme/config2.rasi";
+  };
+
   home.packages = with pkgs; [ feh ];
 
-  # Needs work
-  # Also want to adjust the bar theme
   programs.i3status-rust = {
     enable = true;
     bars = {

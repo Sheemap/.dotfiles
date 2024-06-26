@@ -29,6 +29,7 @@
     opts = {
       number = true;
       relativenumber = true;
+      expandtab = true;
 
       shiftwidth = 4;
 

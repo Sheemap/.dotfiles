@@ -1,22 +1,22 @@
 { pkgs, ... }:
 let
   devEnvScript = pkgs.writeShellScriptBin "dev" ''
-        session="dev"
+    session="dev"
 
-        if tmux attach -t $session; then
-    	echo "Attached to dev"
-        else
-    	tmux new-session -d -s $session
+    if tmux attach -t $session; then
+        echo "attached to $session"
+    else
+        echo "creating session: $session"
 
-    	tmux new-window -t $session:1 -n 'Fish'
-    	tmux new-window -t $session:2 -n 'Neovim'
+        tmux new-session -d -s $session
 
-    	tmux send-keys -t $session:2 'nv' C-m
+        tmux rename-window -t $session:0 'Fish'
+        tmux new-window -t $session:1 -n 'Neovim'
 
-            tmux kill-pane -t $session:0:0
+        tmux send-keys -t $session:1 'nv' C-m
 
-            tmux attach -t $session
-        fi
+        tmux attach -t $session
+    fi
   '';
 
 in
@@ -41,14 +41,11 @@ in
           set -g @dracula-refresh-rate 10
 
           # available plugins: battery, cpu-usage, git, gpu-usage, ram-usage, tmux-ram-usage, network, network-bandwidth, network-ping, ssh-session, attached-clients, network-vpn, weather, time, mpc, spotify-tui, playerctl, kubernetes-context, synchronize-panes
-          set -g @dracula-plugins "network ssh-session weather time"
+          set -g @dracula-plugins "ssh-session time"
         '';
       }
     ];
     extraConfig = ''
-      set -g mouse on
-
-
       # Smart pane switching with awareness of vim splits.
 
       # See: https://github.com/christoomey/vim-tmux-navigator
