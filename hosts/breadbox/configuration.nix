@@ -69,6 +69,7 @@
     "nix-command"
     "flakes"
   ];
+  nix.settings.trusted-users = [ "root" "breadcat" ];
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
