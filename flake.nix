@@ -39,7 +39,7 @@
       nixpkgs,
       systems,
       home-manager,
-      nixvim-dev,
+      nixvim,
       treefmt-nix,
       ...
     }@inputs:
@@ -90,7 +90,7 @@
           };
           modules = [
             ./hosts/breadbox/home.nix
-            nixvim-dev.homeManagerModules.nixvim
+            nixvim.homeManagerModules.nixvim
           ];
         };
         dinodave = home-manager.lib.homeManagerConfiguration {
@@ -100,7 +100,7 @@
           };
           modules = [
             ./hosts/dino-dave/home.nix
-            nixvim-dev.homeManagerModules.nixvim
+            nixvim.homeManagerModules.nixvim
           ];
         };
         breadman = home-manager.lib.homeManagerConfiguration {
@@ -110,7 +110,7 @@
           };
           modules = [
             ./hosts/work-arch/home.nix
-            nixvim-dev.homeManagerModules.nixvim
+            nixvim.homeManagerModules.nixvim
           ];
         };
       };
