@@ -69,7 +69,10 @@
     "nix-command"
     "flakes"
   ];
-  nix.settings.trusted-users = [ "root" "breadcat" ];
+  nix.settings.trusted-users = [
+    "root"
+    "breadcat"
+  ];
   nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
@@ -135,7 +138,6 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:
