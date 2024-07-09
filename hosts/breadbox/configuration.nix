@@ -12,6 +12,7 @@
     #../../modules/hyprland-autologin.nix
   ];
 
+  services.xserver.deviceSection = ''Option "TearFree" "true"''; # For amdgpu.
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = false;
@@ -93,6 +94,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  services.picom.enable = true;
   # Configure keymap in X11
   services.xserver = {
     enable = true;
