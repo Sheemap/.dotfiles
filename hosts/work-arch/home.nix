@@ -15,6 +15,7 @@
   home.packages = with pkgs; [
     slack
     mongodb-compass
+    lazydocker
   ];
 
   xdg.mimeApps = {
@@ -37,5 +38,10 @@
       }
     ];
   };
+
+  nix.settings.trusted-users = [
+    "root"
+    "breadman"
+  ];
 
 }
