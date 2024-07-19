@@ -10,6 +10,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -18,14 +19,16 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-master";
     };
     nixvim-dev = {
       url = "github:sheemap/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-master";
     };
-    #nixvim-local = {
-    #  url = "git+file:///home/breadcat/Code/nixvim";
-    #};
+    # nixvim-local = {
+    #   url = "git+file:///home/breadcat/Code/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs-master";
+    # };
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -39,7 +42,7 @@
       nixpkgs,
       systems,
       home-manager,
-      nixvim,
+      nixvim-dev,
       treefmt-nix,
       ...
     }@inputs:
@@ -50,6 +53,7 @@
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
       };
+
       # Small tool to iterate over each systems
       eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
 
@@ -57,6 +61,8 @@
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
+
+
       formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
 
       nixosConfigurations = {
@@ -90,7 +96,7 @@
           };
           modules = [
             ./hosts/breadbox/home.nix
-            nixvim.homeManagerModules.nixvim
+            nixvim-dev.homeManagerModules.nixvim
           ];
         };
         dinodave = home-manager.lib.homeManagerConfiguration {
@@ -100,7 +106,7 @@
           };
           modules = [
             ./hosts/dino-dave/home.nix
-            nixvim.homeManagerModules.nixvim
+            nixvim-dev.homeManagerModules.nixvim
           ];
         };
         breadman = home-manager.lib.homeManagerConfiguration {
@@ -110,7 +116,7 @@
           };
           modules = [
             ./hosts/work-arch/home.nix
-            nixvim.homeManagerModules.nixvim
+            nixvim-dev.homeManagerModules.nixvim
           ];
         };
       };

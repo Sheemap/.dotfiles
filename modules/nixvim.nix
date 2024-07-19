@@ -53,6 +53,7 @@
       commentary.enable = true;
       auto-save.enable = true;
       tmux-navigator.enable = true;
+      startify.enable = true;
 
       treesitter.enable = true;
       treesitter-context.enable = true;
@@ -71,6 +72,13 @@
           keymaps = {
             smartRename = "<leader>r";
           };
+        };
+      };
+
+      yazi = {
+        enable = true;
+        settings = {
+            open_for_directories = false;
         };
       };
 
@@ -223,9 +231,17 @@
         key = "<leader>u";
         action = "<cmd>UndotreeToggle<CR>";
       }
+      #{
+      #  key = "<leader>pv";
+      #  action = "<cmd>Ex<CR>";
+      #}
       {
         key = "<leader>pv";
-        action = "<cmd>Ex<CR>";
+        action.__raw = ''
+            function()
+                require('yazi').yazi()
+            end
+        '';
       }
       {
         key = "<leader>f";
@@ -235,10 +251,6 @@
         # Clipboard
         key = "<leader>y";
         action = "\"*y";
-      }
-      {
-        key = "<C-/>";
-        action = "<cmd>Commentary<CR>";
       }
       {
         key = "<C-s>";

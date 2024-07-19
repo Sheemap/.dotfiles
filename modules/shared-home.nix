@@ -156,7 +156,7 @@ in
       cat = "bat";
       hs = "home-manager switch --flake ~/.dotfiles &| nom";
       ns = "sudo nixos-rebuild switch --flake ~/.dotfiles &| nom";
-      nv = "nvim .";
+      nv = "nvim";
     };
     shellInit = ''
       set -x PATH $HOME/.local/bin $PATH
