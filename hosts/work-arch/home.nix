@@ -16,6 +16,7 @@
     slack
     mongodb-compass
     lazydocker
+    devbox
   ];
 
   xdg.mimeApps = {
