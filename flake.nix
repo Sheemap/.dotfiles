@@ -59,11 +59,21 @@
 
       # Eval the treefmt modules from ./treefmt.nix
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+
+      # The set of systems to provide outputs for
+      allSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+
+      # A function that provides a system-specific Nixpkgs for the desired systems
+      forAllSystems = f: nixpkgs.lib.genAttrs allSystems (system: f {
+        pkgs = import nixpkgs { inherit system; };
+      });
     in
     {
-
-
       formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+
+      packages = forAllSystems ({ pkgs }: {
+        pants = pkgs.callPackage ./packages/pants.nix { inherit pkgs; };
+      });
 
       nixosConfigurations = {
         breadbox = nixpkgs.lib.nixosSystem {
