@@ -42,9 +42,11 @@
 
       scrolloff = 8;
 
-      foldenable = false;
-      foldmethod = "expr";
-      foldexpr = "nvim_treesitter#foldexpr()";
+      foldenable = true;
+      foldminlines = 10;
+      foldlevel = 9001;
+      #foldmethod = "expr";
+      #foldexpr = "nvim_treesitter#foldexpr()";
     };
 
     plugins = {
@@ -100,7 +102,14 @@
       tmux-navigator.enable = true;
       ts-autotag.enable = true;
 
-      treesitter.enable = true;
+      treesitter = {
+        enable = true;
+        folding = true;
+        settings = {
+          auto_install = true;
+          highlight.enable = true;
+        };
+      };
       treesitter-context.enable = true;
       treesitter-refactor = {
         enable = true;
