@@ -11,6 +11,13 @@
     enable = true;
     defaultEditor = true;
 
+    extraPackages = with pkgs; [
+      vimPlugins.aerial-nvim
+      vimPlugins.symbols-outline-nvim
+
+      codespell
+    ];
+
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = false;
     colorschemes.rose-pine.enable = false;
@@ -41,6 +48,44 @@
     };
 
     plugins = {
+
+      dashboard = {
+        enable = true;
+        settings = {
+          change_to_vcs_root = true;
+
+          config = {
+            week_header = {
+              enable = true;
+            };
+            shortcut = [
+              {
+                icon = " ";
+                icon_hl = "@variable";
+                desc = "Files";
+                group = "Label";
+                action = "Telescope find_files";
+                key = "f";
+              }
+              {
+                desc = " dotfiles";
+                group = "Number";
+                action = "Telescope dotfiles";
+                key = "d";
+              }
+              {
+                icon = " ";
+                icon_hl = "@variable";
+                desc = "Git Files";
+                group = "Label";
+                action = "Telescope git_files";
+                key = "p";
+              }
+            ];
+          };
+        };
+      };
+
       fugitive.enable = true;
       neogit.enable = true;
       lualine.enable = true;
@@ -53,7 +98,7 @@
       commentary.enable = true;
       auto-save.enable = true;
       tmux-navigator.enable = true;
-      startify.enable = true;
+      ts-autotag.enable = true;
 
       treesitter.enable = true;
       treesitter-context.enable = true;
@@ -75,10 +120,47 @@
         };
       };
 
-      yazi = {
+      trouble = {
         enable = true;
         settings = {
-            open_for_directories = false;
+          position = "right";
+          modes.diagnostics = {
+            auto_open = true;
+            auto_close = true;
+          };
+        };
+      };
+
+      conform-nvim = {
+
+        enable = true;
+        formattersByFt = {
+          lua = [ "stylua" ];
+          # Conform will run multiple formatters sequentially
+          python = [
+            "isort"
+            "black"
+          ];
+          # Use a sub-list to run only the first available formatter
+          javascript = [
+            [
+              "prettierd"
+              "prettier"
+            ]
+          ];
+          # Use the "*" filetype to run formatters on all filetypes.
+          "*" = [ "codespell" ];
+          # Use the "_" filetype to run formatters on filetypes that don't
+          # have other formatters configured.
+          "_" = [ "trim_whitespace" ];
+        };
+      };
+
+      oil.enable = true;
+      yazi = {
+        enable = false;
+        settings = {
+          open_for_directories = false;
         };
       };
 
@@ -116,14 +198,12 @@
           };
           sources = [
             #{ name = "copilot"; }
-            #{ name = "buffer"; }
             #{ name = "conventionalcommits"; }
             #{ name = "git"; }
-            { name = "path"; }
+            #{ name = "treesitter"; }
             { name = "nvim_lsp"; }
-            { name = "nvim_lsp_document_symbol"; }
-            { name = "nvim_lsp_signature_help"; }
-            { name = "treesitter"; }
+            { name = "buffer"; }
+            { name = "path"; }
             { name = "luasnip"; }
           ];
         };
@@ -237,12 +317,16 @@
       #}
       {
         key = "<leader>pv";
-        action.__raw = ''
-            function()
-                require('yazi').yazi()
-            end
-        '';
+        action = "<cmd>Oil<CR>";
       }
+      # {
+      # key = "<leader>pv";
+      # action.__raw = ''
+      #   function()
+      #       require('yazi').yazi()
+      #   end
+      # '';
+      # }
       {
         key = "<leader>f";
         action = "<cmd>lua vim.lsp.buf.format()<CR>";

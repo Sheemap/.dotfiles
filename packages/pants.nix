@@ -7,13 +7,11 @@ let
   pname = "pants";
   version = "0.12.0";
 
-
   arch = builtins.elemAt (lib.strings.splitString "-" pkgs.system) 0;
   platform = builtins.elemAt (lib.strings.splitString "-" pkgs.system) 1;
 
   scie-pants = pkgs.stdenv.mkDerivation {
     inherit pname version;
-
 
     src = fetchurl {
       url = "https://github.com/pantsbuild/scie-pants/releases/download/v${version}/scie-${pname}-${platform}-${arch}";
@@ -34,7 +32,10 @@ in
 pkgs.buildFHSUserEnv {
   name = "pants";
 
-  targetPackages = with pkgs; [ python3 unzip ];
+  targetPackages = with pkgs; [
+    python3
+    unzip
+  ];
 
   runScript = "${scie-pants}/bin/pants";
   profile = ''
@@ -47,7 +48,12 @@ pkgs.buildFHSUserEnv {
     homepage = "https://github.com/pantsbuild/scie-pants";
     license = licenses.asl20;
     maintainers = [ ];
-    platforms = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+    platforms = [
+      "x86_64-linux"
+      "aarch64-linux"
+      "x86_64-darwin"
+      "aarch64-darwin"
+    ];
     mainProgram = "pants";
   };
 }
