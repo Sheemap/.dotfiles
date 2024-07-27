@@ -51,6 +51,18 @@
 
     plugins = {
 
+      none-ls.enable = true;
+      none-ls.sources.diagnostics = {
+        # Spectral is not packaged in nixpkgs rn
+        spectral.enable = false;
+        spectral.package = null;
+
+        mypy.enable = true;
+        terraform_validate.enable = true;
+        sqlfluff.enable = true;
+        yamllint.enable = true;
+      };
+
       dashboard = {
         enable = true;
         settings = {
@@ -132,7 +144,7 @@
       trouble = {
         enable = true;
         settings = {
-          position = "right";
+          win.position = "right";
           modes.diagnostics = {
             auto_open = true;
             auto_close = true;
@@ -226,7 +238,7 @@
           bashls.enable = true;
           cssls.enable = true;
           dockerls.enable = true;
-          eslint.enable = true;
+          eslint.enable = false;
           gopls.enable = true;
           graphql.enable = true;
           html.enable = true;
@@ -243,11 +255,13 @@
 
           svelte.enable = true;
           tailwindcss.enable = true;
-          terraformls.enable = true;
           tsserver.enable = true;
           typos-lsp.enable = true;
           vuels.enable = true;
-          yamlls.enable = true;
+
+          # Gives so many errors :(
+          yamlls.enable = false;
+          terraformls.enable = false;
 
         };
 
