@@ -25,6 +25,9 @@
     mangohud
     vesktop
 
+    docker
+    lazydocker
+
     localPkgs.pyfa
     localPkgs.pants
 
