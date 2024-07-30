@@ -19,6 +19,10 @@
     devbox
   ];
 
+  programs.fish.shellAliases = {
+      db = "devbox";
+    };
+
   xdg.mimeApps = {
     defaultApplications = {
       "text/html" = "firefox.desktop";
