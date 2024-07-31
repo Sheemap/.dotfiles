@@ -57,7 +57,6 @@
         spectral.enable = false;
         spectral.package = null;
 
-        mypy.enable = true;
         terraform_validate.enable = true;
         sqlfluff.enable = true;
         yamllint.enable = true;
