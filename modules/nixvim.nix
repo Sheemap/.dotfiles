@@ -17,9 +17,7 @@
       csv-vim
     ];
 
-    extraPackages = with pkgs; [
-      codespell
-    ];
+    extraPackages = with pkgs; [ codespell ];
 
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = false;

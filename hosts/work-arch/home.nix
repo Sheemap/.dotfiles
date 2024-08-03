@@ -20,8 +20,8 @@
   ];
 
   programs.fish.shellAliases = {
-      db = "devbox";
-    };
+    db = "devbox";
+  };
 
   xdg.mimeApps = {
     defaultApplications = {
