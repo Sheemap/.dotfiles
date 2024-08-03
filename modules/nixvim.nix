@@ -11,10 +11,13 @@
     enable = true;
     defaultEditor = true;
 
-    extraPackages = with pkgs; [
-      vimPlugins.aerial-nvim
-      vimPlugins.symbols-outline-nvim
+    extraPlugins = with pkgs.vimPlugins; [
+      aerial-nvim
+      symbols-outline-nvim
+      csv-vim
+    ];
 
+    extraPackages = with pkgs; [
       codespell
     ];
 
@@ -145,8 +148,8 @@
         settings = {
           win.position = "right";
           modes.diagnostics = {
-            auto_open = true;
-            auto_close = true;
+            auto_open = false;
+            auto_close = false;
           };
         };
       };
