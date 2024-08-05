@@ -16,7 +16,10 @@
       csv-vim
     ];
 
-    extraPackages = with pkgs; [ codespell ];
+    extraPackages = with pkgs; [
+      codespell
+      ruff
+    ];
 
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = false;
@@ -158,8 +161,7 @@
           lua = [ "stylua" ];
           # Conform will run multiple formatters sequentially
           python = [
-            "isort"
-            "black"
+            "ruff_format"
           ];
           # Use a sub-list to run only the first available formatter
           javascript = [
@@ -173,6 +175,10 @@
           # Use the "_" filetype to run formatters on filetypes that don't
           # have other formatters configured.
           "_" = [ "trim_whitespace" ];
+        };
+
+        formatOnSave = {
+          timeoutMs = 500;
         };
       };
 
