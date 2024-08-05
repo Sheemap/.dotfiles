@@ -12,8 +12,7 @@
     defaultEditor = true;
 
     extraPlugins = with pkgs.vimPlugins; [
-      aerial-nvim
-      symbols-outline-nvim
+      outline-nvim
       csv-vim
     ];
 
@@ -387,10 +386,18 @@
         key = "<C-q>";
         action = "<cmd>q<CR>";
       }
+      {
+        key = "<leader>o";
+        action = "<cmd>Outline<CR>";
+      }
     ];
 
     extraConfigVim = ''
       set undofile
+    '';
+
+    extraConfigLua = ''
+        require("outline").setup({})
     '';
   };
 }
