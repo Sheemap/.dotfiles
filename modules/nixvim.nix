@@ -160,9 +160,7 @@
         formattersByFt = {
           lua = [ "stylua" ];
           # Conform will run multiple formatters sequentially
-          python = [
-            "ruff_format"
-          ];
+          python = [ "ruff_format" ];
           # Use a sub-list to run only the first available formatter
           javascript = [
             [
@@ -403,7 +401,7 @@
     '';
 
     extraConfigLua = ''
-        require("outline").setup({})
+      require("outline").setup({})
     '';
   };
 }
