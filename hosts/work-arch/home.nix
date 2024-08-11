@@ -16,7 +16,6 @@
     slack
     mongodb-compass
     lazydocker
-    devbox
   ];
 
   programs.fish.shellAliases = {
