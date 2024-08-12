@@ -30,6 +30,7 @@
 
     localPkgs.pyfa
     localPkgs.pants
+    localPkgs.mac-client-backend
 
     (buildFHSUserEnv (
       appimageTools.defaultFhsEnvArgs
