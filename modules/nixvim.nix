@@ -266,6 +266,7 @@
           lua-ls.enable = true;
           nixd.enable = true;
           pyright.enable = true;
+          gleam.enable = true;
 
           rust-analyzer = {
             enable = true;
