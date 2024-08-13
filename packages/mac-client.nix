@@ -1,6 +1,6 @@
 { pkgs }:
 let
-  pname = "mac-client-backend";
+  pname = "mac-client";
   version = "0.1.0";
 
   src = pkgs.fetchurl {
@@ -13,8 +13,8 @@ pkgs.stdenvNoCC.mkDerivation {
 
   dontUnpack = true;
   installPhase = ''
-      install -Dm755 ${src} $out/bin/mac-client-backend
-    '';
+    install -Dm755 ${src} $out/bin/${pname}
+  '';
 
   meta = {
     description = "Client backend for MegaAntiCheat";
@@ -29,9 +29,9 @@ pkgs.stdenvNoCC.mkDerivation {
 # Running into a lot of issues
 # { pkgs }:
 # let
-#    pname = "mac-client-backend";
+#    pname = "mmac-client-backendac-client-backend";
 #    version = "v0.1.0";
-  
+
 #    src = pkgs.fetchFromGitHub {
 #     owner = "MegaAntiCheat";
 #     repo = "client-backend";

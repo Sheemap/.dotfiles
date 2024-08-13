@@ -52,7 +52,7 @@
       localPkgs = {
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
-        mac-client-backend = pkgs.callPackage ./packages/mac-client-backend.nix { };
+        mac-client = pkgs.callPackage ./packages/mac-client.nix { };
       };
 
       # Small tool to iterate over each systems
@@ -80,7 +80,7 @@
         { pkgs }:
         {
           pants = pkgs.callPackage ./packages/pants.nix { inherit pkgs; };
-          mac-client-backend = pkgs.callPackage ./packages/mac-client-backend.nix { inherit pkgs; };
+          mac-client = pkgs.callPackage ./packages/mac-client.nix { inherit pkgs; };
         }
       );
 
