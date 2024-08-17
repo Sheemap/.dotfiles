@@ -73,6 +73,7 @@ in
     nerdfonts
     thunderbird
     devbox
+    eza
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -158,6 +159,7 @@ in
     shellAliases = {
       tf = "terraform";
       cat = "bat";
+      ls = "eza";
       hs = "home-manager switch --flake ~/.dotfiles &| nom";
       ns = "sudo nixos-rebuild switch --flake ~/.dotfiles &| nom";
       nv = "nvim";
