@@ -88,6 +88,9 @@ in
   ];
 
   home.file.".config/warpd/config".source = ../configs/warpd.conf;
+  home.file.".config/fish/functions/fish_prompt.fish".source = ../configs/fish/functions/fish_prompt.fish;
+  home.file.".config/fish/functions/fish_right_prompt.fish".source = ../configs/fish/functions/fish_right_prompt.fish;
+  home.file.".config/fish/functions/fish_greeting.fish".source = ../configs/fish/functions/fish_greeting.fish;
 
   programs.bat = {
     enable = true;
