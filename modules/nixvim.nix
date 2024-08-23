@@ -363,6 +363,10 @@
         key = "<leader>pv";
         action = "<cmd>Oil<CR>";
       }
+      {
+        key = "-";
+        action = "<cmd>Oil<CR>";
+      }
       # {
       # key = "<leader>pv";
       # action.__raw = ''
