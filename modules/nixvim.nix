@@ -345,7 +345,7 @@
       }
       {
         key = "<leader>gr";
-        action = "<cmd>Git rebase origin/main<CR>";
+        action = "<cmd>Git pull --rebase origin main<CR>";
       }
       {
         key = "<leader>gb";
