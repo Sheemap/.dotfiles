@@ -182,6 +182,10 @@ in
     latitude = 40.7596;
     longitude = -111.8876;
   };
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
