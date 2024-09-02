@@ -9,7 +9,7 @@
   ];
   home.username = "breadcat";
   home.homeDirectory = "/home/breadcat";
-  
+
   xdg.mimeApps = {
     defaultApplications = {
       "text/html" = "firefox.desktop";

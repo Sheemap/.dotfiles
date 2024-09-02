@@ -22,7 +22,6 @@
     db = "devbox";
   };
 
-
   programs.kitty.font.size = 12;
   programs.nixvim.plugins.obsidian = {
     enable = true;
@@ -39,4 +38,11 @@
     "breadman"
   ];
 
+  services.nextcloud-client = {
+    # Ran into some GL weirdness, unable application not starting
+    # Adding this env var to launch allows it to start and sync, but breaks UI
+    package = pkgs.writeShellScriptBin "nextcloud" ''
+      QT_XCB_GL_INTEGRATION=none ${pkgs.nextcloud-client}/bin/nextcloud
+    '';
+  };
 }
