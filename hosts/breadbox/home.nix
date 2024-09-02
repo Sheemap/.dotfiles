@@ -4,7 +4,7 @@
     # Include the results of the hardware scan.
     ../../modules/shared-home.nix
     ../../modules/i3.nix
-    ../../modules/hyprland-home.nix
+    #../../modules/hyprland-home.nix
     #../../modules/xmonad.nix
   ];
   home.username = "breadcat";
