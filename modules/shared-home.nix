@@ -54,7 +54,7 @@ in
     spotify
     ripgrep
 
-    # Theres some weirdness with opengl on non nix distros
+    # There's some weirdness with opengl on non nix distros
     # Just using their respective package manager to get firefox
     # firefox
 
@@ -177,6 +177,9 @@ in
     nix-direnv.enable = true;
   };
 
+  services.gpg-agent = {
+    enable = true;
+  };
   services.flameshot.enable = true;
   services.redshift = {
     enable = true;
