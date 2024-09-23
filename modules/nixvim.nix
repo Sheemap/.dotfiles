@@ -68,14 +68,14 @@
       markdown-preview = {
         enable = true;
         settings = {
-          auto_start = true;
+          auto_start = 1;
           browser = "firefox";
-          echo_preview_url = true;
+          echo_preview_url = 1;
           page_title = "「\${name}」";
           port = "8080";
           preview_options = {
-            disable_filename = true;
-            disable_sync_scroll = true;
+            disable_filename = 1;
+            disable_sync_scroll = 1;
             sync_scroll_type = "middle";
           };
           theme = "dark";
@@ -132,6 +132,7 @@
       auto-save.enable = true;
       tmux-navigator.enable = true;
       ts-autotag.enable = true;
+      web-devicons.enable = true;
 
       treesitter = {
         enable = true;
@@ -278,7 +279,7 @@
 
           svelte.enable = true;
           tailwindcss.enable = true;
-          tsserver.enable = true;
+          ts-ls.enable = true;
           typos-lsp.enable = true;
           vuels.enable = true;
 

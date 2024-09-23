@@ -144,10 +144,10 @@ in
 
   programs.kitty = {
     enable = true;
-    #theme = "Dark Pride";
-    #theme = "Everforest Dark Hard";
-    #theme = "Rose Pine";
-    theme = "Dracula";
+    #themeFile = "Dark Pride";
+    #themeFile = "Everforest Dark Hard";
+    #themeFile = "Rose Pine";
+    themeFile = "Dracula";
     shellIntegration.enableFishIntegration = true;
     font.name = "DejaVu Sans";
     extraConfig = ''
