@@ -34,6 +34,11 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:MarceColl/zen-browser-flake";
+#      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -44,6 +49,7 @@
       home-manager,
       nixvim,
       treefmt-nix,
+      zen-browser,
       ...
     }@inputs:
     let
@@ -53,6 +59,8 @@
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
         mac-client = pkgs.callPackage ./packages/mac-client.nix { };
+
+        zen-browser = zen-browser.packages.x86_64-linux.specific;
       };
 
       # Small tool to iterate over each systems

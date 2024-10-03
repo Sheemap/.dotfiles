@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, localPkgs, ... }:
 let
   catppuccin-bat = pkgs.fetchFromGitHub {
     owner = "catppuccin";
