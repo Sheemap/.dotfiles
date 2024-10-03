@@ -19,6 +19,10 @@
       "x-scheme-handler/unknown" = "firefox.desktop";
     };
   };
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 
   home.packages = with pkgs; [
     firefox

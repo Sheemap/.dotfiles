@@ -39,6 +39,7 @@
   ];
 
   services.nextcloud-client = {
+    enable = false;
     # Ran into some GL weirdness, unable application not starting
     # Adding this env var to launch allows it to start and sync, but breaks UI
     package = pkgs.writeShellScriptBin "nextcloud" ''

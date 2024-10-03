@@ -74,7 +74,6 @@ in
     thunderbird
     devbox
     eza
-    nextcloud-client
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -186,10 +185,6 @@ in
     enable = true;
     latitude = 40.7596;
     longitude = -111.8876;
-  };
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
   };
 
   # Let Home Manager install and manage itself.
