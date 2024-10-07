@@ -200,7 +200,18 @@
         };
       };
 
-      oil.enable = true;
+      oil = {
+        enable = true;
+        settings = {
+          view_options.show_hidden = true;
+          keymaps = {
+            "<C-q>" = "actions.close";
+            "<C-h>" = false;
+            "<C-l>" = false;
+          };
+        };
+      };
+
       yazi = {
         enable = false;
         settings = {
