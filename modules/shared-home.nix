@@ -58,6 +58,10 @@ in
     # Just using their respective package manager to get firefox
     # firefox
 
+    # Nixpkgs version is out of date
+    # Just going to use their installer
+    # devbox
+
     obsidian
     keepassxc
     unzip
@@ -72,7 +76,6 @@ in
     autotiling
     nerdfonts
     thunderbird
-    devbox
     eza
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -163,6 +166,7 @@ in
       hs = "home-manager switch --flake ~/.dotfiles &| nom";
       ns = "sudo nixos-rebuild switch --flake ~/.dotfiles &| nom";
       nv = "nvim";
+      db = "devbox";
     };
     shellInit = ''
       set -x PATH $HOME/.local/bin $PATH
