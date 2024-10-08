@@ -208,6 +208,7 @@
             "<C-q>" = "actions.close";
             "<C-h>" = false;
             "<C-l>" = false;
+            "<C-p>" = false;
           };
         };
       };
