@@ -38,6 +38,7 @@
     vlc
     mangohud
     vesktop
+    devbox
 
     docker
     lazydocker
