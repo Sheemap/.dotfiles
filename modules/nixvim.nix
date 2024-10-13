@@ -293,7 +293,6 @@
           tailwindcss.enable = true;
           ts-ls.enable = true;
           typos-lsp.enable = true;
-          vuels.enable = true;
 
           # Gives so many errors :(
           yamlls.enable = false;
