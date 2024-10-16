@@ -164,8 +164,8 @@ in
       tf = "terraform";
       cat = "bat";
       ls = "eza";
-      hs = "home-manager switch --flake ~/.dotfiles &| nom";
-      ns = "sudo nixos-rebuild switch --flake ~/.dotfiles &| nom";
+      hs = "home-manager switch --flake ~/.dotfiles";
+      ns = "sudo nixos-rebuild switch --flake ~/.dotfiles";
       nv = "nvim";
       db = "devbox";
     };

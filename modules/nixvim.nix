@@ -278,12 +278,12 @@
           graphql.enable = true;
           html.enable = true;
           jsonls.enable = true;
-          lua-ls.enable = true;
+          lua_ls.enable = true;
           nixd.enable = true;
           pyright.enable = true;
           gleam.enable = true;
 
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installCargo = true;
             installRustc = true;
@@ -291,8 +291,8 @@
 
           svelte.enable = true;
           tailwindcss.enable = true;
-          ts-ls.enable = true;
-          typos-lsp.enable = true;
+          ts_ls.enable = true;
+          typos_lsp.enable = true;
 
           # Gives so many errors :(
           yamlls.enable = false;

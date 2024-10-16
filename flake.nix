@@ -35,6 +35,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:MarceColl/zen-browser-flake";
       #      inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +54,7 @@
       home-manager,
       nixvim,
       treefmt-nix,
+      lix-module,
       zen-browser,
       ...
     }@inputs:
@@ -99,6 +105,7 @@
           };
           modules = [
             ./hosts/breadbox/configuration.nix
+            lix-module.nixosModules.default
             #nix-ld.nixosModules.nix-ld
             #inputs.home-manager.nixosModules.nixos
           ];
@@ -109,6 +116,7 @@
           };
           modules = [
             ./hosts/dino-dave/configuration.nix
+            lix-module.nixosModules.default
             #nix-ld.nixosModules.nix-ld
             #inputs.home-manager.nixosModules.nixos
           ];
