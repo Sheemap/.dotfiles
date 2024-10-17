@@ -98,6 +98,10 @@
         }
       );
 
+      containers = {
+          nix-http-store = pkgs.callPackage ./containers/nix-http-store.nix {};
+      };
+
       nixosConfigurations = {
         breadbox = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -117,8 +121,6 @@
           modules = [
             ./hosts/dino-dave/configuration.nix
             lix-module.nixosModules.default
-            #nix-ld.nixosModules.nix-ld
-            #inputs.home-manager.nixosModules.nixos
           ];
         };
       };
