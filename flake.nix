@@ -9,8 +9,11 @@
   };
 
   inputs = {
+    # True Unstable
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    # NixOS Unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -19,11 +22,11 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim-dev = {
       url = "github:sheemap/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # nixvim-local = {
     #   url = "git+file:///home/breadcat/Code/nixvim";
@@ -42,7 +45,7 @@
 
     zen-browser = {
       url = "github:MarceColl/zen-browser-flake";
-      #      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -99,7 +102,7 @@
       );
 
       containers = {
-          nix-http-store = pkgs.callPackage ./containers/nix-http-store.nix {};
+        nix-http-store = pkgs.callPackage ./containers/nix-http-store.nix { };
       };
 
       nixosConfigurations = {
