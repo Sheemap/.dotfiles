@@ -129,10 +129,28 @@
       multicursors.enable = false;
       luasnip.enable = true;
       commentary.enable = true;
-      auto-save.enable = true;
       tmux-navigator.enable = true;
       ts-autotag.enable = true;
       web-devicons.enable = true;
+
+      auto-save = {
+        enable = true;
+        settings = {
+          condition = ''
+            function(buf)
+              local fn = vim.fn
+              local utils = require("auto-save.utils.data")
+
+              if utils.not_in(fn.getbufvar(buf, "&filetype"), {'oil'}) then
+                return true
+              end
+              return false
+            end
+          '';
+          debounce_delay = 5000;
+          write_all_buffers = true;
+        };
+      };
 
       treesitter = {
         enable = true;
