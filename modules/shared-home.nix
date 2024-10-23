@@ -50,10 +50,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    font-awesome
-    spotify
-    ripgrep
-
     # There's some weirdness with opengl on non nix distros
     # Just using their respective package manager to get firefox
     # firefox
@@ -62,23 +58,26 @@ in
     # Just going to use their installer
     # devbox
 
-    obsidian
-    keepassxc
-    unzip
-    insomnia
-    nix-output-monitor
-    vial
-    via
-    warpd
-    fzf
-    dust
-    htop
     autotiling
-    nerdfonts
-    thunderbird
+    dust
     eza
-    libsecret
+    font-awesome
+    fzf
+    htop
     hyfetch
+    insomnia
+    keepassxc
+    libsecret
+    nerdfonts
+    nix-output-monitor
+    obsidian
+    ripgrep
+    spotify
+    thunderbird
+    unzip
+    via
+    vial
+    warpd
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
