@@ -448,6 +448,10 @@
         key = "<leader>o";
         action = "<cmd>Outline<CR>";
       }
+      {
+        key = "<leader>a";
+        action = "<cmd>lua vim.lsp.buf.code_action({apply=true})<CR>";
+      }
     ];
 
     extraConfigVim = ''
