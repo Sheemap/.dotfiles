@@ -41,6 +41,7 @@
       relativenumber = true;
       expandtab = true;
 
+      tabstop = 4;
       shiftwidth = 4;
 
       scrolloff = 8;
