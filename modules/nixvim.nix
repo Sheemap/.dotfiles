@@ -69,7 +69,7 @@
       markdown-preview = {
         enable = true;
         settings = {
-          auto_start = 1;
+          auto_start = 0;
           browser = "firefox";
           echo_preview_url = 1;
           page_title = "「\${name}」";
