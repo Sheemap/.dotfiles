@@ -298,7 +298,7 @@
           html.enable = true;
           jsonls.enable = true;
           lua_ls.enable = true;
-          nixd.enable = true;
+          nixd.enable = false;
           pyright.enable = true;
           gleam.enable = true;
 
