@@ -24,7 +24,8 @@
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = false;
     colorschemes.rose-pine.enable = false;
-    colorschemes.dracula.enable = true;
+    colorschemes.dracula.enable = false;
+    colorschemes.nightfox.enable = true;
 
     colorschemes.everforest = {
       enable = false;
