@@ -94,29 +94,30 @@
               enable = true;
             };
             shortcut = [
-              {
-                icon = " ";
-                icon_hl = "@variable";
-                desc = "Files";
-                group = "Label";
-                action = "Telescope find_files";
-                key = "f";
-              }
-              {
-                desc = " dotfiles";
-                group = "Number";
-                action = "Telescope dotfiles";
-                key = "d";
-              }
-              {
-                icon = " ";
-                icon_hl = "@variable";
-                desc = "Git Files";
-                group = "Label";
-                action = "Telescope git_files";
-                key = "p";
-              }
+              # {
+              #   icon = " ";
+              #   icon_hl = "@variable";
+              #   desc = "Files";
+              #   group = "Label";
+              #   action = "Telescope find_files";
+              #   key = "f";
+              # }
+              # {
+              #   desc = " dotfiles";
+              #   group = "Number";
+              #   action = "Telescope dotfiles";
+              #   key = "d";
+              # }
+              # {
+              #   icon = " ";
+              #   icon_hl = "@variable";
+              #   desc = "Git Files";
+              #   group = "Label";
+              #   action = "Telescope git_files";
+              #   key = "p";
+              # }
             ];
+            footer = [ "" ];
           };
         };
       };
