@@ -300,8 +300,15 @@
           lua_ls.enable = true;
           nixd.enable = false;
           pyright.enable = false;
-          basedpyright.enable = true;
           gleam.enable = true;
+
+          basedpyright = {
+            enable = true;
+            settings = {
+              basedpyright.analysis.diagnosticMode = "workspace";
+              basedpyright.analysis.autoImportCompletions = true;
+            };
+          };
 
           rust_analyzer = {
             enable = true;
