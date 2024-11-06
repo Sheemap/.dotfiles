@@ -148,7 +148,7 @@
               return false
             end
           '';
-          debounce_delay = 5000;
+          debounce_delay = 3000;
           write_all_buffers = true;
         };
       };
@@ -299,7 +299,8 @@
           jsonls.enable = true;
           lua_ls.enable = true;
           nixd.enable = false;
-          pyright.enable = true;
+          pyright.enable = false;
+          basedpyright.enable = true;
           gleam.enable = true;
 
           rust_analyzer = {
