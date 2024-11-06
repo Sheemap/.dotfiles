@@ -153,7 +153,8 @@ in
     #themeFile = "Dark Pride";
     #themeFile = "Everforest Dark Hard";
     #themeFile = "Rose Pine";
-    themeFile = "Dracula";
+    #themeFile = "Dracula";
+    themeFile = "Nightfox";
     shellIntegration.enableFishIntegration = true;
     font.name = "DejaVu Sans";
     extraConfig = ''
