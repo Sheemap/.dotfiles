@@ -143,6 +143,9 @@ in
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
+    package = pkgs.yazi.override {
+      _7zz = pkgs._7zz.override { useUasm = true; };
+    };
   };
 
   programs.kitty = {
