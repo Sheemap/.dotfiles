@@ -25,13 +25,13 @@
     colorschemes.catppuccin.enable = false;
     colorschemes.rose-pine.enable = false;
     colorschemes.dracula.enable = false;
-    colorschemes.nightfox.enable = true;
+    colorschemes.nightfox.enable = false;
 
     colorschemes.everforest = {
-      enable = false;
+      enable = true;
       settings = {
-        background = "hard";
-        dim_inactive_windows = 1;
+        background = "soft";
+        #dim_inactive_windows = 1;
       };
     };
 
@@ -52,6 +52,7 @@
       foldlevel = 9001;
       #foldmethod = "expr";
       #foldexpr = "nvim_treesitter#foldexpr()";
+      conceallevel = 2;
     };
 
     plugins = {
@@ -289,6 +290,7 @@
       lsp = {
         enable = true;
         #postConfig = "vim.lsp.set_log_level('debug')";
+        inlayHints = true;
         servers = {
 
           bashls.enable = true;
