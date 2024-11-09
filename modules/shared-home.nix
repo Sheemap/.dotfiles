@@ -151,12 +151,13 @@ in
   programs.kitty = {
     enable = true;
     #themeFile = "Dark Pride";
-    #themeFile = "Everforest Dark Hard";
+    themeFile = "everforest_dark_hard";
     #themeFile = "Rose Pine";
     #themeFile = "Dracula";
-    themeFile = "Nightfox";
+    #themeFile = "Nightfox";
+    #themeFile = "Chalk";
     shellIntegration.enableFishIntegration = true;
-    font.name = "DejaVu Sans";
+    font.name = "Jetbrains Mono";
     extraConfig = ''
       confirm_os_window_close 0
     '';
