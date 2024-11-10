@@ -14,12 +14,30 @@
     extraPlugins = with pkgs.vimPlugins; [
       outline-nvim
       csv-vim
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "spelunk";
+        src = pkgs.fetchFromGitHub {
+          owner = "EvWilson";
+          repo = "spelunk.nvim";
+          rev = "d9f1b56365aaa6056c853c467629cfba1750349a";
+          hash = "sha256-dZ0fGHEApBExSm06Er8JezeTvHt2cJlrhut0XAswfJ4=";
+        };
+      })
     ];
 
     extraPackages = with pkgs; [
       codespell
       ruff
     ];
+
+    extraConfigVim = ''
+      set undofile
+    '';
+
+    extraConfigLua = ''
+      require("outline").setup({})
+      require('spelunk').setup(opts)
+    '';
 
     colorschemes.ayu.enable = true;
     colorschemes.catppuccin.enable = false;
@@ -467,12 +485,5 @@
       }
     ];
 
-    extraConfigVim = ''
-      set undofile
-    '';
-
-    extraConfigLua = ''
-      require("outline").setup({})
-    '';
   };
 }
