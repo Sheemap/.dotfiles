@@ -49,6 +49,7 @@
       enable = true;
       settings = {
         background = "soft";
+        diagnostic_text_highlight = 1;
         #dim_inactive_windows = 1;
       };
     };
