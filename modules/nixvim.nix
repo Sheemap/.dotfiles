@@ -71,7 +71,11 @@ in
       enable = true;
       settings = {
         background = "soft";
-        diagnostic_text_highlight = 1;
+        #diagnostic_text_highlight = 1;
+        #diagnostic_line_highlight = 1;
+
+        diagnostic_virtual_text = "highlighted";
+
         #dim_inactive_windows = 1;
       };
     };
