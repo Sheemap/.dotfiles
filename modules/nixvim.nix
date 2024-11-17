@@ -1,4 +1,25 @@
 { pkgs, ... }:
+let
+  spelunk-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "spelunk";
+    src = pkgs.fetchFromGitHub {
+      owner = "EvWilson";
+      repo = "spelunk.nvim";
+      rev = "d9f1b56365aaa6056c853c467629cfba1750349a";
+      hash = "sha256-dZ0fGHEApBExSm06Er8JezeTvHt2cJlrhut0XAswfJ4=";
+    };
+  };
+
+  parrot-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "parrot";
+    src = pkgs.fetchFromGitHub {
+      owner = "frankroeder";
+      repo = "parrot.nvim";
+      rev = "v1.2.0";
+      hash = "sha256-qEMYK3R+NdErD1q/8x2eM44Q3539q/doh1gUHel1Sc0=";
+    };
+  };
+in
 {
 
   home.packages = with pkgs; [
@@ -14,15 +35,9 @@
     extraPlugins = with pkgs.vimPlugins; [
       outline-nvim
       csv-vim
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "spelunk";
-        src = pkgs.fetchFromGitHub {
-          owner = "EvWilson";
-          repo = "spelunk.nvim";
-          rev = "d9f1b56365aaa6056c853c467629cfba1750349a";
-          hash = "sha256-dZ0fGHEApBExSm06Er8JezeTvHt2cJlrhut0XAswfJ4=";
-        };
-      })
+
+      spelunk-nvim
+      parrot-nvim
     ];
 
     extraPackages = with pkgs; [
@@ -36,7 +51,14 @@
 
     extraConfigLua = ''
       require("outline").setup({})
-      require('spelunk').setup(opts)
+      require("spelunk").setup({})
+      require("parrot").setup({
+        providers = {
+          anthropic = {
+            api_key = os.getenv("ANTHROPIC_API_KEY"),
+          },
+        }
+      })
     '';
 
     colorschemes.ayu.enable = true;
@@ -155,6 +177,7 @@
       tmux-navigator.enable = true;
       ts-autotag.enable = true;
       web-devicons.enable = true;
+      which-key.enable = true;
 
       auto-save = {
         enable = true;
@@ -484,7 +507,66 @@
         key = "<leader>a";
         action = "<cmd>lua vim.lsp.buf.code_action({apply=true})<CR>";
       }
+      {
+        key = "<leader>pq";
+        action = "<cmd>'<,'>PrtVnew<CR>";
+        mode = [
+          "n"
+          "v"
+        ];
+        options.desc = "🦜 Ask Parrot a question. Optionally providing selected text as context";
+      }
+      {
+        key = "<leader>pp";
+        action = "<cmd>'<,'>PrtPrepend<CR>";
+        mode = "v";
+        options.desc = "🦜 Prepend the prompt response, using the selected text as context.";
+      }
+      {
+        key = "<leader>pa";
+        action = "<cmd>'<,'>PrtAppend<CR>";
+        mode = "v";
+        options.desc = "🦜 Append the prompt response, using the selected text as context.";
+      }
+      {
+        key = "<leader>pr";
+        action = "<cmd>'<,'>PrtRewrite<CR>";
+        mode = "v";
+        options.desc = "🦜 Rewrite the selected text";
+      }
+      {
+        key = "<leader>pR";
+        action = "<cmd>PrtRetry<CR>";
+        mode = "n";
+        options.desc = "🦜 Retry the previous rewrite/prepend/append";
+      }
+      {
+        key = "<leader>pi";
+        action = "<cmd>'<,'>PrtImplement<CR>";
+        mode = "v";
+        options.desc = "🦜 Use the selected text as a prompt to generate code";
+      }
+      {
+        key = "<leader>pc";
+        action = "<cmd>PrtChatToggle<CR>";
+        mode = "n";
+        options.desc = "🦜 Toggle Parrot chat";
+      }
+      {
+        key = "<leader>pc";
+        action = "<cmd>'<,'>PrtChatPaste<CR>";
+        mode = "v";
+        options.desc = "🦜 Paste selected text into Parrot chat";
+      }
+      {
+        key = "<leader>pj";
+        action = "<cmd>PrtChatRespond<CR>";
+        mode = [
+          "n"
+          "v"
+        ];
+        options.desc = "🦜 Respond in Parrot chat";
+      }
     ];
-
   };
 }
