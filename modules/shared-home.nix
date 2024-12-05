@@ -68,7 +68,6 @@ in
     insomnia
     keepassxc
     libsecret
-    nerdfonts
     nix-output-monitor
     obsidian
     ripgrep
@@ -78,6 +77,9 @@ in
     via
     vial
     warpd
+
+    nerd-fonts.symbols-only
+    nerd-fonts.jetbrains-mono
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
