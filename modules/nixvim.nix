@@ -10,15 +10,6 @@ let
     };
   };
 
-  parrot-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "parrot";
-    src = pkgs.fetchFromGitHub {
-      owner = "frankroeder";
-      repo = "parrot.nvim";
-      rev = "v1.2.0";
-      hash = "sha256-qEMYK3R+NdErD1q/8x2eM44Q3539q/doh1gUHel1Sc0=";
-    };
-  };
 in
 {
 
@@ -37,7 +28,6 @@ in
       csv-vim
 
       spelunk-nvim
-      parrot-nvim
     ];
 
     extraPackages = with pkgs; [
@@ -52,13 +42,6 @@ in
     extraConfigLua = ''
       require("outline").setup({})
       require("spelunk").setup({})
-      require("parrot").setup({
-        providers = {
-          anthropic = {
-            api_key = os.getenv("ANTHROPIC_API_KEY"),
-          },
-        }
-      })
     '';
 
     colorschemes.ayu.enable = true;
@@ -511,66 +494,6 @@ in
       {
         key = "<leader>a";
         action = "<cmd>lua vim.lsp.buf.code_action({apply=true})<CR>";
-      }
-      {
-        key = "<leader>pq";
-        action = "<cmd>'<,'>PrtVnew<CR>";
-        mode = [
-          "n"
-          "v"
-        ];
-        options.desc = "🦜 Ask Parrot a question. Optionally providing selected text as context";
-      }
-      {
-        key = "<leader>pp";
-        action = "<cmd>'<,'>PrtPrepend<CR>";
-        mode = "v";
-        options.desc = "🦜 Prepend the prompt response, using the selected text as context.";
-      }
-      {
-        key = "<leader>pa";
-        action = "<cmd>'<,'>PrtAppend<CR>";
-        mode = "v";
-        options.desc = "🦜 Append the prompt response, using the selected text as context.";
-      }
-      {
-        key = "<leader>pr";
-        action = "<cmd>'<,'>PrtRewrite<CR>";
-        mode = "v";
-        options.desc = "🦜 Rewrite the selected text";
-      }
-      {
-        key = "<leader>pR";
-        action = "<cmd>PrtRetry<CR>";
-        mode = "n";
-        options.desc = "🦜 Retry the previous rewrite/prepend/append";
-      }
-      {
-        key = "<leader>pi";
-        action = "<cmd>'<,'>PrtImplement<CR>";
-        mode = "v";
-        options.desc = "🦜 Use the selected text as a prompt to generate code";
-      }
-      {
-        key = "<leader>pc";
-        action = "<cmd>PrtChatToggle<CR>";
-        mode = "n";
-        options.desc = "🦜 Toggle Parrot chat";
-      }
-      {
-        key = "<leader>pc";
-        action = "<cmd>'<,'>PrtChatPaste<CR>";
-        mode = "v";
-        options.desc = "🦜 Paste selected text into Parrot chat";
-      }
-      {
-        key = "<leader>pj";
-        action = "<cmd>PrtChatRespond<CR>";
-        mode = [
-          "n"
-          "v"
-        ];
-        options.desc = "🦜 Respond in Parrot chat";
       }
     ];
   };
