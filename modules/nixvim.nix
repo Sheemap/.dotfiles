@@ -182,6 +182,7 @@ in
       ts-autotag.enable = true;
       web-devicons.enable = true;
       which-key.enable = true;
+      avante.enable = true;
 
       auto-save = {
         enable = true;
