@@ -67,6 +67,7 @@ in
     hyfetch
     insomnia
     keepassxc
+    libreoffice
     libsecret
     nix-output-monitor
     obsidian
