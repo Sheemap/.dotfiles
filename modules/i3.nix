@@ -21,7 +21,8 @@ in
   #home.file.".config/i3/colors".source = ../configs/i3-dracula-colors.conf;
   home.file.".config/i3/scripts/powermenu".source = ../scripts/powermenu;
   home.file.".config/rofi/powermenu.rasi".source = ../scripts/powermenu.rasi;
-  home.file.".config/rofi/arc_dark_transparent_colors.rasi".source = ../scripts/arc_dark_transparent_colors.rasi;
+  home.file.".config/rofi/arc_dark_transparent_colors.rasi".source =
+    ../scripts/arc_dark_transparent_colors.rasi;
   home.file.".wallpapers/pastel-1.jpg".source = ../wallpapers/pastel-1.jpg;
 
   programs.rofi = {

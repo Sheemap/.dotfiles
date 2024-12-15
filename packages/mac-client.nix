@@ -38,8 +38,8 @@ pkgs.stdenvNoCC.mkDerivation {
 #     rev = version;
 #     hash = "sha256-koD6XnlmxYXQP/8c+FlKm3EzUOJJ6xJn2+1ikwr1NIM=";
 #   };
-# in 
-# pkgs.rustPlatform.buildRustPackage { 
+# in
+# pkgs.rustPlatform.buildRustPackage {
 #     nativeBuildInputs = with pkgs; [
 #         pkg-config
 #     ];

@@ -32,6 +32,7 @@
     };
     efi.canTouchEfiVariables = false;
   };
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   nix.gc = {
     automatic = true;

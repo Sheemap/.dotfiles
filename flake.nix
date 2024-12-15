@@ -15,6 +15,9 @@
     # NixOS Unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # NixOS Stable
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +35,11 @@
     #   url = "git+file:///home/breadcat/Code/nixvim";
     #   inputs.nixpkgs.follows = "nixpkgs-master";
     # };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -53,17 +61,18 @@
     {
       self,
       nixpkgs,
+      nixpkgs-stable,
       systems,
       home-manager,
       nixvim,
+      nixos-generators,
       treefmt-nix,
       lix-module,
       zen-browser,
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
       localPkgs = {
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
@@ -128,6 +137,8 @@
         };
       };
 
+
+
       homeConfigurations = {
         breadcat = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -159,6 +170,134 @@
             nixvim.homeManagerModules.nixvim
           ];
         };
+      };
+
+      # Raw image that can be dd'd onto an sd card to boot
+      # Then use colmena to manage further
+      images.rpi = nixos-generators.nixosGenerate rec {
+        system = "aarch64-linux";
+        # specialArgs = {
+        #     pkgs = nixpkgs-stable.legacyPackages.${system};
+        # };
+        modules = [
+          {
+            # Pin nixpkgs to the flake input, so that the packages installed
+            # come from the flake inputs.nixpkgs-stable.url. nix.registry.nixpkgs.flake = nixpkgs-stable;
+            # set disk size to to 50G
+            virtualisation.diskSize = 50 * 1024;
+          }
+          # Apply the rest of the config.
+          (
+            _:
+            {
+              config = {
+                nixpkgs.buildPlatform.system = "x86_64-linux";
+                nixpkgs.hostPlatform.system = "aarch64-linux";
+
+                time.timeZone = "America/Denver";
+                sdImage.compressImage = false;
+
+                users.users.breadcat = {
+                  isNormalUser = true;
+                  extraGroups = [
+                    "networkmanager"
+                    "wheel"
+                  ];
+                  openssh.authorizedKeys.keys = [
+                    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC39e35rSFi11cR0pSERmyOOVqOkUp5Y6/OmUJi322BK94sZPZtJz99wo1EToDAj1waH0etOFAM5vWv4grthSAqx/xjiSP0BNeR7RkBxPjjJShBbCVF9wXUt7OiVDPG8/tptbwdzZP5lVjAzYMNmBJxtQt4Tyb30sPW4Ta/la3g+dm5vwrkQjFjyOU9fHRCY4evYerplTCzaV28Bxd0nOoi2X5TcZ2a+tW+8yNV0bGos7WyimlJ5+YMGJ0GVYS4Gkx6IHdjaRCzSJo6w7eSzybG+kRyQYSP+z0DEXtpHprV5GFfDAOvdTj0IfyfQbm8addXzFGvY3CMLa0H3PZnhimYm5o8m/G4oECnPsI8pjHGBKrZoq8QQg/HBLOPYRDKJjYIqVNCuJP+al00t7TC1HSbjY4yoQf91RFVfop2XajseYXHdKfMaE2fKN6MYhJS8zo+He5ItmMX0QY6+BcAxMu8v5TU5Ny2oDBFcU/czcNLDPGESlA5Ue/l9Ck4Yvh8LeM= breadcat"
+                  ];
+
+                };
+
+                system.stateVersion = "24.11";
+                nix.settings.trusted-users = [
+                  "root"
+                  "breadcat"
+                ];
+
+                services.openssh.enable = true;
+
+                networking = {
+                  wireless.enable = false;
+                  useDHCP = true;
+                };
+              };
+            }
+          )
+        ];
+        format = "sd-aarch64";
+      };
+      colmena = {
+        meta = {
+          nixpkgs = import nixpkgs-stable {
+            system = "aarch64-linux";
+            overlays = [ ];
+          };
+        };
+        defaults =
+          { pkgs, ... }:
+          {
+            system.stateVersion = "24.11";
+            nix.settings.trusted-users = [
+              "root"
+              "breadcat"
+            ];
+
+            environment.systemPackages = with pkgs; [
+              vim
+              neovim
+              wget
+              curl
+              fish
+            ];
+
+            services.openssh.enable = true;
+
+            users.users.breadcat = {
+              isNormalUser = true;
+              extraGroups = [
+                "networkmanager"
+                "wheel"
+              ];
+              openssh.authorizedKeys.keys = [
+                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC39e35rSFi11cR0pSERmyOOVqOkUp5Y6/OmUJi322BK94sZPZtJz99wo1EToDAj1waH0etOFAM5vWv4grthSAqx/xjiSP0BNeR7RkBxPjjJShBbCVF9wXUt7OiVDPG8/tptbwdzZP5lVjAzYMNmBJxtQt4Tyb30sPW4Ta/la3g+dm5vwrkQjFjyOU9fHRCY4evYerplTCzaV28Bxd0nOoi2X5TcZ2a+tW+8yNV0bGos7WyimlJ5+YMGJ0GVYS4Gkx6IHdjaRCzSJo6w7eSzybG+kRyQYSP+z0DEXtpHprV5GFfDAOvdTj0IfyfQbm8addXzFGvY3CMLa0H3PZnhimYm5o8m/G4oECnPsI8pjHGBKrZoq8QQg/HBLOPYRDKJjYIqVNCuJP+al00t7TC1HSbjY4yoQf91RFVfop2XajseYXHdKfMaE2fKN6MYhJS8zo+He5ItmMX0QY6+BcAxMu8v5TU5Ny2oDBFcU/czcNLDPGESlA5Ue/l9Ck4Yvh8LeM= breadcat"
+              ];
+
+            };
+
+            deployment.replaceUnknownProfiles = false;
+          };
+
+        rpi-media =
+          {
+            name,
+            nodes,
+            pkgs,
+            ...
+          }:
+          {
+            time.timeZone = "America/Denver";
+            # boot.loader.generic-extlinux-compatible.enable = true;
+            # boot.initrd.availableKernelModules = [ "xhci_pci" ];
+            # boot.initrd.kernelModules = [ ];
+            # boot.kernelModules = [ ];
+            # boot.extraModulePackages = [ ];
+
+            services.xserver.desktopManager.gnome.enable = true;
+            services.xserver.displayManager.gdm.enable = true;
+            services.gnome.core-utilities.enable = false;
+
+            boot.loader.grub.device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+            fileSystems."/" = {
+              device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+              fsType = "ext4";
+            };
+            deployment = {
+              targetHost = "10.0.0.91";
+              targetPort = 22;
+              targetUser = "breadcat";
+            };
+          };
       };
     };
 }

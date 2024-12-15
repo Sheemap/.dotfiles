@@ -1,6 +1,6 @@
 _: {
   # Started from sephid86's config herre
-  # https://github.com/sephid86/archas/tree/master/skel/.config/waybar 
+  # https://github.com/sephid86/archas/tree/master/skel/.config/waybar
 
   layer = "top"; # Waybar at top layer
   # "position" = "bottom"; # Waybar position (top|bottom|left|right)
