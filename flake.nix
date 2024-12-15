@@ -261,6 +261,13 @@
               ];
 
             };
+            users.users.root = {
+              openssh.authorizedKeys.keys = [
+                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC39e35rSFi11cR0pSERmyOOVqOkUp5Y6/OmUJi322BK94sZPZtJz99wo1EToDAj1waH0etOFAM5vWv4grthSAqx/xjiSP0BNeR7RkBxPjjJShBbCVF9wXUt7OiVDPG8/tptbwdzZP5lVjAzYMNmBJxtQt4Tyb30sPW4Ta/la3g+dm5vwrkQjFjyOU9fHRCY4evYerplTCzaV28Bxd0nOoi2X5TcZ2a+tW+8yNV0bGos7WyimlJ5+YMGJ0GVYS4Gkx6IHdjaRCzSJo6w7eSzybG+kRyQYSP+z0DEXtpHprV5GFfDAOvdTj0IfyfQbm8addXzFGvY3CMLa0H3PZnhimYm5o8m/G4oECnPsI8pjHGBKrZoq8QQg/HBLOPYRDKJjYIqVNCuJP+al00t7TC1HSbjY4yoQf91RFVfop2XajseYXHdKfMaE2fKN6MYhJS8zo+He5ItmMX0QY6+BcAxMu8v5TU5Ny2oDBFcU/czcNLDPGESlA5Ue/l9Ck4Yvh8LeM= breadcat"
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEbQriNUdqa3a1EFH4Al46szdlHon2nrDxwW1jOLuWQ9 breadcat"
+              ];
+
+            };
 
             deployment.replaceUnknownProfiles = false;
           };
@@ -283,6 +290,14 @@
             services.xserver.desktopManager.gnome.enable = true;
             services.xserver.displayManager.gdm.enable = true;
             services.gnome.core-utilities.enable = false;
+
+            users.users.root = {
+              openssh.authorizedKeys.keys = [
+                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC39e35rSFi11cR0pSERmyOOVqOkUp5Y6/OmUJi322BK94sZPZtJz99wo1EToDAj1waH0etOFAM5vWv4grthSAqx/xjiSP0BNeR7RkBxPjjJShBbCVF9wXUt7OiVDPG8/tptbwdzZP5lVjAzYMNmBJxtQt4Tyb30sPW4Ta/la3g+dm5vwrkQjFjyOU9fHRCY4evYerplTCzaV28Bxd0nOoi2X5TcZ2a+tW+8yNV0bGos7WyimlJ5+YMGJ0GVYS4Gkx6IHdjaRCzSJo6w7eSzybG+kRyQYSP+z0DEXtpHprV5GFfDAOvdTj0IfyfQbm8addXzFGvY3CMLa0H3PZnhimYm5o8m/G4oECnPsI8pjHGBKrZoq8QQg/HBLOPYRDKJjYIqVNCuJP+al00t7TC1HSbjY4yoQf91RFVfop2XajseYXHdKfMaE2fKN6MYhJS8zo+He5ItmMX0QY6+BcAxMu8v5TU5Ny2oDBFcU/czcNLDPGESlA5Ue/l9Ck4Yvh8LeM= breadcat"
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEbQriNUdqa3a1EFH4Al46szdlHon2nrDxwW1jOLuWQ9 breadcat"
+              ];
+
+            };
 
             boot.loader.grub.device = "/dev/disk/by-label/NIXOS_SD";
             fileSystems."/" = {
