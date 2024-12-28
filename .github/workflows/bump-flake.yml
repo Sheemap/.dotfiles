@@ -2,9 +2,10 @@
 name: Bump flake.lock
 
 on:
-  #schedule:
-    #- cron: "0 12 * * *"
-    #
+  schedule:
+    # Weekly saturday
+    - cron: "5 4 * * 6"
+
   workflow_dispatch:
 
 jobs:
