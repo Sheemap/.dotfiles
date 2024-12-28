@@ -22,6 +22,10 @@ jobs:
 
       - run: nix flake update
 
+      - run: nix build .#nixosConfigurations.breadbox.config.system.build.toplevel
+      - run: nix build .#homeConfigurations.breadcat.config.home.activationPackage
+      - run: nix build .#homeConfigurations.work-arch.config.home.activationPackage
+
       - uses: stefanzweifel/git-auto-commit-action@v5.0.1
         with:
           commit_message: Bump flake.lock
@@ -31,5 +35,5 @@ jobs:
           commit_user_name: Flake Bot # defaults to "GitHub Actions"
           #commit_user_email: my-github-actions-bot@example.org # defaults to "actions@github.com"
           commit_author: Flake Bot <actions@github.com> # defaults to author of the commit that triggered the run
-          skip_dirty_check: false    
+          skip_dirty_check: false
           skip_fetch: true
