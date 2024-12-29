@@ -73,6 +73,7 @@ in
     obsidian
     ripgrep
     spotify
+    tauon
     thunderbird
     unzip
     via
