@@ -351,12 +351,12 @@ in
           };
 
           svelte.enable = true;
-          tailwindcss.enable = true;
           ts_ls.enable = true;
           typos_lsp.enable = true;
 
           # Gives so many errors :(
           yamlls.enable = false;
+          tailwindcss.enable = false;
           terraformls.enable = false;
 
         };
