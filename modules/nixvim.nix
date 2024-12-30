@@ -1,16 +1,4 @@
 { pkgs, ... }:
-let
-  spelunk-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "spelunk";
-    src = pkgs.fetchFromGitHub {
-      owner = "EvWilson";
-      repo = "spelunk.nvim";
-      rev = "d9f1b56365aaa6056c853c467629cfba1750349a";
-      hash = "sha256-dZ0fGHEApBExSm06Er8JezeTvHt2cJlrhut0XAswfJ4=";
-    };
-  };
-
-in
 {
 
   home.packages = with pkgs; [
@@ -26,8 +14,6 @@ in
     extraPlugins = with pkgs.vimPlugins; [
       outline-nvim
       csv-vim
-
-      spelunk-nvim
     ];
 
     extraPackages = with pkgs; [
@@ -41,7 +27,6 @@ in
 
     extraConfigLua = ''
       require("outline").setup({})
-      require("spelunk").setup({})
     '';
 
     colorschemes.ayu.enable = true;
