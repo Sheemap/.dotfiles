@@ -29,7 +29,7 @@ let
     '';
   };
 in
-pkgs.buildFHSUserEnv {
+pkgs.buildFHSEnv {
   name = "pants";
 
   targetPackages = with pkgs; [

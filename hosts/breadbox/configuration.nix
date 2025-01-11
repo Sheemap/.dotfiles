@@ -13,6 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/kde.nix
     #../../modules/hyprland-nix.nix
     #../../modules/hyprland-autologin.nix
   ];
@@ -109,10 +110,10 @@
     videoDrivers = [ "amdgpu" ];
 
     windowManager.xmonad.enable = false;
-    windowManager.i3.enable = true;
+    #windowManager.i3.enable = true;
   };
 
-  services.displayManager.defaultSession = "none+i3";
+  #services.displayManager.defaultSession = "none+i3";
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "breadcat";
 
