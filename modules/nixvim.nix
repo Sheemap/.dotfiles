@@ -257,24 +257,6 @@
         };
       };
 
-      copilot-vim.enable = false;
-      copilot-lua = {
-        enable = false;
-        panel = {
-          enabled = true;
-          keymap = {
-            open = "<C-CR>";
-          };
-        };
-        suggestion = {
-          enabled = false;
-          autoTrigger = true;
-          keymap = {
-            accept = "<C-j>";
-          };
-        };
-      };
-
       cmp = {
         enable = true;
         settings = {

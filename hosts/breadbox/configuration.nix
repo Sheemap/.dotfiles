@@ -101,7 +101,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  services.picom.enable = true;
+  #services.picom.enable = true;
   # Configure keymap in X11
   services.xserver = {
     enable = true;
@@ -131,10 +131,10 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
-  hardware.pulseaudio.enable = true;
+  services.pulseaudio.enable = true;
+  services.blueman.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
 
   services.udev.packages = with pkgs; [
     vial
