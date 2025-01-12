@@ -162,8 +162,6 @@
     nvtopPackages.nvidia
     pavucontrol
 
-    localPkgs.zen-browser
-
     #Fonts
     font-awesome
     vimPlugins.nvim-web-devicons
