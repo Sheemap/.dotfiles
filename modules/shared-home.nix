@@ -57,7 +57,6 @@ in
     # Nixpkgs version is out of date
     # Just going to use their installer
     # devbox
-    #helix
     evil-helix
 
     autotiling

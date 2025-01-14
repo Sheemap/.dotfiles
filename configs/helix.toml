@@ -1,10 +1,9 @@
-theme = "everblush"
-#theme = "everforest_dark"
- 
+theme = "everforest_dark"
+
 [editor]
 line-number = "relative"
+evil = true
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
-
