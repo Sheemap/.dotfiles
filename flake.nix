@@ -25,11 +25,11 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim-dev = {
       url = "github:sheemap/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
     # nixvim-local = {
     #   url = "git+file:///home/breadcat/Code/nixvim";
@@ -38,22 +38,22 @@
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zen-browser = {
       url = "github:sheemap/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -146,6 +146,10 @@
           modules = [
             ./hosts/breadbox/home.nix
             nixvim.homeManagerModules.nixvim
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [
+              ];
+            })
           ];
         };
         dinodave = home-manager.lib.homeManagerConfiguration {
@@ -156,6 +160,10 @@
           modules = [
             ./hosts/dino-dave/home.nix
             nixvim.homeManagerModules.nixvim
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [
+              ];
+            })
           ];
         };
         breadman = home-manager.lib.homeManagerConfiguration {
@@ -166,6 +174,10 @@
           modules = [
             ./hosts/work-arch/home.nix
             nixvim.homeManagerModules.nixvim
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [
+              ];
+            })
           ];
         };
       };
