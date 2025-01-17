@@ -1,9 +1,24 @@
-theme = "everforest_dark"
+theme = "carbonfox"
+# theme = "flexoki_dark"
+# theme = "nightfox"
 
 [editor]
+end-of-line-diagnostics = "hint"
 line-number = "relative"
-evil = true
+# evil = true
+scrolloff = 10
 
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+#[editor.inline-diagnostics]
+#cursor-line = "warning"
+
+[editor.auto-save]
+after-delay.enable = true
+after-delay.timeout = 2000

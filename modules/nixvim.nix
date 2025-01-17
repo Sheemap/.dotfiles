@@ -293,7 +293,7 @@
           bashls.enable = true;
           cssls.enable = true;
           dockerls.enable = true;
-          eslint.enable = false;
+          eslint.enable = true;
           gopls.enable = true;
           graphql.enable = true;
           html.enable = true;
@@ -306,7 +306,7 @@
           basedpyright = {
             enable = true;
             settings = {
-              basedpyright.analysis.diagnosticMode = "workspace";
+              #basedpyright.analysis.diagnosticMode = "workspace";
               basedpyright.analysis.autoImportCompletions = true;
             };
           };

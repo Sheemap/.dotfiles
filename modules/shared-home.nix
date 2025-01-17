@@ -20,6 +20,7 @@ in
   imports = [
     ./nixvim.nix
     ./tmux.nix
+    ./helix.nix
   ];
 
   nixpkgs = {
@@ -57,7 +58,6 @@ in
     # Nixpkgs version is out of date
     # Just going to use their installer
     # devbox
-    evil-helix
 
     autotiling
     dust
@@ -100,7 +100,6 @@ in
   ];
 
   home.file.".config/warpd/config".source = ../configs/warpd.conf;
-  home.file.".config/helix/config.toml".source = ../configs/helix.toml;
   home.file.".config/fish/functions/fish_prompt.fish".source =
     ../configs/fish/functions/fish_prompt.fish;
   home.file.".config/fish/functions/fish_right_prompt.fish".source =
