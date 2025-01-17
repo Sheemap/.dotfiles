@@ -1,4 +1,5 @@
-theme = "carbonfox"
+theme = "dark_plus"
+# theme = "carbonfox"
 # theme = "flexoki_dark"
 # theme = "nightfox"
 
@@ -7,6 +8,7 @@ end-of-line-diagnostics = "hint"
 line-number = "relative"
 # evil = true
 scrolloff = 10
+mouse = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -22,3 +24,16 @@ display-inlay-hints = true
 [editor.auto-save]
 after-delay.enable = true
 after-delay.timeout = 2000
+
+[keys.normal]
+C-q = ":q"
+C-v = ":vsplit"
+C-s = ":hsplit"
+C-h = "jump_view_left"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-l = "jump_view_right"
+
+[editor.clipboard-provider.custom]
+yank = { command = "cb",  args = ["copy"] }
+paste = { command = "cb",  args = [] }

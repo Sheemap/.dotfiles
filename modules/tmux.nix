@@ -52,7 +52,7 @@ in
 
       # See: https://github.com/christoomey/vim-tmux-navigator
       is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-       | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+       | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf|hx)(diff)?$'"
 
       # -n is shorthand for -T root
       bind-key -n 'C-q' if-shell "$is_vim" 'send-keys C-q' 'kill-pane'
