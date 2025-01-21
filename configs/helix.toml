@@ -16,7 +16,7 @@ color-modes = true
 auto-pairs = false
 
 [editor.statusline]
-left = ["mode", "spacer", "version-control", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+left = ["mode", "spacer", "version-control", "file-name", "read-only-indicator", "file-modification-indicator", "spinner"]
 center =[]
 right = ["diagnostics", "primary-selection-length", "position", "position-percentage", "spacer", "file-encoding"]
 mode.normal = "NORMAL"
