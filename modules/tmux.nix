@@ -11,9 +11,12 @@ let
         tmux new-session -d -s $session
 
         tmux rename-window -t $session:0 'Fish'
-        tmux new-window -t $session:1 -n 'Neovim'
 
-        tmux send-keys -t $session:1 'nv' C-m
+        #tmux new-window -t $session:1 -n 'Neovim'
+        tmux new-window -t $session:1 -n 'Helix'
+
+        #tmux send-keys -t $session:1 'nv' C-m
+        tmux send-keys -t $session:1 'hx' C-m
 
         tmux attach -t $session
     fi

@@ -160,8 +160,8 @@ in
 
   programs.kitty = {
     enable = true;
-    #themeFile = "Dark Pride";
-    themeFile = "everforest_dark_hard";
+    themeFile = "dark_pride";
+    #themeFile = "everforest_dark_hard";
     #themeFile = "Rose Pine";
     #themeFile = "Dracula";
     #themeFile = "Nightfox";
@@ -183,6 +183,7 @@ in
       ns = "sudo nixos-rebuild switch --flake ~/.dotfiles";
       nv = "nvim";
       db = "devbox";
+      lg = "lazygit";
     };
     shellInit = ''
       set -x PATH $HOME/.local/bin $PATH

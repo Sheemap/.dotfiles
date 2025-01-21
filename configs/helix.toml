@@ -1,14 +1,27 @@
-theme = "dark_plus"
-# theme = "carbonfox"
+# theme = "dark_plus"
+theme = "carbonfox"
 # theme = "flexoki_dark"
 # theme = "nightfox"
+# theme = "seoul256-dark"
+# theme = "everforeset_dark" # I dont like how it highlights comments and imports. So big and blocky :(
 
 [editor]
 end-of-line-diagnostics = "hint"
 line-number = "relative"
 # evil = true
 scrolloff = 10
-mouse = false
+cursorline = true
+completion-timeout = 100
+color-modes = true
+auto-pairs = false
+
+[editor.statusline]
+left = ["mode", "spacer", "version-control", "spinner", "file-name", "read-only-indicator", "file-modification-indicator"]
+center =[]
+right = ["diagnostics", "primary-selection-length", "position", "position-percentage", "spacer", "file-encoding"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -17,9 +30,15 @@ normal = "block"
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
+display-progress-messages = true
 
 #[editor.inline-diagnostics]
 #cursor-line = "warning"
+
+[editor.indent-guides]
+render = true
+character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
 
 [editor.auto-save]
 after-delay.enable = true
@@ -36,4 +55,6 @@ C-l = "jump_view_right"
 
 [editor.clipboard-provider.custom]
 yank = { command = "cb",  args = ["copy"] }
-paste = { command = "cb",  args = [] }
+paste = { command = "cb",  args = ["paste"] }
+primary-yank = { command = "cb",  args = ["copy"] }
+primarty-paste = { command = "cb",  args = ["paste"] }
