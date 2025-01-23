@@ -53,8 +53,3 @@ C-j = "jump_view_down"
 C-k = "jump_view_up"
 C-l = "jump_view_right"
 
-[editor.clipboard-provider.custom]
-yank = { command = "cb",  args = ["copy"] }
-paste = { command = "cb",  args = ["paste"] }
-primary-yank = { command = "cb",  args = ["copy"] }
-primarty-paste = { command = "cb",  args = ["paste"] }

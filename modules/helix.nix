@@ -8,7 +8,6 @@
         # evil-helix
 
         lazygit
-        clipboard-jh
 
         # LSPs
         basedpyright
