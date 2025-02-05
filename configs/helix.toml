@@ -27,6 +27,9 @@ mode.select = "SELECT"
 insert = "bar"
 normal = "block"
 
+[editor.file-picker]
+hidden = false
+
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
@@ -44,12 +47,19 @@ skip-levels = 1
 after-delay.enable = true
 after-delay.timeout = 2000
 
-[keys.normal]
-C-q = ":q"
-C-v = ":vsplit"
-C-s = ":hsplit"
-C-h = "jump_view_left"
-C-j = "jump_view_down"
-C-k = "jump_view_up"
-C-l = "jump_view_right"
+# [keys.normal]
+# C-q = ":q"
+# C-v = ":vsplit"
+# C-s = ":hsplit"
+# C-h = "jump_view_left"
+# C-j = "jump_view_down"
+# C-k = "jump_view_up"
+# C-l = "jump_view_right"
 
+[keys.normal."space".c]
+p = ":pipe ccase --to pascal"
+c = ":pipe ccase --to camel"
+C = ":pipe ccase --to uppercamel"
+k = ":pipe ccase --to kebab"
+s = ":pipe ccase --to snake"
+S = ":pipe ccase --to screamingsnake"

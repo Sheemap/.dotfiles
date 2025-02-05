@@ -81,6 +81,7 @@ in
     vial
     warpd
 
+    localPkgs.ccase
     localPkgs.zen-browser
 
     nerd-fonts.symbols-only

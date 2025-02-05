@@ -51,6 +51,11 @@
       #inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ccase = {
+      url = "github:rutrum/ccase";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:sheemap/zen-browser-flake";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -68,12 +73,15 @@
       nixos-generators,
       treefmt-nix,
       lix-module,
+      ccase,
       zen-browser,
       ...
     }@inputs:
     let
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
       localPkgs = {
+        ccase = ccase.packages.${system}.default;
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
         mac-client = pkgs.callPackage ./packages/mac-client.nix { };
