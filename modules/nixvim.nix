@@ -76,7 +76,7 @@
         spectral.enable = false;
         spectral.package = null;
 
-        terraform_validate.enable = true;
+        terraform_validate.enable = false;
         sqlfluff.enable = true;
         yamllint.enable = true;
       };
