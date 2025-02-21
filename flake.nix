@@ -160,6 +160,20 @@
             })
           ];
         };
+        breadgirl = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit localPkgs;
+          };
+          modules = [
+            ./hosts/archcrafty/home.nix
+            nixvim.homeManagerModules.nixvim
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [
+              ];
+            })
+          ];
+        };
         dinodave = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
