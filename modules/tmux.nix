@@ -59,9 +59,9 @@ in
 
       # -n is shorthand for -T root
       bind-key -n 'C-q' if-shell "$is_vim" 'send-keys C-q' 'kill-pane'
-      bind-key -n 'C-v' if-shell "$is_vim" 'send-keys C-v' 'split-window -h'
       bind-key -n 'C-s' if-shell "$is_vim" 'send-keys C-s' 'split-window -v'
       bind-key -n 'C-x' split-window -v
+      bind-key -n 'C-v' split-window -h
 
       bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
       bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
