@@ -19,7 +19,7 @@
   home.packages = with pkgs; [
     firefox
     arandr
-    discord
+    #discord
     #wineWowPackages.stable
     wineWowPackages.full
     winetricks
@@ -28,7 +28,7 @@
     obs-studio
     vlc
     mangohud
-    vesktop
+    #vesktop
     devbox
     picard
 

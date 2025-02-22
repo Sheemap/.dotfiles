@@ -82,7 +82,6 @@ in
     warpd
 
     localPkgs.ccase
-    localPkgs.zen-browser
 
     nerd-fonts.symbols-only
     nerd-fonts.jetbrains-mono
