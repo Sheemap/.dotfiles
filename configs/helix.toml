@@ -47,6 +47,9 @@ skip-levels = 1
 after-delay.enable = true
 after-delay.timeout = 2000
 
+[editor.soft-wrap]
+enable = true
+
 # [keys.normal]
 # C-q = ":q"
 # C-v = ":vsplit"
