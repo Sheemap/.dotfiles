@@ -73,6 +73,7 @@ in
     nix-output-monitor
     obsidian
     ripgrep
+    signal-desktop
     spotify
     tauon
     thunderbird

@@ -295,7 +295,6 @@
           dockerls.enable = true;
           eslint.enable = true;
           gopls.enable = true;
-          graphql.enable = true;
           html.enable = true;
           jsonls.enable = true;
           lua_ls.enable = true;
@@ -359,6 +358,7 @@
           "<leader>f" = "git_files";
           "<leader>pf" = "find_files";
           "<leader>ps" = "live_grep";
+          "<leader>/" = "live_grep";
         };
       };
     };
