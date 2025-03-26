@@ -42,6 +42,21 @@ in
         icons = "material-nf";
         blocks = [
           {
+            block = "net";
+            format_alt = " $device $ip ^icon_net_down $graph_down ^icon_net_up $graph_up";
+          }
+          {
+            block = "music";
+            format = " $icon {$combo.str(max_w:25,rot_interval:0.5) $play |}";
+            format_alt = " $icon {$combo.str(max_w:25,rot_interval:0.5) $prev $next |}";
+            click = [
+            {
+              button = "right";
+              action = "play_pause";
+            }
+            ];
+          }
+          {
             alert = 10.0;
             block = "disk_space";
             info_type = "available";

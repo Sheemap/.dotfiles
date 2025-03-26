@@ -84,13 +84,29 @@ in
 
     localPkgs.ccase
 
+    # Fonts
     nerd-fonts.symbols-only
     nerd-fonts.jetbrains-mono
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
+    # used by polybar theme
+    terminus_font
+    icomoon-feather
+    material-icons
+    siji
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.iosevka
+    nerd-fonts.noto
+    nerd-fonts.droid-sans-mono
+
+    # misc fonts
+    nerd-fonts.hack
+    nerd-fonts.tinos
+    nerd-fonts.mplus
+    nerd-fonts.arimo
+    nerd-fonts.lilex
+    nerd-fonts._3270
+    nerd-fonts.agave
+    nerd-fonts.monoid
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

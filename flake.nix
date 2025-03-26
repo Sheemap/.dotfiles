@@ -23,6 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    musnix  = {
+      url = "github:musnix/musnix";
+    };
+
     nixvim = {
       url = "github:nix-community/nixvim";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -69,6 +73,7 @@
       nixpkgs-stable,
       systems,
       home-manager,
+      musnix,
       nixvim,
       nixos-generators,
       treefmt-nix,
@@ -85,7 +90,8 @@
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
         mac-client = pkgs.callPackage ./packages/mac-client.nix { };
-        zen-browser = pkgs.callPackage ./packages/zen-browser.nix { };
+        #zen-browser = pkgs.callPackage ./packages/zen-browser.nix { };
+        zen-browser = zen-browser.packages.${system}.default;
       };
 
       # Small tool to iterate over each systems
@@ -130,6 +136,7 @@
           modules = [
             ./hosts/breadbox/configuration.nix
             lix-module.nixosModules.default
+            musnix.nixosModules.musnix
             #nix-ld.nixosModules.nix-ld
             #inputs.home-manager.nixosModules.nixos
           ];

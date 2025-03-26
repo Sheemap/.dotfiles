@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  services.xserver.deviceSection = ''Option "TearFree" "true"''; # For amdgpu.
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -73,7 +72,7 @@
   users.users.breadgirl = {
     isNormalUser = true;
     description = "breadgirl";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
     packages = with pkgs; [];
   };
 
@@ -88,6 +87,8 @@
 
   fonts.fontDir.enable = true;
   fonts.packages = [ ];
+
+  services.xserver.deviceSection = ''Option "TearFree" "true"''; # For amdgpu.
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "breadgirl";
@@ -108,22 +109,30 @@
   services.libinput.enable = true;
   services.libinput.mouse.accelProfile = "flat";
 
-  security.rtkit.enable = true;
+  musnix.enable = true;
 
-  services.pipewire = {
-    enable = false;
-    systemWide = false;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-  };
+# sound.enable = true;
+# hardware.pulseaudio = {
+# enable = true;
+# support32Bit = true;
+# };
+
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   systemWide = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   # If you want to use JACK applications, uncomment this
+  #   jack.enable = true;
+  # };
   #services.pulseaudio.enable = true;
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
+  # Utilities to manage keyboard layouts
   services.udev.packages = with pkgs; [
     # vial
     # via
@@ -131,9 +140,13 @@
 
   services.openssh.enable = false;
 
+  # Not working, trying in home manager
+  services.passSecretService.enable = false;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  programs.steam.enable = true;
   programs.fish.enable = true;
   #programs.neovim.defaultEditor = true;
   programs.nix-ld.enable = true;

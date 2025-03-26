@@ -18,6 +18,7 @@
   #     "x-scheme-handler/unknown" = "firefox.desktop";
   #   };
   # };
+  services.pass-secret-service.enable = true;
   services.nextcloud-client = {
     enable = true;
     startInBackground = true;
@@ -38,13 +39,12 @@
     mangohud
     vesktop
     devbox
+    plexamp
 
     docker
     lazydocker
 
-    localPkgs.pyfa
-    localPkgs.pants
-    localPkgs.mac-client
+    localPkgs.zen-browser
 
     (buildFHSEnv (
       appimageTools.defaultFhsEnvArgs
