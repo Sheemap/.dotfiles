@@ -50,10 +50,10 @@ in
             format = " $icon {$combo.str(max_w:25,rot_interval:0.5) $play |}";
             format_alt = " $icon {$combo.str(max_w:25,rot_interval:0.5) $prev $next |}";
             click = [
-            {
-              button = "right";
-              action = "play_pause";
-            }
+              {
+                button = "right";
+                action = "play_pause";
+              }
             ];
           }
           {

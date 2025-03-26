@@ -5,17 +5,17 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-4651f0f6-0d43-4c52-98b0-9a69ed41259e".device = "/dev/disk/by-uuid/4651f0f6-0d43-4c52-98b0-9a69ed41259e";
+  boot.initrd.luks.devices."luks-4651f0f6-0d43-4c52-98b0-9a69ed41259e".device =
+    "/dev/disk/by-uuid/4651f0f6-0d43-4c52-98b0-9a69ed41259e";
   networking.hostName = "breadbox"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -72,8 +72,13 @@
   users.users.breadgirl = {
     isNormalUser = true;
     description = "breadgirl";
-    extraGroups = [ "networkmanager" "wheel" "docker" "audio" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "audio"
+    ];
+    packages = with pkgs; [ ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -111,11 +116,11 @@
 
   musnix.enable = true;
 
-# sound.enable = true;
-# hardware.pulseaudio = {
-# enable = true;
-# support32Bit = true;
-# };
+  # sound.enable = true;
+  # hardware.pulseaudio = {
+  # enable = true;
+  # support32Bit = true;
+  # };
 
   # security.rtkit.enable = true;
   # services.pipewire = {

@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    musnix  = {
+    musnix = {
       url = "github:musnix/musnix";
     };
 
@@ -161,10 +161,13 @@
           modules = [
             ./hosts/breadbox/home.nix
             nixvim.homeManagerModules.nixvim
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [
-              ];
-            })
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                ];
+              }
+            )
           ];
         };
         arch-breadgirl = home-manager.lib.homeManagerConfiguration {
@@ -175,10 +178,13 @@
           modules = [
             ./hosts/archcrafty/home.nix
             nixvim.homeManagerModules.nixvim
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [
-              ];
-            })
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                ];
+              }
+            )
           ];
         };
         dinodave = home-manager.lib.homeManagerConfiguration {
@@ -189,10 +195,13 @@
           modules = [
             ./hosts/dino-dave/home.nix
             nixvim.homeManagerModules.nixvim
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [
-              ];
-            })
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                ];
+              }
+            )
           ];
         };
         breadman = home-manager.lib.homeManagerConfiguration {
@@ -203,10 +212,13 @@
           modules = [
             ./hosts/work-arch/home.nix
             nixvim.homeManagerModules.nixvim
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [
-              ];
-            })
+            (
+              { pkgs, ... }:
+              {
+                nixpkgs.overlays = [
+                ];
+              }
+            )
           ];
         };
       };
