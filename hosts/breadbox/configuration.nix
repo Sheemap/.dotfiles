@@ -2,77 +2,38 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{
-  config,
-  pkgs,
-  localPkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    #../../modules/kde.nix
-    #../../modules/hyprland-nix.nix
-    #../../modules/hyprland-autologin.nix
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
   services.xserver.deviceSection = ''Option "TearFree" "true"''; # For amdgpu.
+
   # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = false;
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      useOSProber = true;
-      efiInstallAsRemovable = true;
-      gfxmodeEfi = "3440x1440";
-      fontSize = 36;
-    };
-    efi.canTouchEfiVariables = false;
-  };
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 10d";
-  };
-
-  # Better windows dual boot compatibility
-  time.hardwareClockInLocalTime = true;
-
-  environment.shells = with pkgs; [
-    fish
-    zsh
-    bash
-  ];
-  users.defaultUserShell = pkgs.fish;
-  programs.fish.enable = true;
-  programs.thunar.enable = true;
-  programs.coolercontrol.enable = true;
-
-  programs.neovim.defaultEditor = true;
-  programs.nix-ld.enable = true;
-
-  programs.steam.enable = true;
-  programs.gamemode.enable = true;
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
-
+  boot.initrd.luks.devices."luks-4651f0f6-0d43-4c52-98b0-9a69ed41259e".device = "/dev/disk/by-uuid/4651f0f6-0d43-4c52-98b0-9a69ed41259e";
   networking.hostName = "breadbox"; # Define your hostname.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Better windows dual boot compatibility
+  time.hardwareClockInLocalTime = true;
+
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 10d";
+  };
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -81,7 +42,6 @@
     "root"
     "breadcat"
   ];
-  nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -101,8 +61,36 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  #services.picom.enable = true;
-  # Configure keymap in X11
+  environment.shells = with pkgs; [
+    fish
+    zsh
+    bash
+  ];
+
+  users.defaultUserShell = pkgs.fish;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.breadgirl = {
+    isNormalUser = true;
+    description = "breadgirl";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [];
+  };
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    helix
+    fish
+    wget
+    git
+    pavucontrol
+  ];
+
+  fonts.fontDir.enable = true;
+  fonts.packages = [ ];
+
+  # Enable automatic login for the user.
+  services.getty.autologinUser = "breadgirl";
   services.xserver = {
     enable = true;
     xkb.layout = "us";
@@ -115,7 +103,7 @@
 
   services.displayManager.defaultSession = "none+i3";
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "breadcat";
+  services.displayManager.autoLogin.user = "breadgirl";
 
   services.libinput.enable = true;
   services.libinput.mouse.accelProfile = "flat";
@@ -131,45 +119,24 @@
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
   };
-  services.pulseaudio.enable = true;
+  #services.pulseaudio.enable = true;
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
   services.udev.packages = with pkgs; [
-    vial
-    via
+    # vial
+    # via
   ];
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.breadcat = {
-    isNormalUser = true;
-    description = "Jamis";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-  };
+  services.openssh.enable = false;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    neovim
-    fish
-    wget
-    git
-    nvtopPackages.nvidia
-    pavucontrol
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
-    #Fonts
-    font-awesome
-    vimPlugins.nvim-web-devicons
-  ];
-
-  fonts.fontDir.enable = true;
-  fonts.packages = [ ];
-
+  programs.fish.enable = true;
+  #programs.neovim.defaultEditor = true;
+  programs.nix-ld.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -177,11 +144,16 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  virtualisation.docker.enable = true;
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -189,51 +161,12 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  virtualisation.docker.enable = true;
-
-  #  hardware.nvidia = {
-  #
-  #    # Modesetting is required.
-  #    modesetting.enable = true;
-  #
-  #    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-  #    # Enable this if you have graphical corruption issues or application crashes after waking
-  #    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-  #    # of just the bare essentials.
-  #    powerManagement.enable = false;
-  #
-  #    # Fine-grained power management. Turns off GPU when not in use.
-  #    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-  #    powerManagement.finegrained = false;
-  #
-  #    # Use the NVidia open source kernel module (not to be confused with the
-  #    # independent third-party "nouveau" open source driver).
-  #    # Support is limited to the Turing and later architectures. Full list of
-  #    # supported GPUs is at:
-  #    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-  #    # Only available from driver 515.43.04+
-  #    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-  #    open = true;
-  #
-  #    # Enable the Nvidia settings menu,
-  #	# accessible via `nvidia-settings`.
-  #    nvidiaSettings = true;
-  #
-  #    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  #    #package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }

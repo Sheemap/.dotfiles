@@ -146,7 +146,7 @@
       };
 
       homeConfigurations = {
-        breadcat = home-manager.lib.homeManagerConfiguration {
+        breadgirl = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit localPkgs;
@@ -160,7 +160,7 @@
             })
           ];
         };
-        breadgirl = home-manager.lib.homeManagerConfiguration {
+        arch-breadgirl = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit localPkgs;

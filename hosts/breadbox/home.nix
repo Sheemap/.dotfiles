@@ -1,24 +1,23 @@
 { pkgs, localPkgs, ... }:
 {
   imports = [
-    # Include the results of the hardware scan.
     ../../modules/shared-home.nix
     ../../modules/i3.nix
     #../../modules/hyprland-home.nix
     #../../modules/xmonad.nix
   ];
-  home.username = "breadcat";
-  home.homeDirectory = "/home/breadcat";
+  home.username = "breadgirl";
+  home.homeDirectory = "/home/breadgirl";
 
-  xdg.mimeApps = {
-    defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
-    };
-  };
+  # xdg.mimeApps = {
+  #   defaultApplications = {
+  #     "text/html" = "firefox.desktop";
+  #     "x-scheme-handler/http" = "firefox.desktop";
+  #     "x-scheme-handler/https" = "firefox.desktop";
+  #     "x-scheme-handler/about" = "firefox.desktop";
+  #     "x-scheme-handler/unknown" = "firefox.desktop";
+  #   };
+  # };
   services.nextcloud-client = {
     enable = true;
     startInBackground = true;
