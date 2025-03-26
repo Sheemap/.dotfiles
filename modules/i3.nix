@@ -42,6 +42,12 @@ in
         icons = "material-nf";
         blocks = [
           {
+            block = "bluetooth";
+            mac = "F7:73:CB:4B:1B:7C";
+            disconnected_format = "";
+
+          }
+          {
             block = "net";
             format_alt = " $device $ip ^icon_net_down $graph_down ^icon_net_up $graph_up";
           }
