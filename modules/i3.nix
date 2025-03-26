@@ -45,7 +45,12 @@ in
             block = "bluetooth";
             mac = "F7:73:CB:4B:1B:7C";
             disconnected_format = "";
-
+            battery_state = {
+              "0..15" = "critical";
+              "16..25" = "warning";
+              "26..94" = "idle";
+              "95..100" = "good";
+            };
           }
           {
             block = "net";
