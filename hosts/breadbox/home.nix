@@ -40,6 +40,7 @@
     vesktop
     devbox
     plexamp
+    plex-desktop
 
     docker
     lazydocker
