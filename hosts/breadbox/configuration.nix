@@ -143,7 +143,7 @@
     # via
   ];
 
-  services.openssh.enable = false;
+  services.openssh.enable = true;
 
   # Not working, trying in home manager
   services.passSecretService.enable = false;

@@ -27,6 +27,8 @@
   home.packages = with pkgs; [
     firefox
     arandr
+    beets
+    devbox
     discord
     lutris
     #wineWowPackages.stable
@@ -37,10 +39,9 @@
     obs-studio
     vlc
     mangohud
-    vesktop
-    devbox
     plexamp
     plex-desktop
+    vesktop
 
     docker
     lazydocker

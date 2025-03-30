@@ -16,3 +16,8 @@ nix run github:Sheemap/.dotfiles#pants
 ```
 
 If you need help with these packages, feel free to reach out. Though I make no promises.
+
+## Formatting
+This repo includes a formatter, using treefmt
+
+Run `nix fmt` to apply the changes
