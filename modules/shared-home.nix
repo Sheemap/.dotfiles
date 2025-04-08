@@ -70,6 +70,7 @@ in
     keepassxc
     libreoffice
     libsecret
+    mullvad-vpn
     nix-output-monitor
     obsidian
     ripgrep
