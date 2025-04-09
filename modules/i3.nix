@@ -14,7 +14,11 @@ let
   };
 in
 {
-  services.dunst.enable = true;
+  services.dunst = {
+    enable = true;
+    configFile = "~/.config/dunst/realdunstrc";
+  };
+  home.file.".config/dunst/realdunstrc".source = ../configs/dunst.conf;
 
   home.file.".config/i3/config".source = ../configs/i3.conf;
   home.file.".config/i3/colors".source = ../configs/i3-ctpmocha-colors.conf;
