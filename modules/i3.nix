@@ -27,7 +27,14 @@ in
   home.file.".config/rofi/powermenu.rasi".source = ../scripts/powermenu.rasi;
   home.file.".config/rofi/arc_dark_transparent_colors.rasi".source =
     ../scripts/arc_dark_transparent_colors.rasi;
-  home.file.".wallpapers/pastel-1.jpg".source = ../wallpapers/pastel-1.jpg;
+
+  home.file.".wallpapers/1.jpg".source = ../wallpapers/1.jpg;
+  home.file.".wallpapers/2.jpg".source = ../wallpapers/2.jpg;
+  home.file.".wallpapers/3.jpg".source = ../wallpapers/3.jpg;
+  home.file.".wallpapers/4.jpg".source = ../wallpapers/4.jpg;
+  home.file.".wallpapers/5.jpg".source = ../wallpapers/5.jpg;
+  home.file.".wallpapers/6.jpg".source = ../wallpapers/6.jpg;
+  home.file.".wallpapers/7.jpg".source = ../wallpapers/7.jpg;
 
   programs.rofi = {
     enable = true;
