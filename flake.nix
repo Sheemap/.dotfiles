@@ -27,6 +27,8 @@
       url = "github:musnix/musnix";
     };
 
+    nixgl.url = "github:nix-community/nixgl";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       #inputs.nixpkgs.follows = "nixpkgs";
@@ -76,6 +78,7 @@
       systems,
       home-manager,
       musnix,
+      nixgl,
       nixvim,
       nixos-generators,
       treefmt-nix,
@@ -86,7 +89,11 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ nixgl.overlay ];
+      };
       localPkgs = {
         ccase = ccase.packages.${system}.default;
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
@@ -209,7 +216,7 @@
         breadman = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit localPkgs;
+            inherit localPkgs nixgl;
           };
           modules = [
             ./hosts/work-arch/home.nix

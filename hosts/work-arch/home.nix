@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, nixgl, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -19,7 +19,18 @@
     lazydocker
   ];
 
-  programs.kitty.font.size = 12;
+  nixGL = {
+    packages = nixgl.packages;
+  };
+
+  programs.kitty = {
+    font.size = 12;
+    package = (config.lib.nixGL.wrap pkgs.kitty);
+    settings = {
+      shell = "${pkgs.fish}/bin/fish";
+    };
+  };
+
   programs.nixvim.plugins.obsidian = {
     enable = true;
     settings.workspaces = [
