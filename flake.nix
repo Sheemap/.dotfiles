@@ -159,6 +159,15 @@
             #lix-module.nixosModules.default
           ];
         };
+        caroline = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs localPkgs;
+          };
+          modules = [
+            ./hosts/caroline/configuration.nix
+            # lix-module.nixosModules.default
+          ];
+        };
       };
 
       homeConfigurations = {
