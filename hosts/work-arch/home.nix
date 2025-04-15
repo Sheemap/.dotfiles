@@ -1,4 +1,9 @@
-{ pkgs, config, nixgl, ... }:
+{
+  pkgs,
+  config,
+  nixgl,
+  ...
+}:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -20,12 +25,12 @@
   ];
 
   nixGL = {
-    packages = nixgl.packages;
+    inherit (nixgl) packages;
   };
 
   programs.kitty = {
     font.size = 12;
-    package = (config.lib.nixGL.wrap pkgs.kitty);
+    package = config.lib.nixGL.wrap pkgs.kitty;
     settings = {
       shell = "${pkgs.fish}/bin/fish";
     };
