@@ -23,6 +23,17 @@
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  fileSystems."/mnt/kent-media" = {
+    device = "//10.0.1.100/media";
+    fsType = "cifs";
+    options =
+      let
+      # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in
+      [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100" ];
+  };
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.

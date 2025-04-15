@@ -71,6 +71,9 @@
     neovim
     fish
     wget
+    tmux
+    zoxide
+    fzf
   ];
 
   nix.gc = {
@@ -89,6 +92,11 @@
 
   services.openssh.enable = true;
   programs.fish.enable = true;
+
+  services.plex = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
