@@ -21,6 +21,7 @@
     nil
     ruff
     rust-analyzer
+    taplo
     terraform-ls
     typescript-language-server
     vscode-langservers-extracted
