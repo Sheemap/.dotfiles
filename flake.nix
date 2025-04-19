@@ -92,6 +92,7 @@
       # pkgs = nixpkgs.legacyPackages.${system};
       pkgs = import nixpkgs {
         inherit system;
+        config.allowUnfree = true;
         overlays = [ nixgl.overlay ];
       };
       localPkgs = {
@@ -99,6 +100,7 @@
         pyfa = pkgs.callPackage ./packages/pyfa.nix { };
         pants = pkgs.callPackage ./packages/pants.nix { };
         mac-client = pkgs.callPackage ./packages/mac-client.nix { };
+        plexamp = pkgs.callPackage ./packages/plexamp.nix { };
         #zen-browser = pkgs.callPackage ./packages/zen-browser.nix { };
         zen-browser = zen-browser.packages.${system}.default;
       };

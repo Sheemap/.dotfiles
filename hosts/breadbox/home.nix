@@ -39,13 +39,14 @@
     obs-studio
     vlc
     mangohud
-    plexamp
+    #plexamp
     plex-desktop
     vesktop
 
     docker
     lazydocker
 
+    localPkgs.plexamp
     localPkgs.zen-browser
 
     (buildFHSEnv (
