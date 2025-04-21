@@ -59,4 +59,22 @@
       QT_XCB_GL_INTEGRATION=none ${pkgs.nextcloud-client}/bin/nextcloud
     '';
   };
+
+  # Add some additional laptop specific blocks
+  programs.i3status-rust = {
+    bars.default.blocks = [
+      {
+        block = "battery";
+        format = " $icon $percentage ";
+
+        # formats for various battery states
+        full_format = " $icon $percentage ";
+        charging_format = " $icon $percentage ";
+        empty_format = " $icon $percentage ";
+      }
+      {
+        block = "backlight";
+      }
+    ];
+  };
 }
