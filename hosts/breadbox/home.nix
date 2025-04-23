@@ -25,23 +25,24 @@
   };
 
   home.packages = with pkgs; [
-    firefox
     arandr
     beets
     devbox
     discord
-    lutris
-    #wineWowPackages.stable
-    wineWowPackages.full
-    winetricks
-    pkgsi686Linux.gperftools
     element-desktop
-    obs-studio
-    vlc
+    firefox
+    gthumb
+    lutris
     mangohud
+    obs-studio
+    pkgsi686Linux.gperftools
     #plexamp
     plex-desktop
     vesktop
+    vlc
+    #wineWowPackages.stable
+    wineWowPackages.full
+    winetricks
 
     docker
     lazydocker
