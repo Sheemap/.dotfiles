@@ -24,6 +24,7 @@ in
 
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
+        WorkingDirectory = "/var/lib/openobserve";
         ExecStart = "${pkgs.openobserve}/bin/openobserve";
         EnvironmentFile = "/etc/nixos/openobserve.env";
       };
