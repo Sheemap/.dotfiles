@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.firefox ];
+    networking.firewall.allowedTCPPorts = [ 5080 5081 ];
 
     systemd.services.openobserve = {
       enable = true;
