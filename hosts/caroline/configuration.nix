@@ -8,7 +8,12 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/nixos/openobserve.nix
+    ../../modules/nixos/openobserve-agent.nix
   ];
+
+  openobserve.enable = true;
+  openobserve-agent.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
