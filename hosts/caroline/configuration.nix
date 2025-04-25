@@ -13,7 +13,7 @@
   ];
 
   openobserve.enable = true;
-  openobserve-agent.enable = true;
+  openobserve-otel-agent.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
