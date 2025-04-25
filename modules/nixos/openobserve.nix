@@ -15,6 +15,10 @@ in
   config = lib.mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [ 5080 5081 ];
 
+    system.activationScripts.makeOpenobserveDir = lib.stringAfter [ "var" ] ''
+      mkdir -a /var/lib/openobserve
+    '';
+
     systemd.services.openobserve = {
       enable = true;
 
