@@ -19,6 +19,8 @@
   home.extraOutputsToInstall = [ "man" ];
 
   home.packages = with pkgs; [
+    # Session manager plugin
+    aws-gate
     slack
     mongodb-compass
     lazydocker
