@@ -102,7 +102,8 @@ in
     # misc fonts
     nerd-fonts.hack
     nerd-fonts.tinos
-    nerd-fonts.mplus
+    # gives error now
+    # nerd-fonts.mplus
     nerd-fonts.arimo
     nerd-fonts.lilex
     nerd-fonts._3270
