@@ -32,7 +32,7 @@ in
   home.file.".wallpapers/2.jpg".source = ../wallpapers/2.jpg;
   home.file.".wallpapers/3.jpg".source = ../wallpapers/3.jpg;
   home.file.".wallpapers/4.jpg".source = ../wallpapers/4.jpg;
-  home.file.".wallpapers/5.jpg".source = ../wallpapers/5.jpg;
+  # home.file.".wallpapers/5.jpg".source = ../wallpapers/5.jpg;
   home.file.".wallpapers/6.jpg".source = ../wallpapers/6.jpg;
   home.file.".wallpapers/7.jpg".source = ../wallpapers/7.jpg;
 
