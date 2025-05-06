@@ -13,7 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 5080 5081 ];
+    networking.firewall.allowedTCPPorts = [
+      5080
+      5081
+    ];
 
     system.activationScripts.makeOpenobserveDir = lib.stringAfter [ "var" ] ''
       mkdir -p /var/lib/openobserve
